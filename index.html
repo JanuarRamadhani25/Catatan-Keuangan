@@ -283,53 +283,233 @@ const data=XLSX.write(wb,{type:"array",bookType:"xlsx"});
 const blob=new Blob([data],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"});
 const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="keuangan-"+iso(new Date())+".xlsx";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);$("st").textContent="Excel diunduh ✓"}catch(e){console.error(e);$("st").textContent="Ekspor gagal."}};
 
-let saveTimer=null,saving=false;
-function save(){
+const API_URL = 'https://script.google.com/macros/s/AKfycbwUS2nxZxhcf45mE85NQG-afZdcl4IvxelpcAvKpNe5FhfjL-fBL2fRIC47p9XTFNowBg/exec';
+
+let saveTimer = null;
+let saving = false;
+
+function apiRequest(action, data) {
+  return new Promise((resolve, reject) => {
+    const callback =
+      '__cb_' +
+      Date.now() +
+      '_' +
+      Math.random().toString(36).slice(2);
+
+    const script = document.createElement('script');
+
+    let timer;
+
+    function cleanup() {
+      clearTimeout(timer);
+      delete window[callback];
+      script.remove();
+    }
+
+    window[callback] = function(response) {
+      cleanup();
+
+      if (!response || response.ok === false) {
+        reject(
+          new Error(
+            response?.error || 'Terjadi kesalahan API.'
+          )
+        );
+        return;
+      }
+
+      resolve(response.data);
+    };
+
+    script.onerror = function() {
+      cleanup();
+      reject(
+        new Error(
+          'Gagal menghubungi Spreadsheet.'
+        )
+      );
+    };
+
+    let url =
+      API_URL +
+      '?action=' +
+      encodeURIComponent(action) +
+      '&callback=' +
+      encodeURIComponent(callback);
+
+    if (data !== undefined) {
+      url +=
+        '&data=' +
+        encodeURIComponent(
+          JSON.stringify(data)
+        );
+    }
+
+    script.src = url;
+    document.body.appendChild(script);
+
+    timer = setTimeout(() => {
+      cleanup();
+
+      reject(
+        new Error(
+          'Koneksi timeout.'
+        )
+      );
+    }, 15000);
+  });
+}
+
+function save() {
   renderAll();
+
   clearTimeout(saveTimer);
-  saveTimer=setTimeout(()=>{
-    saving=true;
-    $("st").textContent="Menyimpan...";
-    google.script.run
-      .withSuccessHandler(()=>{saving=false;$("st").textContent="Tersimpan ✓"})
-      .withFailureHandler(e=>{saving=false;console.error(e);$("st").textContent="Gagal menyimpan ke Spreadsheet."})
-      .saveData(S);
-  },150);
-}
 
-function loadData(data){
-  if(!data)return;
-  S.tx=Array.isArray(data.tx)?data.tx:[];
-  S.cats=data.cats&&typeof data.cats==="object"?data.cats:S.cats;
-  S.bud=data.bud&&typeof data.bud==="object"?data.bud:{};
-  S.open=Number(data.open)||0;
-  if(!S.cats.sv)S.cats.sv=["Darurat","Mobil","Pendidikan Anak","Liburan","Lainnya"];
-  if(!S.cats.iv)S.cats.iv=["Reksadana","Saham","Emas","Deposito","Crypto","Lainnya"];
-  if(!S.cats.out.includes("Keluarga"))S.cats.out.splice(Math.max(S.cats.out.length-1,0),0,"Keluarga");
-  if(!S.cats.out.includes("Sedekah"))S.cats.out.splice(Math.max(S.cats.out.length-1,0),0,"Sedekah");
-  S.open=S.open||0;
-}
+  saveTimer = setTimeout(async () => {
+    saving = true;
+    $("st").textContent = "Menyimpan...";
 
-function renderAll(){renderCats();fillFilter();render();if(document.activeElement!==$("op"))$("op").value=S.open||""}
+    try {
+      await apiRequest("saveData", S);
 
-$("op").onchange=()=>{S.open=parseInt($("op").value.replace(/\D/g,""),10)||0;save()};
+      saving = false;
+      $("st").textContent = "Tersimpan ✓";
 
-function init(){
-  $("st").textContent="Memuat data...";
-  google.script.run
-    .withSuccessHandler(data=>{
-      loadData(data);
-      fillCats("Lainnya");
-      renderAll();
-      $("st").textContent="Data tersambung ke Spreadsheet ✓";
-    })
-    .withFailureHandler(e=>{
+    } catch (e) {
+      saving = false;
+
       console.error(e);
-      fillCats("Lainnya");
-      renderAll();
-      $("st").textContent="Gagal membaca Spreadsheet.";
-    })
-    .getData();
+
+      $("st").textContent =
+        "Gagal menyimpan ke Spreadsheet.";
+    }
+  }, 150);
+}
+
+function loadData(data) {
+  if (!data) return;
+
+  S.tx =
+    Array.isArray(data.tx)
+      ? data.tx
+      : [];
+
+  S.cats =
+    data.cats &&
+    typeof data.cats === "object"
+      ? data.cats
+      : S.cats;
+
+  S.bud =
+    data.bud &&
+    typeof data.bud === "object"
+      ? data.bud
+      : {};
+
+  S.open =
+    Number(data.open) || 0;
+
+  if (!S.cats.sv) {
+    S.cats.sv = [
+      "Darurat",
+      "Mobil",
+      "Pendidikan Anak",
+      "Liburan",
+      "Lainnya"
+    ];
+  }
+
+  if (!S.cats.iv) {
+    S.cats.iv = [
+      "Reksadana",
+      "Saham",
+      "Emas",
+      "Deposito",
+      "Crypto",
+      "Lainnya"
+    ];
+  }
+
+  if (
+    !S.cats.out.includes("Keluarga")
+  ) {
+    S.cats.out.splice(
+      Math.max(
+        S.cats.out.length - 1,
+        0
+      ),
+      0,
+      "Keluarga"
+    );
+  }
+
+  if (
+    !S.cats.out.includes("Sedekah")
+  ) {
+    S.cats.out.splice(
+      Math.max(
+        S.cats.out.length - 1,
+        0
+      ),
+      0,
+      "Sedekah"
+    );
+  }
+
+  S.open = S.open || 0;
+}
+
+function renderAll() {
+  renderCats();
+  fillFilter();
+  render();
+
+  if (
+    document.activeElement !== $("op")
+  ) {
+    $("op").value = S.open || "";
+  }
+}
+
+$("op").onchange = () => {
+  S.open =
+    parseInt(
+      $("op")
+        .value
+        .replace(/\D/g, ""),
+      10
+    ) || 0;
+
+  save();
+};
+
+async function init() {
+  $("st").textContent =
+    "Memuat data...";
+
+  try {
+    const data =
+      await apiRequest("getData");
+
+    loadData(data);
+
+    fillCats("Lainnya");
+
+    renderAll();
+
+    $("st").textContent =
+      "Data tersambung ke Spreadsheet ✓";
+
+  } catch (e) {
+    console.error(e);
+
+    fillCats("Lainnya");
+
+    renderAll();
+
+    $("st").textContent =
+      "Gagal membaca Spreadsheet.";
+  }
 }
 
 init();
