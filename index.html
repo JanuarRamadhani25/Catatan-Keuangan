@@ -464,7 +464,7 @@ const data=XLSX.write(wb,{type:"array",bookType:"xlsx"}),dl={save:o=>dlFile(o.fi
 await dl.save({filename:"template-impor-transaksi.xlsx",data});$("im").textContent="Template diunduh ✓"}catch(e){$("im").textContent="Unduhan gagal/dibatalkan."}};
 function dlFile(n,d){const b=new Blob([d],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),5000);return Promise.resolve()}
 let rev=0,pend=false,busy=false,tmr=null,loaded=false;
-const API_URL="";/* Isi dengan URL web app (…/exec) HANYA jika file ini di-hosting di luar Apps Script (mis. GitHub Pages). Boleh dikosongkan dan diisi lewat layar Masuk. */
+const API_URL="https://script.google.com/macros/s/AKfycbwZy1nxTwYf5fwaqSiQ4EToPDlx1FMDWpDlbr7o7a7KC3seJX9YMS6TR3IuHbpeU4Vv/exec";/* Isi dengan URL web app (…/exec) HANYA jika file ini di-hosting di luar Apps Script (mis. GitHub Pages). Boleh dikosongkan dan diisi lewat layar Masuk. */
 const inGAS=!!(window.google&&google.script&&google.script.run);
 let PIN="",apiUrl=API_URL;
 try{PIN=sessionStorage.getItem("keu_pin")||localStorage.getItem("keu_pin")||"";if(!apiUrl)apiUrl=localStorage.getItem("keu_api")||""}catch(e){}
