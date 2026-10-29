@@ -206,7 +206,7 @@ body.mo{overflow:hidden}.stk{display:flex;height:12px;border-radius:7px;overflow
 .stkl{display:flex;gap:6px 16px;flex-wrap:wrap;font-size:13px}.stkl>span{display:flex;align-items:center;gap:6px}.stkl i{width:10px;height:10px;border-radius:50%;display:inline-block}
 @media(max-width:760px){.mdl{align-items:flex-end;padding:0}.mdb{border-radius:22px 22px 0 0;max-height:90vh;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px));animation:sheet .34s cubic-bezier(.2,.9,.3,1) both}.greet b{font-size:18px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-</style><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script></head><body>
+</style><script defer src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script></script></head><body>
 <div class="ldr" id="ld"><div><div class="spin"></div><p id="ldm">Memuat data dari Google Sheets…</p></div></div>
 <div class="cfb" id="cf" style="display:none"><span>Data di Google Sheets sudah berubah (mungkin dari perangkat lain). Perubahan terakhir Anda belum tersimpan.</span><button id="rl2">Muat ulang data</button></div>
 <div class="ldr" id="lg" style="display:none"><div class="lgb"><h2 style="margin:0 0 6px">🔐 Masuk</h2><p class="mu" id="lgm" style="margin:0 0 8px"></p>
@@ -549,7 +549,7 @@ $("lgok").onclick=()=>{if(!inGAS){apiUrl=$("lgurl").value.trim();if(!/^https:\/\
 PIN=$("lgpin").value;try{sessionStorage.removeItem("keu_pin");localStorage.removeItem("keu_pin");if(PIN)($("lgmem").checked?localStorage:sessionStorage).setItem("keu_pin",PIN);if(!inGAS)localStorage.setItem("keu_api",apiUrl)}catch(e){}
 $("lg").style.display="none";boot()};
 $("lgpin").onkeydown=e=>{if(e.key=="Enter")$("lgok").click()};
-$("lo").onclick=()=>{try{sessionStorage.removeItem("keu_pin");localStorage.removeItem("keu_pin")}catch(e){}PIN="";location.reload()};
+$("lo").onclick=()=>{try{sessionStorage.removeItem("keu_pin");localStorage.removeItem("keu_pin");localStorage.removeItem(CK)}catch(e){}PIN="";location.reload()};
 function stat(t,c){const e=$("sync");e.textContent=t;e.className="sync "+(c||"")}
 function save(){renderAll();pend=true;stat("⏳ Menyimpan…","w");clearTimeout(tmr);tmr=setTimeout(push,700)}
 function push(){if(busy||!loaded||!pend)return;busy=true;pend=false;
@@ -557,7 +557,7 @@ call({a:"saveAll",json:JSON.stringify(S),rev:rev}).then(r=>{busy=false;
 if(r&&r.code==="PIN"){pend=true;showLogin(r.error);return}
 if(r&&r.conflict){pend=false;stat("⚠ Data berubah di perangkat lain","e");$("cf").style.display="flex";return}
 if(!r||!r.ok){pend=true;stat("⚠ Gagal menyimpan: "+((r&&r.error)||"tidak diketahui")+" (ketuk untuk ulangi)","e");return}
-rev=r.rev;if(pend)push();else stat("☁ Tersimpan di Google Sheets","ok")})
+rev=r.rev;saveCache();if(pend)push();else stat("☁ Tersimpan di Google Sheets","ok")})
 .catch(e=>{busy=false;pend=true;stat("⚠ Gagal menyimpan (ketuk untuk ulangi)","e");setTimeout(push,15000)})}
 $("sync").onclick=()=>{if(pend&&!busy)push()};
 $("rl2").onclick=()=>{$("cf").style.display="none";pend=false;boot()};
@@ -568,14 +568,26 @@ S.open=S.open||0;
 if(!S.accts||!S.accts.length){S.accts=[{id:"cash",name:"Cash",kind:"cash",open:S.open},{id:"bni",name:"Rekening BNI",kind:"rek",open:0},{id:"bsi",name:"Rekening BSI",kind:"rek",open:0},{id:"spay",name:"ShopeePay",kind:"ew",open:0}];S.open=0}S.accts.forEach(a=>{if(a.kind=="sav")a.kind="rek"});["out","in","sv","iv"].forEach(t=>{const c=S.cats[t]||(S.cats[t]=[]),k=c.indexOf("Lainnya");if(k>=0)c.splice(k,1);c.push("Lainnya")})}
 function renderAll(){renderCats();fillFilter();fillAccts();renderAccts();render();warn()}
 function fail(m){$("ld").style.display="flex";$("ldm").innerHTML="Gagal memuat data: "+esc(m)+'<br><span class="mu">'+(inGAS?"Pastikan setup() sudah dijalankan dan izin diberikan.":"Periksa URL web app, akses deployment (Anyone), dan koneksi.")+'</span><br><button onclick="boot()" style="margin-top:12px;width:auto">Coba lagi</button>'}
-function boot(){if(!inGAS&&!apiUrl){showLogin("File ini berjalan di luar Apps Script. Isi URL web app dan PIN.");return}
-$("ld").style.display="flex";$("ldm").textContent="Memuat data dari Google Sheets…";
+const CK="keu_cache";
+function saveCache(){try{localStorage.setItem(CK,JSON.stringify({rev:rev,S:S,G:G}))}catch(e){}}
+function boot(fast){if(!inGAS&&!apiUrl){showLogin("File ini berjalan di luar Apps Script. Isi URL web app dan PIN.");return}
+let used=false;
+if(fast){try{const c=JSON.parse(localStorage.getItem(CK)||"null");
+if(c&&c.S&&c.S.accts&&c.S.accts.length){rev=c.rev||0;G=c.G||{};S.tx=[];load(JSON.stringify(c.S));fillCats("Lainnya");renderAll();
+$("ld").style.display="none";$("lo").style.display=PIN?"":"none";stat("⏳ Menyinkronkan…","w");used=true}}catch(e){}}
+if(!used){$("ld").style.display="flex";$("ldm").textContent="Memuat data dari Google Sheets…"}
 call({a:"getAll"}).then(d=>{
-if(d&&d.code==="PIN"){showLogin(d.error);return}
-if(!d||d.error){fail((d&&d.error)||"respon kosong");return}
-rev=d.rev||0;G=d.gold||{};delete d.gold;S.tx=[];load(JSON.stringify(d));loaded=true;fillCats("Lainnya");renderAll();$("ld").style.display="none";$("lg").style.display="none";$("lo").style.display=PIN?"":"none";$("p-dash").classList.add("enter");setTimeout(()=>$("p-dash").classList.remove("enter"),1100);stat("☁ Tersimpan di Google Sheets","ok");if(d.fresh){pend=true;push()}
-call({a:"refreshGold",force:false}).then(g=>{if(g&&!g.code){G=g;renderTop();gl()}}).catch(()=>{})
-}).catch(e=>fail((e&&e.message)||String(e)))}
+if(d&&d.code==="PIN"){try{localStorage.removeItem(CK)}catch(e){}showLogin(d.error);return}
+if(!d||d.error){if(used){stat("⚠ Offline, menampilkan data tersimpan (ketuk untuk ulangi)","e");return}fail((d&&d.error)||"respon kosong");return}
+const edited=used&&pend;
+if(edited){if((d.rev||0)!==rev){stat("⚠ Data berubah di perangkat lain","e");$("cf").style.display="flex";return}
+G=d.gold||G;loaded=true;stat("⏳ Menyimpan…","w");push();return}
+rev=d.rev||0;G=d.gold||{};delete d.gold;S.tx=[];load(JSON.stringify(d));loaded=true;fillCats("Lainnya");renderAll();
+$("ld").style.display="none";$("lg").style.display="none";$("lo").style.display=PIN?"":"none";
+if(!used){$("p-dash").classList.add("enter");setTimeout(()=>$("p-dash").classList.remove("enter"),1100)}
+stat("☁ Tersimpan di Google Sheets","ok");saveCache();if(d.fresh){pend=true;push()}
+call({a:"refreshGold",force:false}).then(g=>{if(g&&!g.code){G=g;renderTop();gl();saveCache()}}).catch(()=>{})
+}).catch(e=>{if(used){stat("⚠ Offline, menampilkan data tersimpan (ketuk untuk ulangi)","e")}else fail((e&&e.message)||String(e))})}
 const fmN=v=>String(v).replace(/\D/g,"").replace(/\B(?=(\d{3})+(?!\d))/g,".");
 function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2200)}
 $("qa").onclick=()=>{goPage("p-tx");setTimeout(()=>$("nm").focus(),80)};
@@ -611,5 +623,5 @@ function openPos(){renderPos();document.body.classList.add("mo");$("mdl").classL
 function closePos(){document.body.classList.remove("mo");$("mdl").classList.remove("on");$("cc1").focus()}
 $("cc1").onclick=openPos;$("cc1").onkeydown=e=>{if(e.key=="Enter"||e.key==" "){e.preventDefault();openPos()}};
 $("mdx").onclick=closePos;$("mdl").onclick=e=>{if(e.target===$("mdl"))closePos()};
-boot();
+boot(true);
 </script></body></html>
