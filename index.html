@@ -206,7 +206,7 @@ body.mo{overflow:hidden}.stk{display:flex;height:12px;border-radius:7px;overflow
 .stkl{display:flex;gap:6px 16px;flex-wrap:wrap;font-size:13px}.stkl>span{display:flex;align-items:center;gap:6px}.stkl i{width:10px;height:10px;border-radius:50%;display:inline-block}
 @media(max-width:760px){.mdl{align-items:flex-end;padding:0}.mdb{border-radius:22px 22px 0 0;max-height:90vh;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px));animation:sheet .34s cubic-bezier(.2,.9,.3,1) both}.greet b{font-size:18px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-</style><script defer src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script></script></head><body>
+</style><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script></head><body>
 <div class="ldr" id="ld"><div><div class="spin"></div><p id="ldm">Memuat data dari Google Sheets…</p></div></div>
 <div class="cfb" id="cf" style="display:none"><span>Data di Google Sheets sudah berubah (mungkin dari perangkat lain). Perubahan terakhir Anda belum tersimpan.</span><button id="rl2">Muat ulang data</button></div>
 <div class="ldr" id="lg" style="display:none"><div class="lgb"><h2 style="margin:0 0 6px">🔐 Masuk</h2><p class="mu" id="lgm" style="margin:0 0 8px"></p>
@@ -363,12 +363,11 @@ const p=G.jual?`<p class="mu">🪙 Antam: beli <b>${rp(G.jual)}</b> · buyback <
 $("gold").innerHTML=ks.map(c=>{const x=gm[c];if(!G.buyback)return `<div class="goldrow"><div><b>${esc(c)}</b> · ${fmtG(x.g)} gram</div><div class="mu">Modal ${rp(x.cost)}</div></div>`;const v=x.g*G.buyback,pl=v-x.cost;
 return `<div class="goldrow"><div><b>${esc(c)}</b> · ${fmtG(x.g)} gram</div><div class="mu">Modal ${rp(x.cost)} → Nilai ${rp(v)}</div><div class="${pl>=0?"in":"out"}"><b>${pl>=0?"▲ +":"▼ −"}${rp(Math.abs(pl))}</b> (${x.cost>0?Math.round(pl/x.cost*1000)/10:0}%)</div></div>`}).join("")+p}
 function greet(){const d=new Date(),hr=d.getHours(),g=hr<11?"Selamat pagi":hr<15?"Selamat siang":hr<18?"Selamat sore":"Selamat malam";$("greet").innerHTML=`<b>${g} 👋</b><span>${d.toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}</span>`}
-function freeBal(){const AB=accBal(),H=holdMap();return S.accts.map(a=>({a,t:AB[a.id]||0,h:H[a.id]||0,v:(AB[a.id]||0)-(H[a.id]||0)}))}
 function renderTop(){greet();const cash=AO()+S.tx.reduce((s,t)=>s+eff(t),0),AB0=accBal(),sv=addSav(pos(bal("sv")),AB0),iv=goldAdj(pos(bal("iv"))),ts=Object.values(sv).reduce((a,b)=>a+b,0),ti=Object.values(iv).reduce((a,b)=>a+b,0);
-const FB=freeBal();setNum("hC",FB.reduce((s,r)=>s+Math.max(r.v,0),0));$("cc1").classList.remove("neg");setNum("hS",ts);setNum("hV",ti);setNum("hA",cash+ts+ti);
+setNum("hC",cash);$("cc1").classList.toggle("neg",cash<0);setNum("hS",ts);setNum("hV",ti);setNum("hA",cash+ts+ti);
 const AB=accBal(),H=holdMap(),byA={},byK={};S.accts.forEach(a=>{const v=AB[a.id]||0;byA[a.name]=v;byK[a.kind]=(byK[a.kind]||0)+v});
 const pa=pos(byA),ta=Object.values(pa).reduce((x,y)=>x+y,0),amx=Math.max(...Object.values(AB).map(Math.abs),1),tk=Object.values(byK).reduce((x,y)=>x+y,0)||1;
-$("nAcc").textContent=FB.some(r=>r.v<0)?"⚠ Ada saldo minus, lihat detail":"Belum termasuk tabungan & investasi";$("aD").innerHTML=donut(pa,ta,0);
+$("nAcc").textContent="Belum termasuk tabungan & investasi";$("aD").innerHTML=donut(pa,ta,0);
 $("aK").innerHTML=Object.keys(KIND).filter(k=>S.accts.some(a=>a.kind==k)).map(k=>`<div style="margin-bottom:12px"><div class="row" style="border:0;padding:0"><b>${KIND[k]}</b><b>${rp(byK[k]||0)} <span class="mu">${Math.round((byK[k]||0)/tk*100)}%</span></b></div>${S.accts.filter(a=>a.kind==k).map(a=>{const v=AB[a.id]||0;return `<div class="row" style="border:0;padding:4px 0 0"><span class="mu">${esc(a.name)}${H[a.id]>0?` <small>· termasuk tabungan/investasi ${rp(H[a.id])}</small>`:""}</span><span class="${v<0?"out":""}">${rp(v)}</span></div><div class="bar ${v<0?"over":""}"><i style="width:${Math.abs(v)/amx*100}%"></i></div>`}).join("")}</div>`).join("")||'<p class="mu">Belum ada tempat uang.</p>';
 $("tS").innerHTML=donut(sv,ts,0);$("tV").innerHTML=donut(iv,ti,0);$("gS").innerHTML=growth("sv");$("gV").innerHTML=growth("iv");renderGold()}
 function balChart(keys){const k2=d=>per=="y"?d.slice(0,7):d,sm=f=>AO()+S.tx.filter(f).reduce((s,t)=>s+eff(t),0);
@@ -549,7 +548,7 @@ $("lgok").onclick=()=>{if(!inGAS){apiUrl=$("lgurl").value.trim();if(!/^https:\/\
 PIN=$("lgpin").value;try{sessionStorage.removeItem("keu_pin");localStorage.removeItem("keu_pin");if(PIN)($("lgmem").checked?localStorage:sessionStorage).setItem("keu_pin",PIN);if(!inGAS)localStorage.setItem("keu_api",apiUrl)}catch(e){}
 $("lg").style.display="none";boot()};
 $("lgpin").onkeydown=e=>{if(e.key=="Enter")$("lgok").click()};
-$("lo").onclick=()=>{try{sessionStorage.removeItem("keu_pin");localStorage.removeItem("keu_pin");localStorage.removeItem(CK)}catch(e){}PIN="";location.reload()};
+$("lo").onclick=()=>{try{sessionStorage.removeItem("keu_pin");localStorage.removeItem("keu_pin")}catch(e){}PIN="";location.reload()};
 function stat(t,c){const e=$("sync");e.textContent=t;e.className="sync "+(c||"")}
 function save(){renderAll();pend=true;stat("⏳ Menyimpan…","w");clearTimeout(tmr);tmr=setTimeout(push,700)}
 function push(){if(busy||!loaded||!pend)return;busy=true;pend=false;
@@ -557,7 +556,7 @@ call({a:"saveAll",json:JSON.stringify(S),rev:rev}).then(r=>{busy=false;
 if(r&&r.code==="PIN"){pend=true;showLogin(r.error);return}
 if(r&&r.conflict){pend=false;stat("⚠ Data berubah di perangkat lain","e");$("cf").style.display="flex";return}
 if(!r||!r.ok){pend=true;stat("⚠ Gagal menyimpan: "+((r&&r.error)||"tidak diketahui")+" (ketuk untuk ulangi)","e");return}
-rev=r.rev;saveCache();if(pend)push();else stat("☁ Tersimpan di Google Sheets","ok")})
+rev=r.rev;if(pend)push();else stat("☁ Tersimpan di Google Sheets","ok")})
 .catch(e=>{busy=false;pend=true;stat("⚠ Gagal menyimpan (ketuk untuk ulangi)","e");setTimeout(push,15000)})}
 $("sync").onclick=()=>{if(pend&&!busy)push()};
 $("rl2").onclick=()=>{$("cf").style.display="none";pend=false;boot()};
@@ -568,26 +567,14 @@ S.open=S.open||0;
 if(!S.accts||!S.accts.length){S.accts=[{id:"cash",name:"Cash",kind:"cash",open:S.open},{id:"bni",name:"Rekening BNI",kind:"rek",open:0},{id:"bsi",name:"Rekening BSI",kind:"rek",open:0},{id:"spay",name:"ShopeePay",kind:"ew",open:0}];S.open=0}S.accts.forEach(a=>{if(a.kind=="sav")a.kind="rek"});["out","in","sv","iv"].forEach(t=>{const c=S.cats[t]||(S.cats[t]=[]),k=c.indexOf("Lainnya");if(k>=0)c.splice(k,1);c.push("Lainnya")})}
 function renderAll(){renderCats();fillFilter();fillAccts();renderAccts();render();warn()}
 function fail(m){$("ld").style.display="flex";$("ldm").innerHTML="Gagal memuat data: "+esc(m)+'<br><span class="mu">'+(inGAS?"Pastikan setup() sudah dijalankan dan izin diberikan.":"Periksa URL web app, akses deployment (Anyone), dan koneksi.")+'</span><br><button onclick="boot()" style="margin-top:12px;width:auto">Coba lagi</button>'}
-const CK="keu_cache";
-function saveCache(){try{localStorage.setItem(CK,JSON.stringify({rev:rev,S:S,G:G}))}catch(e){}}
-function boot(fast){if(!inGAS&&!apiUrl){showLogin("File ini berjalan di luar Apps Script. Isi URL web app dan PIN.");return}
-let used=false;
-if(fast){try{const c=JSON.parse(localStorage.getItem(CK)||"null");
-if(c&&c.S&&c.S.accts&&c.S.accts.length){rev=c.rev||0;G=c.G||{};S.tx=[];load(JSON.stringify(c.S));fillCats("Lainnya");renderAll();
-$("ld").style.display="none";$("lo").style.display=PIN?"":"none";stat("⏳ Menyinkronkan…","w");used=true}}catch(e){}}
-if(!used){$("ld").style.display="flex";$("ldm").textContent="Memuat data dari Google Sheets…"}
+function boot(){if(!inGAS&&!apiUrl){showLogin("File ini berjalan di luar Apps Script. Isi URL web app dan PIN.");return}
+$("ld").style.display="flex";$("ldm").textContent="Memuat data dari Google Sheets…";
 call({a:"getAll"}).then(d=>{
-if(d&&d.code==="PIN"){try{localStorage.removeItem(CK)}catch(e){}showLogin(d.error);return}
-if(!d||d.error){if(used){stat("⚠ Offline, menampilkan data tersimpan (ketuk untuk ulangi)","e");return}fail((d&&d.error)||"respon kosong");return}
-const edited=used&&pend;
-if(edited){if((d.rev||0)!==rev){stat("⚠ Data berubah di perangkat lain","e");$("cf").style.display="flex";return}
-G=d.gold||G;loaded=true;stat("⏳ Menyimpan…","w");push();return}
-rev=d.rev||0;G=d.gold||{};delete d.gold;S.tx=[];load(JSON.stringify(d));loaded=true;fillCats("Lainnya");renderAll();
-$("ld").style.display="none";$("lg").style.display="none";$("lo").style.display=PIN?"":"none";
-if(!used){$("p-dash").classList.add("enter");setTimeout(()=>$("p-dash").classList.remove("enter"),1100)}
-stat("☁ Tersimpan di Google Sheets","ok");saveCache();if(d.fresh){pend=true;push()}
-call({a:"refreshGold",force:false}).then(g=>{if(g&&!g.code){G=g;renderTop();gl();saveCache()}}).catch(()=>{})
-}).catch(e=>{if(used){stat("⚠ Offline, menampilkan data tersimpan (ketuk untuk ulangi)","e")}else fail((e&&e.message)||String(e))})}
+if(d&&d.code==="PIN"){showLogin(d.error);return}
+if(!d||d.error){fail((d&&d.error)||"respon kosong");return}
+rev=d.rev||0;G=d.gold||{};delete d.gold;S.tx=[];load(JSON.stringify(d));loaded=true;fillCats("Lainnya");renderAll();$("ld").style.display="none";$("lg").style.display="none";$("lo").style.display=PIN?"":"none";$("p-dash").classList.add("enter");setTimeout(()=>$("p-dash").classList.remove("enter"),1100);stat("☁ Tersimpan di Google Sheets","ok");if(d.fresh){pend=true;push()}
+call({a:"refreshGold",force:false}).then(g=>{if(g&&!g.code){G=g;renderTop();gl()}}).catch(()=>{})
+}).catch(e=>fail((e&&e.message)||String(e)))}
 const fmN=v=>String(v).replace(/\D/g,"").replace(/\B(?=(\d{3})+(?!\d))/g,".");
 function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2200)}
 $("qa").onclick=()=>{goPage("p-tx");setTimeout(()=>$("nm").focus(),80)};
@@ -599,18 +586,7 @@ function setNum(id,val){const el=$(id),from=el.dataset.v===undefined?val:+el.dat
 if(from===val||!el.isConnected||typeof requestAnimationFrame!="function"||(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)){el.textContent=rp(val);return}
 const t0=performance.now(),dur=600;cancelAnimationFrame(el._r);
 const step=t=>{const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);el.textContent=rp(from+(val-from)*e);if(p<1)el._r=requestAnimationFrame(step)};el._r=requestAnimationFrame(step)}
-function renderPos(){const rows=freeBal(),pos=rows.filter(r=>r.v>0),neg=rows.filter(r=>r.v<0),total=pos.reduce((s,r)=>s+r.v,0),by={},kinds={};
-pos.forEach(r=>{by[r.a.name]=r.v;kinds[r.a.kind]=(kinds[r.a.kind]||0)+r.v});
-const kt=total||1,KC={rek:"#4f7fb0",cash:"#3f9b78",ew:"#8a7fd0"},ks=Object.keys(kinds),ear=rows.filter(r=>r.h>0),def=neg.reduce((s,r)=>s-r.v,0);
-$("mds").innerHTML=`Uang yang bebas dipakai: <b class="in">${rp(total)}</b> · tersebar di ${pos.length} tempat`;
-$("mdc").innerHTML=(total?donut(by,total,0,total,"Sisa uang"):'<p class="mu">Belum ada uang positif di tempat mana pun.</p>')
-+(ks.length?`<div class="mu" style="margin:16px 0 0;font-size:12px;font-weight:600;letter-spacing:.04em">PER JENIS</div><div class="stk">${ks.map(k=>`<i style="width:${kinds[k]/kt*100}%;background:${KC[k]}" title="${KIND[k]}"></i>`).join("")}</div><div class="stkl">${ks.map(k=>`<span><i style="background:${KC[k]}"></i>${KIND[k]} <b>${rp(kinds[k])}</b> <span class="mu">${Math.round(kinds[k]/kt*100)}%</span></span>`).join("")}</div>`:"")
-+(ear.length?`<p class="mu" style="margin:14px 0 0">ℹ️ ${ear.map(r=>`${rp(r.h)} di ${esc(r.a.name)}`).join(", ")} sudah dialokasikan untuk tabungan/investasi, jadi tidak dihitung sebagai sisa uang.</p>`:"")
-+(neg.length?`<div class="mu" style="margin:18px 0 6px;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--out)">⚠ PERLU PERHATIAN</div>`
-+neg.map(r=>{const n=esc(r.a.name);return `<div class="tip" style="border-left:3px solid var(--out)"><b class="out">${n}: ${rp(r.v)}</b><br>`+
-(r.t<0?`Saldo ${n} minus ${rp(r.t)}: pengeluaran atau pemindahan lebih besar dari uang yang tercatat masuk. Periksa saldo awal atau catat pemasukan yang belum tercatat.`+(r.h>0?` Di tempat ini juga tercatat tabungan/investasi ${rp(r.h)}.`:""):
-`${n} tercatat menyimpan tabungan/investasi ${rp(r.h)}, tetapi saldonya hanya ${rp(r.t)}, jadi kurang ${rp(-r.v)}. Artinya sebagian dana itu sudah terpakai atau dipindahkan keluar. Kembalikan ke ${n} atau koreksi catatannya.`)+`</div>`}).join("")
-+`<p class="mu" style="margin:8px 0 0">Jika kekurangan di atas ditutup dari uang bebas: ${rp(total)} − ${rp(def)} = <b class="${total-def<0?"out":"in"}">${rp(total-def)}</b>.</p>`:"")}
+function renderPos(){const AB=accBal(),H=holdMap(),rows=S.accts.map(a=>({a,v:(AB[a.id]||0)-(H[a.id]||0),h:H[a.id]||0,t:AB[a.id]||0})),total=rows.reduce((s,r)=>s+r.v,0),by={},kinds={};
 rows.forEach(r=>{if(r.v>0)by[r.a.name]=r.v;kinds[r.a.kind]=(kinds[r.a.kind]||0)+r.v});
 const pt=Object.values(by).reduce((a,b)=>a+b,0),kt=Object.values(kinds).filter(v=>v>0).reduce((a,b)=>a+b,0)||1,KC={rek:"#4f7fb0",cash:"#3f9b78",ew:"#8a7fd0"},ks=Object.keys(kinds).filter(k=>kinds[k]>0);
 const ear=rows.filter(r=>r.h>0),neg=rows.filter(r=>r.v<0);
@@ -623,5 +599,5 @@ function openPos(){renderPos();document.body.classList.add("mo");$("mdl").classL
 function closePos(){document.body.classList.remove("mo");$("mdl").classList.remove("on");$("cc1").focus()}
 $("cc1").onclick=openPos;$("cc1").onkeydown=e=>{if(e.key=="Enter"||e.key==" "){e.preventDefault();openPos()}};
 $("mdx").onclick=closePos;$("mdl").onclick=e=>{if(e.target===$("mdl"))closePos()};
-boot(true);
+boot();
 </script></body></html>
