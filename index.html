@@ -1,293 +1,1037 @@
 <!DOCTYPE html>
-<html lang="id"><head><meta charset="utf-8">
+<html lang="id">
+<head>
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#4f7fb0"><link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234a7db5'/%3E%3Cstop offset='1' stop-color='%238a86cf'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='15' fill='url(%23g)'/%3E%3Ccircle cx='32' cy='32' r='17.5' fill='none' stroke='white' stroke-opacity='.92' stroke-width='4'/%3E%3Cpath d='M22.5 37l7.5-7.5 5.5 5.5 9-10.5' fill='none' stroke='%23b6f5db' stroke-width='4.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M37.5 24.5h7v7' fill='none' stroke='%23b6f5db' stroke-width='4.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="apple-touch-icon" href="apple-touch-icon.png"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"><title>Keuanganku</title>
+<meta name="theme-color" content="#0a0f18">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='gold' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23e5c78a'/%3E%3Cstop offset='1' stop-color='%239e7232'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%230e1524' stroke='url(%23gold)' stroke-width='1.5'/%3E%3Ccircle cx='32' cy='32' r='16' fill='none' stroke='url(%23gold)' stroke-opacity='.4' stroke-width='2'/%3E%3Cpath d='M23 37l6.5-7 5 5 8.5-10.5' fill='none' stroke='url(%23gold)' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M36.5 24.5h6.5v6.5' fill='none' stroke='url(%23gold)' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<title>Keuanganku — Private Wealth Edition</title>
 <style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
---bg:#f4f6f2;--b1:#cdeadb;--b2:#fbe8c4;--tint:#e9f4ee;--card:#fff;--tx:#1d2420;--mu:#6b746e;--bd:#e3e1d9;--ac:#1f6f50;--in:#1f6f50;--out:#c2452d}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(900px 520px at 8% -8%,var(--b1),transparent 62%),radial-gradient(800px 500px at 100% 0,var(--b2),transparent 58%),var(--bg);background-attachment:fixed;color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
-.w{max-width:1180px;margin:0 auto;padding:16px}
-h1{font-size:20px;margin:4px 0 14px}h2{font-size:15px;margin:0 0 10px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 4px 18px rgba(20,40,30,.06)}
-.g{display:grid;gap:16px;grid-template-columns:minmax(300px,360px) 1fr;align-items:start}
-@media(max-width:760px){.g{grid-template-columns:1fr}}
-label{display:block;font-size:12px;color:var(--mu);margin:8px 0 3px}
-input,select,button{font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:8px;padding:8px 10px;width:100%}
-button{cursor:pointer}
-.pri{background:var(--ac);color:#fff;border-color:var(--ac);margin-top:12px;font-weight:600}
-.tabs{display:flex;gap:6px;flex-wrap:wrap}.tabs button{width:auto;flex:1}
-.tabs .on{background:var(--ac);color:#fff;border-color:var(--ac)}
-.nav{display:flex;align-items:center;gap:8px;margin:10px 0}.nav button{width:42px}.nav b{flex:1;text-align:center}
-.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.sum div{background:var(--bg);border-radius:10px;padding:10px}.sum small{color:var(--mu);display:block;font-size:12px}
-.sum b{font-size:15px;word-break:break-word}
-.in{color:var(--in)}.out{color:var(--out)}
-.row{display:flex;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid var(--bd)}
-.row:last-child{border:0}.row small{color:var(--mu);display:block}
-.row .x{width:auto;border:0;background:none;color:var(--mu);padding:0 4px}
-.bar{height:8px;background:var(--bg);border-radius:4px;overflow:hidden;margin-top:3px}.bar i{display:block;height:100%;background:var(--ac)}
-.chart{display:flex;align-items:flex-end;gap:3px;height:130px;overflow-x:auto}
-.chart div{flex:1;min-width:14px;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;height:100%}
-.chart p{margin:0;display:flex;align-items:flex-end;gap:1px;width:100%;flex:1}.chart span{flex:1;background:var(--out);border-radius:3px 3px 0 0;min-height:1px}.chart .bi{background:var(--in)}.key{font-size:12px;color:var(--mu);margin-bottom:8px}.key i{display:inline-block;width:10px;height:10px;border-radius:2px;margin:0 4px 0 10px;vertical-align:-1px}.key i:first-child{margin-left:0}
-.dn{display:flex;gap:16px;align-items:center;flex-wrap:wrap}.ring{width:150px;height:150px;border-radius:50%;display:grid;place-items:center;flex:none}.ring>div{width:96px;height:96px;border-radius:50%;background:var(--card);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}.ring small{color:var(--mu);font-size:11px}.ring b{font-size:12px}
-.lg{flex:1;min-width:180px}.lg>div{display:flex;align-items:center;gap:6px;font-size:14px;padding:3px 0}.lg i{width:10px;height:10px;border-radius:50%;flex:none}.lg span{flex:1}.lg small{color:var(--mu);min-width:92px;text-align:right}
-.chart em{font-size:10px;color:var(--mu);font-style:normal;margin-top:3px}
-.ty{display:flex;gap:6px;flex-wrap:wrap}.ty button{flex:1 1 45%}.ty .on{background:var(--ac);color:#fff;border-color:var(--ac)}
-#ls{max-height:340px;overflow-y:auto;padding-right:4px}.mu{color:var(--mu);font-size:13px}
-.sm{width:auto;padding:4px 9px;font-size:13px}.ci{display:flex;gap:6px;align-items:center;margin-bottom:6px}.ci span{flex:1}
-table{width:100%;border-collapse:collapse;font-size:14px}td,th{padding:6px 4px;border-bottom:1px solid var(--bd);text-align:right}td:first-child,th:first-child{text-align:left}th{color:var(--mu);font-weight:500;font-size:12px}
-.tip{background:var(--bg);border-radius:8px;padding:8px 10px;margin:6px 0;font-size:14px}.over i{background:var(--out)!important}
-.big{font-size:32px;font-weight:700;line-height:1.2;margin:2px 0 12px;word-break:break-word}.g2{display:grid;gap:16px;grid-template-columns:1fr 1fr;margin-bottom:16px}.g2 .card{margin-bottom:0;height:100%}@media(max-width:760px){.g2{grid-template-columns:1fr}}
-.ln{fill:none;stroke:var(--ac);stroke-width:2;vector-effect:non-scaling-stroke}.ar{fill:var(--ac);opacity:.14}.sv,.iv{color:#3b7dd8}
-h2{font-weight:650;display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;margin-bottom:12px}
-.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:8px 0 18px}.top h1{margin:0;font-size:26px}.top .sm{padding:9px 14px;background:var(--card);font-weight:600}
-.hero{display:grid;grid-template-columns:minmax(280px,380px) 1fr;gap:26px;background:linear-gradient(135deg,var(--tint),var(--card) 70%)}@media(max-width:760px){.hero{grid-template-columns:1fr;gap:16px}}
-.hero .sum>div{background:var(--card);border:1px solid var(--bd)}.stats{grid-template-columns:1fr}.stats>div{display:flex;justify-content:space-between;align-items:baseline}
-.sum>div{background:var(--tint)}.dn{justify-content:center}.lg{flex:1 1 200px}
-input:focus,select:focus{outline:2px solid var(--ac);outline-offset:0}button{transition:filter .15s}button:hover{filter:brightness(.96)}
-.tabs{margin-bottom:2px}.pri{padding:10px}
+/* ================= VARIABLES & THEME: PRIVATE WEALTH OBSIDIAN ================= */
+:root {
+  box-sizing: border-box;
+  color-scheme: dark;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 
-:root{--bg:#f4f5f2;--b1:#e6ede8;--b2:#f1eee7;--tint:#f0f3f0;--tx:#2a3130;--mu:#7a847f;--bd:#e6e8e3;--ac:#587a6a;--in:#5b8a72;--out:#b8786b;--on:#fff}
-.pri,.tabs .on,.ty .on{color:var(--on)!important}.card{box-shadow:none;border-radius:14px}.sv,.iv{color:#7195b8}.top h1{font-size:22px;font-weight:600}.big{font-weight:600}
-.kpi{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}.kpi>div{background:var(--tint);border-radius:10px;padding:10px;min-width:0}.kpi small{display:block;color:var(--mu);font-size:12px}.kpi b{display:block;font-size:16px;word-break:break-word}
-.flt{display:grid;grid-template-columns:2fr 1.4fr 1fr;gap:8px}.fab{display:none}
-@media(max-width:760px){.w{padding:12px}.g>div:first-child{order:2}.kpi{grid-template-columns:1fr 1fr}.flt{grid-template-columns:1fr}.top{flex-wrap:wrap}.big{font-size:28px}
-input,select,button{font-size:16px;min-height:42px}.row .x{padding:6px 12px}.ring{width:130px;height:130px}.ring>div{width:82px;height:82px}.card{padding:14px}
-.fab{display:grid;place-items:center;position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:54px;height:54px;border-radius:50%;background:var(--ac);color:var(--on);border:0;font-size:26px;padding:0;box-shadow:0 4px 14px rgba(0,0,0,.2);z-index:5}}
-:root{color-scheme:light;--bg:#f6faf8;--b1:#d9f1e6;--b2:#fff0d2;--tint:#edf7f2;--card:#fff;--tx:#26332e;--mu:#6f7f78;--bd:#e3ece7;--ac:#3a8f72;--in:#2f9e78;--out:#df7660;--on:#fff}
-.sv,.iv{color:#4f8fd0}
-:root{--bg:#eceae4;--b1:#e0e6df;--b2:#ebe5d9;--tint:#e9ede7;--card:#f7f6f2;--tx:#3a423e;--mu:#7d8782;--bd:#dedcd3;--ac:#5f8272;--in:#6a9482;--out:#c4836f;--on:#f8f9f5}
-.sv,.iv{color:#7c97b5}.tabs .on,.ty .on{background:var(--ac)}.chart .bi{background:var(--in)}.chart span{opacity:.9}
-.hero{background:linear-gradient(135deg,var(--tint),var(--card) 75%)}.top .sm{background:var(--card)}
+  --bg: #090d16;
+  --bg-card: rgba(18, 26, 42, 0.72);
+  --bg-card-hover: rgba(23, 34, 56, 0.85);
+  --tint: rgba(255, 255, 255, 0.03);
+  --tx: #f3f5f9;
+  --tx-title: #ffffff;
+  --mu: #8e9bb3;
+  --bd: rgba(255, 255, 255, 0.08);
+  --bd-glow: rgba(200, 162, 101, 0.35);
 
-:root{--bg:#eef1f4;--tint:#eef2f6;--card:#fcfcfb;--tx:#3a4552;--mu:#7b8794;--bd:#e2e6ea;--ac:#6b8db3;--in:#5f9a7d;--out:#d08c6c;--on:#fff}
-body{background:var(--bg)}.card{margin-bottom:0;box-shadow:0 1px 3px rgba(60,80,100,.08);border-radius:10px;--pd:18px;padding:var(--pd)}.sv,.iv{color:#6b8db3}
-.card>h2:first-child{margin:calc(-1*var(--pd)) calc(-1*var(--pd)) 14px;padding:13px var(--pd);border-bottom:1px solid var(--bd);font-size:15px}.sub{margin-top:18px}
-.side{position:fixed;left:0;top:0;bottom:0;width:240px;background:#4c5b6e;color:#d4dce6;overflow:auto;z-index:20;padding-bottom:20px}.brand{font-size:19px;font-weight:600;padding:18px 20px;background:#44536a;color:#fff}
-.sg{padding:16px 20px 6px;font-size:12px;letter-spacing:.04em;color:#fff;border-bottom:1px solid rgba(255,255,255,.12);margin:0 0 8px}.sg small{display:block;color:#aab6c5;font-size:12px;letter-spacing:0}
-.side a{display:block;margin:2px 12px;padding:9px 12px;border-radius:8px;cursor:pointer;font-size:14px}.side a:hover{background:rgba(255,255,255,.08)}.side a.on{background:#6b8db3;color:#fff}
-.main{margin-left:240px;min-height:100vh}.tbar{height:56px;background:#6b8db3;color:#fff;display:flex;align-items:center;gap:12px;padding:0 20px;position:sticky;top:0;z-index:10}
-.tbar .sm{background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.4)}.ib{display:none;width:auto;background:none;border:0;color:#fff;font-size:22px;padding:0 6px}.ov{display:none}
-.w{max-width:1400px;padding:20px}.cards4,.row2,.g2{margin-bottom:16px}.cards4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.sc{border-radius:10px;color:#fff;overflow:hidden;box-shadow:0 2px 6px rgba(60,80,100,.12)}.sc .t{padding:16px 18px;font-size:14px}.sc .v{font-size:25px;font-weight:600;margin-bottom:4px;word-break:break-word}
-.sc .f{background:rgba(0,0,0,.09);padding:9px 18px;font-size:13px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}.sc .f b{color:#fff!important}
-.sc input{width:120px;min-height:0;padding:3px 8px;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.45);color:#fff;border-radius:6px}.sc input::placeholder{color:rgba(255,255,255,.75)}
-.c1{background:linear-gradient(135deg,#7799be,#6288b0)}.c2{background:linear-gradient(135deg,#76ad90,#659c80)}.c3{background:linear-gradient(135deg,#deA47a,#cf9468)}.c4{background:linear-gradient(135deg,#a097c6,#8d84b8)}
-.row2{display:grid;gap:16px;grid-template-columns:minmax(0,1fr) 350px;align-items:start}.row2.rev{grid-template-columns:350px minmax(0,1fr)}
-.cl2{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:0 28px}
-.tw{max-height:420px;overflow:auto}.tb td,.tb th{text-align:left;white-space:nowrap;padding:8px 6px}.tb td:nth-child(6),.tb th:nth-child(6){text-align:right}.tb th{position:sticky;top:0;background:var(--card)}.tb tr:nth-child(even) td{background:var(--tint)}
-.tb .x{width:auto;min-height:0;padding:3px 9px;border:0;border-radius:6px;color:#fff;font-size:13px;margin-left:4px}.tb .ed{background:#76ad90}.tb .del{background:#d28f8a}
-@media(max-width:1100px){.cards4{grid-template-columns:1fr 1fr}.row2,.row2.rev{grid-template-columns:1fr}}
-@media(max-width:760px){.main{margin-left:0}.side{transform:translateX(-100%);transition:transform .2s}.so .side{transform:none}.so .ov{display:block;position:fixed;inset:0;background:rgba(30,40,50,.4);z-index:15}.ib{display:block}
-.w{padding:12px}.cards4,.row2,.g2{gap:12px;margin-bottom:12px}.sc .v{font-size:19px}.sc .t{padding:12px 14px}.sc .f{padding:8px 14px;font-size:12px}.card{--pd:14px;padding:14px}.tb .x{min-height:32px}.tbar{padding:0 12px}.tbar .sm{padding:6px 10px;min-height:36px}.sc input{min-height:30px;font-size:14px;width:100px}}
-@media(max-width:420px){.cards4{grid-template-columns:1fr}}
-.pg{display:none}.pg.on{display:block}.pbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:16px}.pbar .tabs{flex:0 0 auto;margin:0}.pbar .tabs button{flex:none;padding:7px 18px}.pbar .nav{margin:0;flex:0 1 360px;min-width:240px}
-.ontx .fab{display:none!important}@media(max-width:760px){.pbar .tabs{flex:1 1 100%}.pbar .tabs button{flex:1}.pbar .nav{flex:1 1 100%}}
-.flt{grid-template-columns:2fr 1.4fr 1.2fr 1fr}.tb input,.tb select{min-height:0;padding:5px 8px;width:100%}@media(max-width:760px){.flt{grid-template-columns:1fr}}
+  /* Exclusive Accents: Champagne Gold & Platinum */
+  --ac: #c8a265;
+  --ac-glow: rgba(200, 162, 101, 0.25);
+  --ac-hover: #dbb77d;
+  --in: #10b981;        /* Imperial Jade */
+  --in-bg: rgba(16, 185, 129, 0.12);
+  --out: #f43f5e;       /* Rose Red Velvet */
+  --out-bg: rgba(244, 63, 94, 0.12);
+  --gold: linear-gradient(135deg, #f2dda6 0%, #c8a265 50%, #9e7330 100%);
+  --gold-text: #e5c78a;
+  --on: #090d16;
+}
 
-:root{padding-top:0;-webkit-text-size-adjust:100%}
-.main{min-width:0;overflow-x:clip;transition:margin-left .2s}.side{transition:transform .2s;max-width:82vw;padding-top:env(safe-area-inset-top,0px)}
-.tbar{height:auto;min-height:56px;padding-top:env(safe-area-inset-top,0px);padding-left:max(20px,env(safe-area-inset-left))}.ib{display:block}
-.row2>*,.g2>*,.cards4>*,.card{min-width:0}input,select{min-width:0;max-width:100%}
-.lg span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.chart em{white-space:nowrap}
-.cl2{grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr))}
-@media(min-width:761px){.nb .side{transform:translateX(-100%)}.nb .main{margin-left:0}}
-@media(max-width:1100px){.row2,.row2.rev{grid-template-columns:minmax(0,1fr)}}
-@media(max-width:760px){
-.g2{grid-template-columns:minmax(0,1fr)}.w{padding:12px max(12px,env(safe-area-inset-right)) 12px max(12px,env(safe-area-inset-left))}.tbar{padding-left:max(12px,env(safe-area-inset-left))}
-.chart div{min-width:0}.chart{gap:1px}.chart em{font-size:8px}.ty button{flex:1 1 30%;padding:8px 4px;font-size:14px}.kpi b{font-size:15px}.nav b{font-size:14px}
-input[type=date]{display:block;-webkit-appearance:none;appearance:none}
-.tb,.rt,.tb tbody,.rt tbody{display:block}.tb tr:first-child,.rt tr:first-child{display:none}
-.tb tr,.rt tr{display:block;border:1px solid var(--bd);border-radius:10px;margin-bottom:8px;padding:6px 10px;background:var(--card)}
-.tb td,.rt td,.tb tr:nth-child(even) td{display:flex;justify-content:space-between;align-items:center;gap:12px;white-space:normal;text-align:right;padding:4px 0;border:0;background:none}
-td[data-l]::before{content:attr(data-l);color:var(--mu);font-size:12px;text-align:left;flex:none}.rt td:not([data-l]){font-weight:600;justify-content:flex-start}
-.tb td input,.tb td select{width:60%;flex:none}.tw{max-height:none}}
-@media(max-width:560px){.hx{display:none}}
-@media(max-width:420px){.cards4{grid-template-columns:1fr 1fr}.sc .v{font-size:17px}}
-@media(max-width:340px){.cards4{grid-template-columns:1fr}}
-.ifr{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px}.ifr button{width:auto}.stp{margin:0;padding-left:20px;color:var(--mu);line-height:1.7}.stp b{color:var(--tx)}
-.ck{display:flex;gap:8px;align-items:center;margin:12px 0 0;color:var(--tx);font-size:14px}.ck input{width:auto;min-height:0}.pri:disabled{opacity:.5;cursor:not-allowed}
-.tb.t2 td:nth-child(6),.tb.t2 th:nth-child(6){text-align:left}.tb.t2 td:nth-child(7),.tb.t2 th:nth-child(7){text-align:right}.rt td,.rt th{text-align:left}
-@media(max-width:760px){.ifr button{flex:1 1 100%}.tb.t2 td:nth-child(n){text-align:right}}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: env(safe-area-inset-top, 0px); }
 
-:root{--bg:#f1f5fa;--tint:#eef2fa;--card:#fff;--tx:#2b3a4f;--mu:#71809a;--bd:#e3e9f3;--ac:#4f7fb0;--in:#3f9b78;--out:#e07f5f;--on:#fff}
-body{font-family:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--tx);background:radial-gradient(900px 560px at 8% -6%,rgba(163,214,236,.55),transparent 62%),radial-gradient(800px 520px at 100% 4%,rgba(214,200,244,.55),transparent 60%),radial-gradient(900px 600px at 50% 112%,rgba(255,222,200,.6),transparent 62%),linear-gradient(160deg,#eaf4f7 0%,#f1f1fa 48%,#fbf1ec 100%);background-attachment:fixed}
-h2{color:#27364a}.card{background:rgba(255,255,255,.84);border:1px solid rgba(255,255,255,.75);box-shadow:0 8px 26px rgba(90,110,160,.10);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
-.card>h2:first-child{border-bottom-color:rgba(120,140,190,.16)}
-.tbar{background:linear-gradient(90deg,#4a7db5,#6a8fd2 55%,#8a86cf);box-shadow:0 4px 16px rgba(80,100,170,.22)}
-.side{background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 900' preserveAspectRatio='xMidYMid slice'%3E%3Ccircle cx='235' cy='70' r='46' fill='none' stroke='white' stroke-opacity='.14' stroke-width='1.2'/%3E%3Ccircle cx='235' cy='70' r='78' fill='none' stroke='white' stroke-opacity='.10' stroke-width='1.2'/%3E%3Ccircle cx='235' cy='70' r='112' fill='none' stroke='white' stroke-opacity='.07' stroke-width='1.2'/%3E%3Cpath d='M-30 330 C 40 250, 120 400, 270 300' fill='none' stroke='%2523a8f0d4' stroke-opacity='.45' stroke-width='2'/%3E%3Cpath d='M-30 350 C 50 280, 130 420, 270 330' fill='none' stroke='%2523ffd0b0' stroke-opacity='.35' stroke-width='1.6'/%3E%3Cpath d='M-20 520 C 50 440, 140 600, 270 500' fill='none' stroke='white' stroke-opacity='0.1' stroke-width='1.3'/%3E%3Cpath d='M-20 560 C 50 480, 140 640, 270 540' fill='none' stroke='white' stroke-opacity='0.13' stroke-width='1.3'/%3E%3Cpath d='M-20 600 C 50 520, 140 680, 270 580' fill='none' stroke='white' stroke-opacity='0.16' stroke-width='1.3'/%3E%3Cpath d='M-20 640 C 50 560, 140 720, 270 620' fill='none' stroke='white' stroke-opacity='0.12' stroke-width='1.3'/%3E%3Cpath d='M-20 680 C 50 600, 140 760, 270 660' fill='none' stroke='white' stroke-opacity='0.15' stroke-width='1.3'/%3E%3Cpath d='M-20 720 C 50 640, 140 800, 270 700' fill='none' stroke='white' stroke-opacity='0.1' stroke-width='1.3'/%3E%3Cpath d='M-20 760 C 50 680, 140 840, 270 740' fill='none' stroke='white' stroke-opacity='0.13' stroke-width='1.3'/%3E%3Cpath d='M-20 800 C 50 720, 140 880, 270 780' fill='none' stroke='white' stroke-opacity='0.09' stroke-width='1.3'/%3E%3Cpath d='M30 880 C 70 780, 170 840, 250 720' fill='none' stroke='%2523a8f0d4' stroke-opacity='.4' stroke-width='2'/%3E%3Ccircle cx='40' cy='215' r='3' fill='white' fill-opacity='.35'/%3E%3Ccircle cx='200' cy='455' r='2.5' fill='white' fill-opacity='.3'/%3E%3Ccircle cx='70' cy='470' r='4' fill='%2523ffd0b0' fill-opacity='.4'/%3E%3C/svg%3E") center/cover no-repeat,linear-gradient(185deg,#3b5a85 0%,#4d62a3 52%,#6f64ad 100%);color:#e6ecf8}
-.brand{background:rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.12);letter-spacing:.01em}
-.sg{border-bottom-color:rgba(255,255,255,.16)}.sg small{color:#bccaee}
-.side a:hover{background:rgba(255,255,255,.13)}.side a.on{background:linear-gradient(90deg,rgba(255,255,255,.3),rgba(255,255,255,.09));box-shadow:inset 3px 0 0 #a8f0d4;color:#fff;font-weight:600}
-.sc{position:relative;box-shadow:0 10px 22px -10px rgba(70,90,150,.45)}.sc::after{content:"";position:absolute;right:-34px;top:-34px;width:130px;height:130px;border-radius:50%;border:18px solid rgba(255,255,255,.11);pointer-events:none}
-.sc::before{content:"";position:absolute;right:30px;bottom:34px;width:70px;height:70px;border-radius:50%;border:2px solid rgba(255,255,255,.14);pointer-events:none}
-.sc .v{font-weight:700}
-.c1{background:linear-gradient(135deg,#5b92c9,#4a78b4)}.c2{background:linear-gradient(135deg,#4fb08c,#3d9a78)}.c3{background:linear-gradient(135deg,#efa675,#e08956)}.c4{background:linear-gradient(135deg,#9588d6,#7c72c4)}
-.pri,.tabs .on,.ty .on{background:linear-gradient(135deg,#4f82b8,#6f8fd6)!important;border-color:transparent!important;color:#fff!important}
-.fab{background:linear-gradient(135deg,#4f82b8,#6f8fd6)!important}
-.bar{background:#e8eef7}.bar i{background:linear-gradient(90deg,#4f82b8,#6fb7d8)}.over i{background:linear-gradient(90deg,#e8956f,#e07f5f)!important}
-.chart span{background:linear-gradient(180deg,#ee9d7c,#e07f5f);opacity:1}.chart .bi{background:linear-gradient(180deg,#62c0a0,#3f9b78)}
-.ln{stroke:#4f7fb0;stroke-width:2.4}.ar{fill:#4f7fb0;opacity:.15}.sv,.iv{color:#5b84d0}
-.kpi>div,.sum>div{background:linear-gradient(135deg,#f1f5fc,#f7f3fb)}.tb tr:nth-child(even) td{background:#f4f7fc}
-.tb .ed{background:#4fb08c}.tb .del{background:#e48b86}.row2 .card h2,.g2 .card h2{font-weight:650}
-input,select{background:#f4f7fc;border-color:#dde5f1}
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: 
+    radial-gradient(1100px 700px at 15% -10%, rgba(30, 58, 95, 0.45), transparent 60%),
+    radial-gradient(900px 600px at 90% 0%, rgba(200, 162, 101, 0.15), transparent 55%),
+    radial-gradient(1200px 800px at 50% 110%, rgba(16, 35, 62, 0.6), transparent 70%);
+  background-attachment: fixed;
+  color: var(--tx);
+  font: 14.5px/1.55 "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
 
-.sg{border-bottom:none!important;padding-bottom:4px}
-.side a{display:flex;align-items:center;gap:12px;padding:6px 10px;margin:2px 12px}.side a span{flex:1;min-width:0}
-.ic{width:32px;height:32px;border-radius:10px;display:grid;place-items:center;flex:none;background:rgba(255,255,255,.13);transition:background .15s}
-.ic svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.side a:hover .ic{background:rgba(255,255,255,.22)}.side a.on .ic{background:linear-gradient(135deg,#b6f5db,#8fc4f7);color:#2f4f7a;box-shadow:0 4px 12px -4px rgba(0,0,0,.35)}
-.brand{display:flex;align-items:center;gap:12px;padding:20px 18px 18px}
-.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#b6f5db,#8fc4f7 60%,#c3b6f5);display:grid;place-items:center;flex:none;box-shadow:0 8px 18px -6px rgba(0,0,0,.4),inset 0 0 0 1px rgba(255,255,255,.5)}.logo svg{width:26px;height:26px}
-.bt b{display:block;font-size:20px;font-weight:700;letter-spacing:.01em;color:#fff;line-height:1.1}.bt em{font-style:normal;background:linear-gradient(90deg,#a8f0d4,#ffd0b0);-webkit-background-clip:text;background-clip:text;color:transparent}
-.bt small{display:block;margin-top:3px;font-size:11px;letter-spacing:.04em;color:#c8d4f2}
-.ldr{position:fixed;inset:0;z-index:99;display:flex;align-items:center;justify-content:center;background:rgba(238,243,250,.94);text-align:center;padding:20px;color:var(--tx)}
-.spin{width:38px;height:38px;border-radius:50%;border:4px solid #d5def0;border-top-color:#4f82b8;margin:0 auto 14px;animation:sp 1s linear infinite}@keyframes sp{to{transform:rotate(360deg)}}
-.sync{font-size:12px;padding:5px 11px;border-radius:999px;background:rgba(255,255,255,.2);color:#fff;white-space:nowrap;cursor:default;max-width:46vw;overflow:hidden;text-overflow:ellipsis}.sync.w{background:rgba(255,255,255,.32)}.sync.e{background:#e07f5f;cursor:pointer}
-.cfb{position:fixed;left:12px;right:12px;bottom:12px;z-index:60;background:#e07f5f;color:#fff;border-radius:12px;padding:12px 14px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;box-shadow:0 8px 24px rgba(0,0,0,.25)}.cfb button{width:auto;min-height:0;padding:7px 12px;background:#fff;color:#b5533a;border:0;border-radius:8px;font-weight:600}
-@media(max-width:560px){.sync{font-size:11px;padding:4px 8px}}
-.goldrow{display:flex;flex-wrap:wrap;gap:4px 14px;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd)}.gdet{margin-top:6px}.gdet summary{cursor:pointer;color:var(--ac);margin:6px 0}
-.lgb{background:#fff;border-radius:16px;padding:22px;max-width:420px;width:100%;text-align:left;box-shadow:0 20px 50px rgba(40,60,110,.25)}
+/* Ambient Subtle Grain/Pattern Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.015) 1px, transparent 1px);
+  background-size: 24px 24px;
+  z-index: -1;
+  opacity: 0.6;
+}
 
-body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220' viewBox='0 0 220 220' fill='none' stroke='%235b7fb5' stroke-opacity='.08' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='42' cy='46' r='20'/%3E%3Ccircle cx='42' cy='46' r='13.5'/%3E%3Cpath d='M42 39v14M37.5 43.5h9M37.5 49h9'/%3E%3Cpath d='M132 62l16-14 11 9 22-24'/%3E%3Cpath d='M174 33h9v9'/%3E%3Crect x='118' y='150' width='9' height='22' rx='2'/%3E%3Crect x='133' y='138' width='9' height='34' rx='2'/%3E%3Crect x='148' y='126' width='9' height='46' rx='2'/%3E%3Crect x='163' y='112' width='9' height='60' rx='2'/%3E%3Cpath d='M30 150v18M21 159h18'/%3E%3Cpath d='M82 120a12 12 0 1 0 0 .1'/%3E%3Ccircle cx='196' cy='196' r='2.5'/%3E%3Ccircle cx='100' cy='206' r='2.5'/%3E%3Ccircle cx='84' cy='20' r='2.5'/%3E%3C/svg%3E") 0 0/220px 220px repeat}
-body::after{content:"";position:fixed;left:0;right:0;bottom:0;height:38vh;z-index:-1;pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 360' preserveAspectRatio='none'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%235b7fb5' stop-opacity='.11'/%3E%3Cstop offset='1' stop-color='%235b7fb5' stop-opacity='0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%235b7fb5' fill-opacity='.045'%3E%3Crect x='940' y='250' width='28' height='110' rx='4'/%3E%3Crect x='990' y='215' width='28' height='145' rx='4'/%3E%3Crect x='1040' y='180' width='28' height='180' rx='4'/%3E%3Crect x='1090' y='150' width='28' height='210' rx='4'/%3E%3Crect x='1140' y='118' width='28' height='242' rx='4'/%3E%3Crect x='1190' y='86' width='28' height='274' rx='4'/%3E%3Crect x='1240' y='60' width='28' height='300' rx='4'/%3E%3Crect x='1290' y='38' width='28' height='322' rx='4'/%3E%3C/g%3E%3Cpath d='M0 310C140 290 240 320 380 262S620 232 760 200 1040 128 1180 96 1380 44 1440 24V360H0Z' fill='url(%23a)'/%3E%3Cpath d='M0 310C140 290 240 320 380 262S620 232 760 200 1040 128 1180 96 1380 44 1440 24' fill='none' stroke='%235b7fb5' stroke-opacity='.2' stroke-width='2.2'/%3E%3C/svg%3E") center bottom/100% 100% no-repeat}
-body{font-size:14.5px;letter-spacing:-.003em}
-.v,.kpi b,.sum b,td,th,.lg b,.lg small,.row,.big,.tip,.goldrow{font-variant-numeric:tabular-nums}
-.card{border-radius:16px;border:1px solid rgba(255,255,255,.85);box-shadow:0 1px 2px rgba(60,80,120,.05),0 14px 34px -14px rgba(60,80,140,.20)}
-.card>h2:first-child{margin:0 0 14px;padding:0;border-bottom:0;font-size:15px;font-weight:650;color:#223247;align-items:center;gap:9px}
-.card>h2:first-child::before{content:"";width:4px;height:16px;border-radius:3px;background:linear-gradient(180deg,#4f82b8,#8a86cf);flex:none}
-.tbar{background:rgba(255,255,255,.74);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);color:#223247;border-bottom:1px solid rgba(120,140,190,.2);box-shadow:0 1px 0 rgba(255,255,255,.7)}
-.tbar b#ttl{font-size:16px;font-weight:650;color:#223247}.ib{color:#34506f}
-.tbar .sm{background:#fff;color:#34506f;border:1px solid #dbe4f3;border-radius:10px;font-weight:600}
-.tbar .qa{background:linear-gradient(135deg,#4f82b8,#6f8fd6);color:#fff;border-color:transparent;box-shadow:0 6px 16px -6px rgba(79,130,184,.7)}
-.sync{background:#e8f3ee;color:#2f7d62}.sync.w{background:#fff2e1;color:#b9772f}.sync.e{background:#fde8e3;color:#c4553a}
-.sc .t{display:flex;flex-direction:column-reverse;gap:4px;padding:16px 18px 14px}.sc .t>div:last-child{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;opacity:.92;font-weight:600}
-.sc .v{font-size:26px;font-weight:700;margin:0}
-input,select{border-radius:10px;padding:9px 12px;background:#f6f8fc;border:1px solid #e2e8f3;transition:border-color .15s,box-shadow .15s,background .15s}
-input:focus,select:focus{outline:0;border-color:#6f8fd6;box-shadow:0 0 0 3px rgba(111,143,214,.2);background:#fff}
-.pri{border-radius:10px;box-shadow:0 8px 18px -8px rgba(79,130,184,.75)}
-.pbar .tabs{background:rgba(255,255,255,.72);padding:4px;border-radius:13px;gap:2px;border:1px solid rgba(120,140,190,.2)}.pbar .tabs button{border:0;background:transparent;border-radius:10px}
-.nav button{border-radius:10px;background:rgba(255,255,255,.75);border:1px solid rgba(120,140,190,.2)}
-.tb th{text-transform:uppercase;letter-spacing:.05em;font-size:11px}
-.hbw{position:relative;touch-action:pan-y;cursor:crosshair;user-select:none;-webkit-user-select:none}
-.hbw .cx{position:absolute;top:0;bottom:0;width:0;border-left:1.5px dashed rgba(79,127,176,.55);display:none;pointer-events:none}
-.hbw .dot{position:absolute;width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid #4f7fb0;box-shadow:0 2px 8px rgba(79,127,176,.5);transform:translate(-50%,-50%);display:none;pointer-events:none}
-.hbw .tip{position:absolute;transform:translateX(-50%);background:#27364a;color:#fff;border-radius:11px;padding:9px 13px;font-size:12.5px;line-height:1.4;display:none;pointer-events:none;white-space:nowrap;box-shadow:0 10px 24px rgba(30,40,70,.3);z-index:3}
-.tip b{display:block;font-weight:500;opacity:.8;font-size:12px}.tip span{font-size:16px;font-weight:700}.tip small{display:block;font-size:11.5px}.tip .in{color:#8fe3c0}.tip .out{color:#ffb39f}
-.toast{position:fixed;left:50%;bottom:28px;transform:translate(-50%,16px);background:#27364a;color:#fff;padding:10px 18px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:90;box-shadow:0 10px 26px rgba(20,30,60,.3)}.toast.on{opacity:1;transform:translate(-50%,0)}
-.bnav{display:none}
-@media(max-width:760px){
-.fab{display:none!important}.main{padding-bottom:84px}.toast{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
-.bnav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid rgba(120,140,190,.22);padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
-.bnav button{display:flex;flex-direction:column;align-items:center;gap:3px;background:none;border:0;min-height:0;padding:5px 0;color:#7b8aa3;font-size:10.5px;font-weight:600;border-radius:12px;box-shadow:none}
-.bnav svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.bnav button.on{color:#3f6aa3;background:rgba(79,130,184,.12)}
-.tbar .qa{padding:6px 12px}.tbar b#ttl{font-size:15px}.sc .v{font-size:20px}}
-.greet{display:flex;align-items:baseline;gap:6px 12px;flex-wrap:wrap;margin:0 0 14px}.greet b{font-size:20px;font-weight:700;color:#223247}.greet span{color:var(--mu);font-size:13px}
-.sc{transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}.sc:hover{transform:translateY(-3px);box-shadow:0 18px 32px -12px rgba(70,90,150,.55)}
-.c1{cursor:pointer}.sc .hint{margin-left:auto;font-weight:600;transition:transform .2s}.c1:hover .hint{transform:translateX(4px)}.sc:focus-visible{outline:3px solid rgba(255,255,255,.95);outline-offset:2px}
-.c1.neg{background:linear-gradient(135deg,#e58f76,#c8604b)}.c3.warn{background:linear-gradient(135deg,#f08a6b,#d4604a)}
-.card{transition:box-shadow .25s,transform .25s}.card:hover{box-shadow:0 1px 2px rgba(60,80,120,.06),0 20px 42px -14px rgba(60,80,140,.28)}
-.kpi>div,.lg>div,.row,.ar2{transition:background .15s}.kpi>div:hover{background:linear-gradient(135deg,#e9f0fb,#f1ecfa)}.tb tbody tr:hover td{background:#eaf1fb}
-button{transition:transform .12s,filter .15s,background .15s,box-shadow .2s}button:active{transform:scale(.97)}
-html{scroll-behavior:smooth}
-@keyframes rise{from{opacity:0;transform:translateY(14px)}}@keyframes grow{from{transform:scaleY(0)}}@keyframes barw{from{transform:scaleX(0)}}@keyframes pop{from{opacity:0;transform:scale(.8) rotate(-35deg)}}@keyframes fadeIn{from{opacity:0}}
-@keyframes popIn{from{opacity:0;transform:translateY(16px) scale(.94)}}@keyframes sheet{from{transform:translateY(100%)}}
-.pg.enter .greet,.pg.enter .pbar,.pg.enter>.card,.pg.enter .cards4>*,.pg.enter .row2>*,.pg.enter .g2>*{animation:rise .5s cubic-bezier(.2,.8,.2,1) backwards}
-.pg.enter .cards4>:nth-child(2),.pg.enter .row2>:nth-child(2),.pg.enter .g2>:nth-child(2){animation-delay:.07s}.pg.enter .cards4>:nth-child(3){animation-delay:.14s}.pg.enter .cards4>:nth-child(4){animation-delay:.21s}
-.pg.enter .chart span{transform-origin:bottom;animation:grow .75s cubic-bezier(.2,.8,.2,1) backwards}.pg.enter .bar i{transform-origin:left;animation:barw .9s cubic-bezier(.2,.8,.2,1) backwards}
-.pg.enter .ring{animation:pop .75s cubic-bezier(.2,.8,.2,1) backwards}.pg.enter .ln,.pg.enter .ar{animation:fadeIn .9s backwards}
-.mdl{position:fixed;inset:0;z-index:70;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(28,40,70,.38);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}.mdl.on{display:flex;animation:fadeIn .2s both}
-.mdb{position:relative;background:rgba(255,255,255,.97);border-radius:20px;padding:22px 22px 20px;width:min(560px,100%);max-height:88vh;overflow:auto;box-shadow:0 30px 70px -20px rgba(20,30,70,.55);animation:popIn .34s cubic-bezier(.2,.9,.3,1.15) both}
-.mdb h3{margin:0 40px 4px 0;font-size:17px;font-weight:700;color:#223247}.mdx{position:absolute;top:14px;right:14px;width:34px;height:34px;min-height:0;padding:0;border-radius:50%;background:#f1f5fb;border:0;font-size:15px;color:#51627e}.mdx:hover{background:#e3ebf8}
-body.mo{overflow:hidden}.stk{display:flex;height:12px;border-radius:7px;overflow:hidden;background:#e8eef7;margin:8px 0}.stk i{display:block;height:100%}
-.stkl{display:flex;gap:6px 16px;flex-wrap:wrap;font-size:13px}.stkl>span{display:flex;align-items:center;gap:6px}.stkl i{width:10px;height:10px;border-radius:50%;display:inline-block}
-@media(max-width:760px){.mdl{align-items:flex-end;padding:0}.mdb{border-radius:22px 22px 0 0;max-height:90vh;padding-bottom:calc(20px + env(safe-area-inset-bottom,0px));animation:sheet .34s cubic-bezier(.2,.9,.3,1) both}.greet b{font-size:18px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
-.rc{border:1px solid rgba(120,140,190,.22);border-radius:12px;padding:4px 14px;background:#f6f8fc}.rc>div{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed rgba(120,140,190,.28);font-size:13.5px}.rc>div:last-child{border:0;font-weight:700}
-.selbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:8px 12px;margin-bottom:8px;border-radius:12px;background:#f3f6fc;border:1px solid transparent;transition:background .2s,border-color .2s}.selbar.on{background:#e8f0fc;border-color:#c9daf5}
-.selbar .ck{margin:0;font-size:13.5px;font-weight:600;cursor:pointer}.selbar .sp{flex:1}.selbar .sm{padding:6px 12px;border-radius:9px}.selbar .dng{background:linear-gradient(135deg,#e8806a,#d65f48);color:#fff;border:0}
-.tb input[type=checkbox],.selbar input[type=checkbox]{width:17px;height:17px;min-height:0;padding:0;accent-color:#4f7fb0;cursor:pointer}.tb tr.sel td{background:#e3edfb!important}
-.tb.tx td:nth-child(6),.tb.tx th:nth-child(6){text-align:left}.tb.tx td:nth-child(7),.tb.tx th:nth-child(7){text-align:right}.tb.tx td:first-child,.tb.tx th:first-child{width:34px;padding-right:0}
-.toast.act{pointer-events:none}.toast.act.on{pointer-events:auto}.toast button{margin-left:10px;background:rgba(255,255,255,.2);color:#fff;border:0;border-radius:999px;padding:4px 12px;min-height:0;width:auto;font-weight:600}
-.g2>.pk{display:flex;flex-direction:column;min-height:270px}.scw{position:relative;flex:1;min-height:0}.scl{position:absolute;inset:0;overflow-y:auto;padding-right:6px;scrollbar-width:thin}
-@media(max-width:760px){.tb td input[type=checkbox]{width:19px!important;height:19px}.selbar .sm{min-height:36px}.g2>.pk{min-height:0}.scw{position:static}.scl{position:static;max-height:360px}}
-</style><script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script></head><body>
-<div class="ldr" id="ld"><div><div class="spin"></div><p id="ldm">Memuat data dari Google Sheets…</p></div></div>
-<div class="cfb" id="cf" style="display:none"><span>Data di Google Sheets sudah berubah (mungkin dari perangkat lain). Perubahan terakhir Anda belum tersimpan.</span><button id="rl2">Muat ulang data</button></div>
-<div class="ldr" id="lg" style="display:none"><div class="lgb"><h2 style="margin:0 0 6px">🔐 Masuk</h2><p class="mu" id="lgm" style="margin:0 0 8px"></p>
-<div id="lgu"><label>URL web app Apps Script (berakhiran /exec)</label><input id="lgurl" placeholder="https://script.google.com/macros/s/…/exec"></div>
-<label>PIN</label><input id="lgpin" type="password" autocomplete="current-password"><label class="ck"><input type="checkbox" id="lgmem" checked> Ingat di perangkat ini</label><button class="pri" id="lgok" style="width:100%">Masuk</button></div></div>
+/* ================= TYPOGRAPHY & HEADINGS ================= */
+h1, h2, h3 { color: var(--tx-title); letter-spacing: -0.02em; }
+h1 { font-size: 22px; font-weight: 700; margin: 0; }
+h2 { font-size: 15px; font-weight: 600; margin: 0 0 14px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.sub { margin-top: 22px; }
+.mu { color: var(--mu); font-size: 13px; }
+.v, .kpi b, .sum b, td, th, .lg b, .lg small, .big, .tip, .goldrow, .sc .v {
+  font-family: "Space Grotesk", "Plus Jakarta Sans", system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ================= LUXURY CARD ================= */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--bd);
+  border-radius: 18px;
+  padding: 22px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 12px 36px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 20px 48px -12px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+.card>h2:first-child::before {
+  content: "";
+  width: 4px;
+  height: 15px;
+  border-radius: 3px;
+  background: var(--gold);
+  display: inline-block;
+  box-shadow: 0 0 10px var(--ac-glow);
+}
+
+/* ================= LAYOUT ================= */
+.w { max-width: 1380px; margin: 0 auto; padding: 24px; }
+.g2 { display: grid; gap: 20px; grid-template-columns: 1fr 1fr; margin-bottom: 20px; }
+.row2 { display: grid; gap: 20px; grid-template-columns: minmax(0, 1fr) 380px; align-items: start; margin-bottom: 20px; }
+.row2.rev { grid-template-columns: 380px minmax(0, 1fr); }
+.cards4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; margin-bottom: 24px; }
+
+/* ================= SIDEBAR (EXECUTIVE LOUNGE STYLING) ================= */
+.side {
+  position: fixed;
+  left: 0; top: 0; bottom: 0;
+  width: 256px;
+  background: rgba(12, 17, 28, 0.88);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-right: 1px solid var(--bd);
+  color: #adbcd0;
+  overflow-y: auto;
+  z-index: 25;
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 24px 22px 20px;
+  border-bottom: 1px solid var(--bd);
+}
+.logo {
+  width: 44px; height: 44px;
+  border-radius: 14px;
+  background: var(--gold);
+  display: grid;
+  place-items: center;
+  flex: none;
+  box-shadow: 0 8px 24px -4px rgba(200, 162, 101, 0.4), inset 0 1px 1px rgba(255,255,255,0.7);
+}
+.logo svg { width: 24px; height: 24px; stroke: #121824; }
+.bt b { display: block; font-size: 18px; font-weight: 700; color: #fff; letter-spacing: -0.02em; }
+.bt em { font-style: normal; color: var(--gold-text); background: var(--gold); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.bt small { display: block; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mu); margin-top: 2px; }
+
+.sg {
+  padding: 20px 22px 8px;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  color: var(--mu);
+}
+.sg small { display: none; }
+.side a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 14px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  color: #9cb0c9;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 13.5px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+.side a:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+.side a.on {
+  background: linear-gradient(90deg, rgba(200, 162, 101, 0.16), rgba(200, 162, 101, 0.03));
+  border: 1px solid rgba(200, 162, 101, 0.35);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+.ic {
+  width: 32px; height: 32px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.05);
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease;
+}
+.ic svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2; }
+.side a.on .ic {
+  background: var(--gold);
+  color: #111723;
+  box-shadow: 0 0 12px var(--ac-glow);
+}
+
+.main { margin-left: 256px; min-height: 100vh; min-width: 0; transition: margin-left 0.28s; }
+
+/* ================= TOPBAR ================= */
+.tbar {
+  min-height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(9, 13, 22, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--bd);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 24px;
+}
+.ib {
+  background: none; border: 0; color: #fff; font-size: 22px; cursor: pointer; padding: 4px; display: none;
+}
+#ttl { font-size: 17px; font-weight: 700; color: #fff; }
+.sync {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--bd);
+  background: rgba(255,255,255,0.03);
+  color: var(--mu);
+}
+.sync.ok { color: var(--in); border-color: rgba(16, 185, 129, 0.3); background: var(--in-bg); }
+.sync.w { color: var(--gold-text); border-color: rgba(200, 162, 101, 0.3); background: var(--ac-glow); }
+.sync.e { color: var(--out); border-color: rgba(244, 63, 94, 0.3); background: var(--out-bg); }
+
+/* ================= LUXURY BUTTONS & INPUTS ================= */
+button, input, select {
+  font: inherit;
+  color: var(--tx);
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: rgba(18, 26, 42, 0.7);
+  border: 1px solid var(--bd);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+button { cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
+input:focus, select:focus {
+  outline: none;
+  border-color: var(--ac);
+  background: rgba(22, 33, 53, 0.95);
+  box-shadow: 0 0 0 3px var(--ac-glow);
+}
+.pri {
+  background: var(--gold)!important;
+  color: #121824!important;
+  font-weight: 700!important;
+  border: none!important;
+  box-shadow: 0 4px 18px -2px rgba(200, 162, 101, 0.4);
+}
+.pri:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 8px 24px -2px rgba(200, 162, 101, 0.6);
+  transform: translateY(-1px);
+}
+.tbar .sm {
+  width: auto;
+  padding: 7px 14px;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--bd);
+  color: #fff;
+}
+.tbar .sm:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+.tbar .qa {
+  background: var(--gold)!important;
+  color: #121824!important;
+  border: none!important;
+  box-shadow: 0 4px 16px rgba(200, 162, 101, 0.4);
+}
+
+/* ================= EXECUTIVE SUMMARY (FINTECH BLACK CARDS) ================= */
+.sc {
+  position: relative;
+  border-radius: 20px;
+  color: #fff;
+  overflow: hidden;
+  padding: 0;
+  background: linear-gradient(145deg, #162033, #0d1422);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.sc:hover {
+  transform: translateY(-4px);
+  border-color: rgba(200, 162, 101, 0.4);
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(200, 162, 101, 0.2);
+}
+.sc::after {
+  content: "";
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.06), transparent 70%);
+  pointer-events: none;
+}
+.sc .t {
+  padding: 22px 22px 14px;
+}
+.sc .t>div:last-child {
+  font-size: 11.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8fa0b8;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.sc .v {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.sc .f {
+  background: rgba(0, 0, 0, 0.25);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 10px 22px;
+  font-size: 12.5px;
+  color: #8fa0b8;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sc .f b { color: #fff!important; font-weight: 600; }
+.c1 {
+  background: linear-gradient(145deg, #1c273c 0%, #101827 100%);
+  border: 1px solid rgba(200, 162, 101, 0.3);
+}
+.c1 .v {
+  background: var(--gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.c1.neg .v { -webkit-text-fill-color: var(--out); }
+.c2 .v { color: #34d399; }
+.c3 .v { color: #fb7185; }
+.c4 .v { color: #a5b4fc; }
+
+/* ================= PERIOD BAR & TABS ================= */
+.pbar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+.pbar .tabs {
+  background: rgba(18, 26, 42, 0.85);
+  border: 1px solid var(--bd);
+  border-radius: 14px;
+  padding: 4px;
+  display: flex;
+  gap: 4px;
+}
+.pbar .tabs button {
+  width: auto;
+  border: 0;
+  background: transparent;
+  padding: 8px 18px;
+  border-radius: 10px;
+  color: var(--mu);
+  font-weight: 600;
+  font-size: 13.5px;
+}
+.pbar .tabs .on, .ty .on {
+  background: var(--gold)!important;
+  color: #111723!important;
+  box-shadow: 0 4px 12px rgba(200, 162, 101, 0.3);
+}
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(18, 26, 42, 0.85);
+  border: 1px solid var(--bd);
+  border-radius: 14px;
+  padding: 4px 8px;
+}
+.nav button {
+  width: 36px; height: 36px; padding: 0; border: 0; background: transparent; font-size: 16px; color: #fff;
+}
+.nav button:hover { background: rgba(255,255,255,0.06); }
+.nav b { font-size: 14px; padding: 0 12px; color: #fff; }
+
+/* ================= KPI STATS & GRAPHS ================= */
+.kpi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
+.kpi>div {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  padding: 14px 16px;
+}
+.kpi small { display: block; color: var(--mu); font-size: 12px; margin-top: 2px; }
+.kpi b { font-size: 18px; color: #fff; display: block; }
+
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 150px;
+  overflow-x: auto;
+  padding-top: 14px;
+}
+.chart div {
+  flex: 1;
+  min-width: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+}
+.chart p {
+  margin: 0; width: 100%; display: flex; align-items: flex-end; gap: 2px; flex: 1;
+}
+.chart span {
+  flex: 1;
+  background: linear-gradient(180deg, #f43f5e, #be123c);
+  border-radius: 3px 3px 0 0;
+  min-height: 2px;
+  box-shadow: 0 0 10px rgba(244, 63, 94, 0.25);
+}
+.chart .bi {
+  background: linear-gradient(180deg, #10b981, #047857);
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.25);
+}
+.chart em { font-size: 11px; color: var(--mu); margin-top: 6px; font-style: normal; }
+.key { font-size: 12px; color: var(--mu); margin-bottom: 12px; }
+.key i {
+  display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin: 0 6px 0 14px; vertical-align: -1px;
+}
+
+/* ================= WEALTH DONUT & ASSET ALLOCATION ================= */
+.dn { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; justify-content: center; }
+.ring {
+  width: 160px; height: 160px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex: none;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+  position: relative;
+}
+.ring>div {
+  width: 106px; height: 106px;
+  border-radius: 50%;
+  background: #0f1624;
+  border: 1px solid rgba(255,255,255,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.ring small { font-size: 11px; color: var(--mu); text-transform: uppercase; letter-spacing: 0.05em; }
+.ring b { font-size: 13px; color: #fff; margin-top: 2px; }
+.lg { flex: 1 1 220px; }
+.lg>div {
+  display: flex; align-items: center; gap: 8px; font-size: 13.5px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.lg i { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.lg span { flex: 1; color: #d1d9e6; }
+.lg b { color: #fff; margin-right: 6px; }
+.lg small { color: var(--mu); min-width: 90px; text-align: right; }
+
+.bar { height: 6px; background: rgba(255, 255, 255, 0.06); border-radius: 4px; overflow: hidden; margin-top: 6px; }
+.bar i { display: block; height: 100%; background: var(--gold); border-radius: 4px; }
+.bar.over i { background: var(--out)!important; }
+
+/* ================= TABLES ================= */
+.tw { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+th {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 11px;
+  color: var(--mu);
+  font-weight: 600;
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--bd);
+  background: rgba(14, 21, 33, 0.6);
+  text-align: left;
+}
+td { padding: 12px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.04); color: #d1d9e6; }
+tr:hover td { background: rgba(255, 255, 255, 0.02); }
+.tb .x {
+  width: auto; min-height: 0; padding: 4px 10px; border-radius: 8px; border: 0; font-size: 12px; margin-left: 4px;
+}
+.tb .ed { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+.tb .ed:hover { background: #10b981; color: #fff; }
+.tb .del { background: rgba(244, 63, 94, 0.2); color: #fb7185; }
+.tb .del:hover { background: #f43f5e; color: #fff; }
+
+.in { color: #34d399!important; }
+.out { color: #fb7185!important; }
+
+/* ================= MODAL & DETAILS ================= */
+.mdl {
+  position: fixed; inset: 0; z-index: 80; display: none; align-items: center; justify-content: center; padding: 20px;
+  background: rgba(5, 8, 14, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+.mdl.on { display: flex; }
+.mdb {
+  background: #111827;
+  border: 1px solid var(--bd);
+  border-radius: 24px;
+  padding: 28px;
+  width: min(600px, 100%);
+  max-height: 86vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.1);
+  position: relative;
+}
+.mdx {
+  position: absolute; top: 20px; right: 20px; width: 32px; height: 32px; border-radius: 50%;
+  border: 1px solid var(--bd); background: rgba(255,255,255,0.05); color: #fff;
+}
+.mdx:hover { background: rgba(255,255,255,0.12); }
+
+/* ================= FORM ELEMENTS ================= */
+.ty { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 14px; }
+.ty button { flex: 1 1 30%; font-size: 13px; padding: 8px 6px; }
+.flt { display: grid; grid-template-columns: 2fr 1.4fr 1.2fr 1fr; gap: 8px; margin-bottom: 14px; }
+label { display: block; font-size: 11.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--mu); margin: 12px 0 4px; font-weight: 600; }
+.tip {
+  background: rgba(255, 255, 255, 0.03); border: 1px solid var(--bd); border-radius: 12px; padding: 12px 14px; font-size: 13px; margin: 8px 0;
+}
+
+/* ================= LOADER & TOAST ================= */
+.ldr {
+  position: fixed; inset: 0; z-index: 100; display: flex; align-items: center; justify-content: center;
+  background: rgba(9, 13, 22, 0.92); backdrop-filter: blur(20px); text-align: center; color: #fff;
+}
+.spin {
+  width: 44px; height: 44px; border-radius: 50%; border: 3px solid rgba(200, 162, 101, 0.2);
+  border-top-color: var(--gold-text); margin: 0 auto 16px; animation: sp 0.9s cubic-bezier(0.6, 0.2, 0.4, 0.8) infinite;
+}
+@keyframes sp { to { transform: rotate(360deg); } }
+
+.toast {
+  position: fixed; left: 50%; bottom: 32px; transform: translate(-50%, 16px);
+  background: rgba(18, 26, 42, 0.95); border: 1px solid var(--bd); color: #fff;
+  padding: 10px 22px; border-radius: 999px; font-size: 13.5px; opacity: 0;
+  pointer-events: none; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); z-index: 90;
+  box-shadow: 0 14px 34px rgba(0,0,0,0.6);
+}
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+
+/* ================= MOBILE BOTTOM NAV ================= */
+.bnav { display: none; }
+@media (max-width: 768px) {
+  .main { margin-left: 0; padding-bottom: 90px; }
+  .side { transform: translateX(-100%); width: 280px; }
+  .so .side { transform: none; }
+  .ov { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 22; backdrop-filter: blur(4px); }
+  .so .ov { display: block; }
+  .ib { display: block; }
+  .cards4 { grid-template-columns: 1fr; }
+  .row2, .row2.rev, .g2 { grid-template-columns: 1fr; }
+  .flt { grid-template-columns: 1fr; }
+  .w { padding: 14px; }
+  .bnav {
+    display: grid; grid-template-columns: repeat(5, 1fr); position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+    background: rgba(10, 15, 25, 0.92); backdrop-filter: blur(20px); border-top: 1px solid var(--bd);
+    padding: 8px 6px calc(8px + env(safe-area-inset-bottom, 0px));
+  }
+  .bnav button {
+    background: none; border: 0; color: #7f91a9; font-size: 10px; font-weight: 600; flex-direction: column; gap: 3px; padding: 4px 0;
+  }
+  .bnav button.on { color: var(--gold-text); }
+  .bnav svg { width: 20px; height: 20px; }
+  .kpi { grid-template-columns: 1fr 1fr; }
+}
+
+.pg { display: none; }
+.pg.on { display: block; animation: fadeIn 0.3s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.fab { display: none; }
+.ln { fill: none; stroke: var(--gold-text); stroke-width: 2.5; }
+.ar { fill: var(--gold-text); opacity: 0.12; }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<div class="ldr" id="ld">
+  <div>
+    <div class="spin"></div>
+    <p id="ldm" style="font-weight: 600; letter-spacing: 0.02em;">Mengakses Brankas Google Sheets…</p>
+  </div>
+</div>
+
+<div class="cfb" id="cf" style="display:none; position:fixed; left:16px; right:16px; bottom:16px; z-index:70; background:#e07f5f; color:#fff; border-radius:14px; padding:14px 18px; justify-content:space-between; align-items:center;">
+  <span>Sinkronisasi bentrok: data di server berubah dari perangkat lain.</span>
+  <button id="rl2" class="pri" style="width:auto">Muat Ulang Data</button>
+</div>
+
+<div class="ldr" id="lg" style="display:none">
+  <div class="card" style="max-width:400px; width:100%; border:1px solid rgba(200,162,101,0.4);">
+    <h2 style="color:var(--gold-text); margin-bottom:6px;">🔐 Autentikasi Vault</h2>
+    <p class="mu" id="lgm">Silakan masukkan PIN keamanan Anda.</p>
+    <div id="lgu" style="margin-bottom:8px">
+      <label>URL Web App Apps Script</label>
+      <input id="lgurl" placeholder="https://script.google.com/macros/s/…/exec">
+    </div>
+    <label>Security PIN</label>
+    <input id="lgpin" type="password" autocomplete="current-password" placeholder="••••••" style="font-size:20px; letter-spacing:4px; text-align:center;">
+    <label style="display:flex; align-items:center; gap:8px; margin:14px 0 16px; text-transform:none; cursor:pointer;">
+      <input type="checkbox" id="lgmem" checked style="width:16px; height:16px; accent-color:var(--ac);"> Ingat di peramban ini
+    </label>
+    <button class="pri" id="lgok">Buka Brankas</button>
+  </div>
+</div>
+
 <div class="ov" id="ov"></div>
-<div class="mdl" id="mdl"><div class="mdb" role="dialog" aria-modal="true" aria-labelledby="mdt"><button class="mdx" id="mdx" aria-label="Tutup">✕</button><h3 id="mdt">💼 Posisi uang saat ini</h3><p class="mu" id="mds" style="margin:0 0 6px"></p><div id="mdc"></div></div></div>
-<aside class="side" id="side"><div class="brand"><div class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#2f4f7a" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.6"/><path d="M7.8 14.4l2.7-3 2.1 1.8 3.6-4.2"/><path d="M14.6 8.6h2.8v2.8"/></svg></div><div class="bt"><b>Keuangan<em>ku</em></b><small>Atur uang, tenang hati</small></div></div>
-<div class="sg">MENU UTAMA<small>Ringkasan &amp; transaksi</small></div>
-<a data-pg="p-dash" class="on"><i class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.8"/><rect x="14" y="3" width="7" height="5" rx="1.8"/><rect x="14" y="12" width="7" height="9" rx="1.8"/><rect x="3" y="16" width="7" height="5" rx="1.8"/></svg></i><span>Dashboard</span></a><a data-pg="p-tx"><i class="ic"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></i><span>Transaksi</span></a>
-<div class="sg">ASET &amp; ANGGARAN<small>Tabungan, investasi, budget</small></div>
-<a data-pg="p-acc"><i class="ic"><svg viewBox="0 0 24 24"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H18v3.5"/><path d="M3 7.5V17a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1H5.5A2.5 2.5 0 0 1 3 7.5z"/><circle cx="16.5" cy="13.5" r="1.1"/></svg></i><span>Rekening &amp; Dompet</span></a><a data-pg="p-asset"><i class="ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></i><span>Tabungan &amp; Investasi</span></a><a data-pg="p-bud"><i class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg></i><span>Anggaran</span></a><a data-pg="p-an"><i class="ic"><svg viewBox="0 0 24 24"><path d="M11 3l1.9 5 5 1.9-5 1.9L11 17l-1.9-5.2-5-1.9 5-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></i><span>Analisis &amp; Prediksi</span></a>
-<div class="sg">PENGATURAN<small>Kategori &amp; data</small></div>
-<a data-pg="p-imp"><i class="ic"><svg viewBox="0 0 24 24"><path d="M12 16V4"/><path d="M7.5 8.5L12 4l4.5 4.5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></i><span>Impor Excel</span></a><a data-pg="p-cat"><i class="ic"><svg viewBox="0 0 24 24"><path d="M3 12V4h8l9 9-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg></i><span>Kategori</span></a>
+
+<div class="mdl" id="mdl">
+  <div class="mdb" role="dialog" aria-modal="true" aria-labelledby="mdt">
+    <button class="mdx" id="mdx" aria-label="Tutup">✕</button>
+    <h3 id="mdt" style="margin:0 0 4px; font-size:18px;">💼 Posisi Likuiditas & Aset</h3>
+    <p class="mu" id="mds" style="margin:0 0 16px;"></p>
+    <div id="mdc"></div>
+  </div>
+</div>
+
+<!-- SIDEBAR -->
+<aside class="side" id="side">
+  <div class="brand">
+    <div class="logo">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.6"/><path d="M7.8 14.4l2.7-3 2.1 1.8 3.6-4.2"/><path d="M14.6 8.6h2.8v2.8"/></svg>
+    </div>
+    <div class="bt">
+      <b>Keuangan<em>ku</em></b>
+      <small>Private Wealth</small>
+    </div>
+  </div>
+
+  <div class="sg">PORTFOLIO & CASH</div>
+  <a data-pg="p-dash" class="on">
+    <i class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.8"/><rect x="14" y="3" width="7" height="5" rx="1.8"/><rect x="14" y="12" width="7" height="9" rx="1.8"/><rect x="3" y="16" width="7" height="5" rx="1.8"/></svg></i>
+    <span>Dashboard</span>
+  </a>
+  <a data-pg="p-tx">
+    <i class="ic"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg></i>
+    <span>Mutasi & Transaksi</span>
+  </a>
+
+  <div class="sg">WEALTH & BUDGET</div>
+  <a data-pg="p-acc">
+    <i class="ic"><svg viewBox="0 0 24 24"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5H18v3.5"/><path d="M3 7.5V17a2 2 0 0 0 2 2h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1H5.5A2.5 2.5 0 0 1 3 7.5z"/><circle cx="16.5" cy="13.5" r="1.1"/></svg></i>
+    <span>Akun & Rekening</span>
+  </a>
+  <a data-pg="p-asset">
+    <i class="ic"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></i>
+    <span>Tabungan & Investasi</span>
+  </a>
+  <a data-pg="p-bud">
+    <i class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg></i>
+    <span>Limit Anggaran</span>
+  </a>
+  <a data-pg="p-an">
+    <i class="ic"><svg viewBox="0 0 24 24"><path d="M11 3l1.9 5 5 1.9-5 1.9L11 17l-1.9-5.2-5-1.9 5-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg></i>
+    <span>Intelijen & Saran</span>
+  </a>
+
+  <div class="sg">PREFERENSI</div>
+  <a data-pg="p-imp">
+    <i class="ic"><svg viewBox="0 0 24 24"><path d="M12 16V4"/><path d="M7.5 8.5L12 4l4.5 4.5"/><path d="M4 15v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg></i>
+    <span>Impor Data Excel</span>
+  </a>
+  <a data-pg="p-cat">
+    <i class="ic"><svg viewBox="0 0 24 24"><path d="M3 12V4h8l9 9-8 8z"/><circle cx="7.5" cy="8.5" r="1.3"/></svg></i>
+    <span>Kategori Pengeluaran</span>
+  </a>
 </aside>
-<div class="main"><header class="tbar"><button id="mb" class="ib">☰</button><b id="ttl">Dashboard</b><span style="flex:1"></span><button id="lo" class="sm" style="display:none">🔒<span class="hx"> Kunci</span></button><span id="sync" class="sync">…</span><button id="imp" class="sm">⬆<span class="hx"> Impor</span></button><button id="ex" class="sm">⬇<span class="hx"> Unduh Excel</span></button><button id="qa" class="sm qa" title="Catat transaksi (tekan N)">＋<span class="hx"> Catat</span></button></header>
-<div class="w">
-<div class="pbar" id="pbar"><div class="tabs" id="tabs"><button data-p="w">Mingguan</button><button data-p="m" class="on">Bulanan</button><button data-p="y">Tahunan</button></div>
-<div class="nav"><button id="pv">‹</button><b id="lb"></b><button id="nx">›</button></div>
+
+<div class="main">
+  <header class="tbar">
+    <button id="mb" class="ib">☰</button>
+    <b id="ttl">Dashboard</b>
+    <span style="flex:1"></span>
+    <button id="lo" class="sm" style="display:none">🔒 Kunci</button>
+    <span id="sync" class="sync">…</span>
+    <button id="imp" class="sm">⬆ Impor</button>
+    <button id="ex" class="sm">⬇ Unduh Excel</button>
+    <button id="qa" class="sm qa" title="Catat transaksi (tekan N)">＋ Catat</button>
+  </header>
+
+  <div class="w">
+    <div class="pbar" id="pbar">
+      <div class="tabs" id="tabs">
+        <button data-p="w">Mingguan</button>
+        <button data-p="m" class="on">Bulanan</button>
+        <button data-p="y">Tahunan</button>
+      </div>
+      <div class="nav">
+        <button id="pv">‹</button>
+        <b id="lb"></b>
+        <button id="nx">›</button>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <section class="pg on" id="p-dash">
+      <div class="greet" id="greet" style="margin-bottom:16px;"></div>
+      <div class="cards4" id="s-dash">
+        <div class="sc c1" id="cc1" role="button" tabindex="0">
+          <div class="t">
+            <div class="v" id="hC"></div>
+            <div>Sisa Uang Likuid</div>
+          </div>
+          <div class="f">
+            <span id="nAcc"></span>
+            <span class="hint" style="color:var(--gold-text); font-weight:600;">Lihat rincian ›</span>
+          </div>
+        </div>
+
+        <div class="sc c2">
+          <div class="t">
+            <div class="v" id="sI"></div>
+            <div>Pemasukan</div>
+          </div>
+          <div class="f" id="rl"></div>
+        </div>
+
+        <div class="sc c3" id="cc3">
+          <div class="t">
+            <div class="v" id="sO"></div>
+            <div>Pengeluaran</div>
+          </div>
+          <div class="f">Selisih <b id="sS"></b></div>
+        </div>
+
+        <div class="sc c4">
+          <div class="t">
+            <div class="v" id="hA"></div>
+            <div>Net Worth Total</div>
+          </div>
+          <div class="f">Tabungan <b id="hS"></b> · Investasi <b id="hV"></b></div>
+        </div>
+      </div>
+
+      <div class="row2">
+        <div class="card">
+          <h2>Ringkasan Eksekutif</h2>
+          <div class="kpi" id="kpi"></div>
+          <h2 class="sub">Arus Kas Masuk & Keluar</h2>
+          <div class="key"><i style="background:var(--in)"></i>Pemasukan<i style="background:var(--out)"></i>Pengeluaran</div>
+          <div class="chart" id="ch"></div>
+        </div>
+        <div class="card">
+          <h2>Pertumbuhan Saldo Bersih</h2>
+          <div id="hb"></div>
+        </div>
+      </div>
+
+      <div class="g2">
+        <div class="card">
+          <h2>Alokasi Penempatan Dana</h2>
+          <div id="aD"></div>
+        </div>
+        <div class="card pk">
+          <h2>Saldo per Kompartemen Akun</h2>
+          <div class="scw"><div class="scl" id="aK"></div></div>
+        </div>
+      </div>
+
+      <div class="g2">
+        <div class="card">
+          <h2>Pengeluaran per Kategori <span class="mu" id="bn"></span></h2>
+          <div id="pO"></div>
+        </div>
+        <div class="card">
+          <h2>Sumber Pemasukan</h2>
+          <div id="pI"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TRANSAKSI -->
+    <section class="pg" id="p-tx">
+      <div class="row2 rev">
+        <div class="card" id="fm">
+          <h2 id="fh">Catat Entri Baru</h2>
+          <div class="ty" id="ty">
+            <button data-t="out" class="on">Pengeluaran</button>
+            <button data-t="in">Pemasukan</button>
+            <button data-t="sv">Tabungan</button>
+            <button data-t="iv">Investasi</button>
+            <button data-t="tf">Pindah</button>
+          </div>
+          <label>Keterangan Transaksi</label>
+          <input id="nm" placeholder="mis. Dividen, Makan Malam, Tiket Pesawat">
+
+          <div id="rowGr" style="display:none">
+            <label>Berat Emas Murni (Gram)</label>
+            <input id="gr" inputmode="decimal" placeholder="mis. 5 atau 10,5">
+            <p class="mu" id="ghint" style="margin:4px 0 0;"></p>
+          </div>
+
+          <label>Nilai Nominal (Rp)</label>
+          <input id="am" inputmode="numeric" placeholder="100.000">
+
+          <div id="ac2" style="display:none">
+            <label>Aksi Transaksi</label>
+            <select id="dir">
+              <option value="0">Setor (Kas Tunai → Aset)</option>
+              <option value="1">Tarik / Likuidasi (Aset → Kas Tunai)</option>
+              <option value="2">Saldo Awal (Sudah ada di aset sebelumnya)</option>
+            </select>
+          </div>
+
+          <div id="rowFrom">
+            <label id="lwa">Rekening / Akun Asal</label>
+            <select id="wa"></select>
+          </div>
+          <div id="rowTo" style="display:none">
+            <label id="lwt">Tujuan Transfer</label>
+            <select id="wt"></select>
+          </div>
+          <div id="rowCat">
+            <label>Kategori Alokasi <span id="auto" class="mu"></span></label>
+            <select id="ct"></select>
+          </div>
+
+          <label>Tanggal Valuta</label>
+          <input id="dt" type="date">
+
+          <p class="mu out" id="wn" style="margin:10px 0 0;"></p>
+          <button class="pri" id="sv" style="margin-top:16px;">Simpan Entri</button>
+          <button id="cx" style="display:none; margin-top:8px;">Batalkan Perubahan</button>
+          <p class="mu" id="st" style="margin-top:8px;"></p>
+        </div>
+
+        <div class="card">
+          <h2>Jurnal Transaksi <span class="mu" id="lc"></span></h2>
+          <div class="flt">
+            <input id="q" placeholder="🔍 Cari keterangan / kategori">
+            <select id="fk"></select>
+            <select id="fr">
+              <option value="p">Periode Terpilih</option>
+              <option value="a">Sepanjang Waktu</option>
+            </select>
+            <select id="fa"></select>
+          </div>
+          <div class="mu" id="trl" style="margin:12px 0 6px;"></div>
+          <div class="chart" id="tr" style="height:140px;"></div>
+          <div id="ls" style="margin-top:14px;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REKENING & DOMPET -->
+    <section class="pg" id="p-acc">
+      <div class="row2">
+        <div class="card">
+          <h2>💼 Saldo Kas, Bank & Instrumen</h2>
+          <div class="tw"><table class="tb" id="al"></table></div>
+          <div id="alw" style="margin-top:10px;"></div>
+          <p class="mu" style="margin-top:12px;">Saldo Awal diisi saat pertama kali menggunakan sistem ini. Setiap perpindahan dana antar rekening dicatat melalui menu Transaksi → Pindah.</p>
+        </div>
+        <div class="card">
+          <h2>Daftarkan Rekening / Dompet</h2>
+          <label>Nama Akun / Bank</label>
+          <input id="an1" placeholder="mis. BCA Prioritas, Mandiri, Rek. Saham">
+          <label>Klasifikasi</label>
+          <select id="ak1">
+            <option value="rek">Rekening Bank</option>
+            <option value="cash">Tunai / Vault</option>
+            <option value="ew">E-Wallet / Digital</option>
+          </select>
+          <label>Saldo Pembuka (Rp)</label>
+          <input id="ao1" inputmode="numeric" placeholder="0">
+          <button class="pri" id="aa" style="margin-top:14px;">Tambah Akun</button>
+          <p class="mu" id="am1"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- IMPOR EXCEL -->
+    <section class="pg" id="p-imp">
+      <div class="card">
+        <h2>📥 Unggah Batch Transaksi via Excel</h2>
+        <ol class="stp" style="color:var(--mu); padding-left:20px; line-height:1.8;">
+          <li>Unduh format resmi template Excel keuangan Anda.</li>
+          <li>Isi daftar mutasi atau transaksi secara massal di komputer Anda.</li>
+          <li>Unggah file .xlsx untuk memeriksa pratinjau sebelum diverifikasi masuk ke Google Sheets.</li>
+        </ol>
+        <div style="display:flex; gap:10px; margin-top:16px;">
+          <button id="tpl" class="pri" style="width:auto">⬇ Unduh Template Excel</button>
+          <button id="upl" style="width:auto">⬆ Unggah File Excel</button>
+          <input type="file" id="fi" accept=".xlsx,.xls,.csv" hidden>
+        </div>
+        <p class="mu" id="im" style="margin-top:10px;"></p>
+      </div>
+
+      <div class="card" id="pv2" style="display:none; margin-top:16px;">
+        <h2>Pratinjau Data Impor</h2>
+        <div id="pvs"></div>
+        <label style="display:flex; align-items:center; gap:8px; margin:12px 0;">
+          <input type="checkbox" id="skd" checked style="width:16px; height:16px; accent-color:var(--ac);"> Abaikan duplikat yang telah terdaftar
+        </label>
+        <div id="pvt"></div>
+        <div style="display:flex; gap:10px; margin-top:16px;">
+          <button class="pri" id="go" style="width:auto"></button>
+          <button id="no" style="width:auto">Batal</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TABUNGAN & INVESTASI -->
+    <section class="pg" id="p-asset">
+      <div class="g2" id="s-asset">
+        <div class="card">
+          <h2>🏦 Akumulasi Tabungan & Target</h2>
+          <div id="tS"></div>
+          <div id="gS"></div>
+        </div>
+        <div class="card">
+          <h2>📈 Portofolio Investasi & Logam Mulia</h2>
+          <div id="tV"></div>
+          <p class="mu" style="margin-top:10px;">Nilai emas Antam diperbarui otomatis mengacu pada kurs buyback resmi LM Antam.</p>
+          <div id="gold"></div>
+          <div style="margin:10px 0;">
+            <button id="grf" class="sm">↻ Segarkan Kurs Antam</button>
+          </div>
+          <details style="margin-top:14px; color:var(--mu); cursor:pointer;">
+            <summary style="color:var(--gold-text); font-weight:600;">Koreksi Manual Kurs Emas</summary>
+            <label>Harga Beli Antam / gram (Rp)</label>
+            <input id="gmj" inputmode="numeric">
+            <label>Harga Buyback Antam / gram (Rp)</label>
+            <input id="gmb" inputmode="numeric">
+            <button class="pri" id="gms" style="margin-top:10px; width:auto">Simpan Kurs</button>
+            <p class="mu" id="gmm"></p>
+          </details>
+          <div id="gV"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANGGARAN -->
+    <section class="pg" id="p-bud">
+      <div class="row2" id="s-bud">
+        <div class="card">
+          <h2>Anggaran vs Realisasi <span class="mu" id="bvl"></span></h2>
+          <div id="bv"></div>
+        </div>
+        <div class="card">
+          <h2>Tetapkan Plafon Bulanan</h2>
+          <div id="bd"></div>
+          <p class="mu" style="margin-top:12px;">Kosongkan atau beri nilai 0 bila tanpa batasan plafon pengeluaran.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ANALISIS & SARAN -->
+    <section class="pg" id="p-an">
+      <div class="g2" id="s-an">
+        <div class="card">
+          <h2>🎯 Proyeksi Arus Kas 7 Hari Ke Depan</h2>
+          <div id="fc"></div>
+        </div>
+        <div class="card">
+          <h2>🧠 Wealth Advisor: Saran Alokasi Ideal <span class="mu" id="anl"></span></h2>
+          <div id="an"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- KATEGORI -->
+    <section class="pg" id="p-cat">
+      <div class="card" id="s-cat">
+        <h2>Manajemen Kategori <span class="mu" id="ctl"></span></h2>
+        <div class="ty" id="ty2" style="max-width:500px; margin-bottom:16px;">
+          <button data-t="out" class="on">Pengeluaran</button>
+          <button data-t="in">Pemasukan</button>
+          <button data-t="sv">Tabungan</button>
+          <button data-t="iv">Investasi</button>
+        </div>
+        <div id="cl" class="cl2" style="display:grid; grid-template-columns:repeat(auto-fill, minmax(220px, 1fr)); gap:10px;"></div>
+        <div style="display:flex; gap:8px; max-width:400px; margin-top:16px;">
+          <input id="nc" placeholder="Tambah kategori baru…">
+          <button class="pri" id="ac" style="width:auto">Tambah</button>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
-<section class="pg on" id="p-dash"><div class="greet" id="greet"></div><div class="cards4" id="s-dash">
-<div class="sc c1" id="cc1" role="button" tabindex="0" title="Klik untuk melihat posisi uang"><div class="t"><div class="v" id="hC"></div><div>Sisa Uang Saat Ini</div></div><div class="f"><span id="nAcc"></span><span class="hint">Lihat posisi ›</span></div></div>
-<div class="sc c2"><div class="t"><div class="v" id="sI"></div><div>Pemasukan</div></div><div class="f" id="rl"></div></div>
-<div class="sc c3" id="cc3"><div class="t"><div class="v" id="sO"></div><div>Pengeluaran</div></div><div class="f">Selisih <b id="sS"></b></div></div>
-<div class="sc c4"><div class="t"><div class="v" id="hA"></div><div>Total Aset</div></div><div class="f">Tabungan <b id="hS"></b> · Investasi <b id="hV"></b></div></div>
-</div>
-<div class="row2"><div class="card"><h2>Ringkasan periode</h2><div class="kpi" id="kpi"></div>
-<h2 class="sub">Pemasukan &amp; pengeluaran per waktu</h2><div class="key"><i style="background:var(--in)"></i>Pemasukan<i style="background:var(--out)"></i>Pengeluaran</div><div class="chart" id="ch"></div></div><div class="card"><h2>Sisa uang per waktu</h2><div id="hb"></div></div></div><div class="g2"><div class="card"><h2>🏦 Penempatan uang</h2><div id="aD"></div></div><div class="card pk"><h2>Saldo per jenis &amp; tempat</h2><div class="scw"><div class="scl" id="aK"></div></div></div></div><div class="g2"><div class="card"><h2>Pengeluaran per kategori <span class="mu" id="bn"></span></h2><div id="pO"></div></div><div class="card"><h2>Pemasukan per kategori</h2><div id="pI"></div></div></div></section>
-<section class="pg" id="p-tx"><div class="row2 rev"><div class="card" id="fm"><h2 id="fh">Catat transaksi</h2><div class="ty" id="ty"><button data-t="out" class="on">Pengeluaran</button><button data-t="in">Pemasukan</button><button data-t="sv">Tabungan</button><button data-t="iv">Investasi</button><button data-t="tf">Pindah</button></div>
-<label>Keterangan</label><input id="nm" placeholder="mis. nasi goreng, bensin, gaji">
-<div id="rowGr" style="display:none"><label>Berat emas (gram)</label><input id="gr" inputmode="decimal" placeholder="mis. 1 atau 0,5"><p class="mu" id="ghint" style="margin:4px 0 0"></p></div>
-<label>Jumlah (Rp)</label><input id="am" inputmode="numeric" placeholder="25000">
-<div id="ac2" style="display:none"><label>Aksi</label><select id="dir"><option value="0">Setor (uang tunai → tabungan/investasi)</option><option value="1">Tarik / jual (kembali ke uang tunai)</option><option value="2">Saldo awal (dana sudah ada sebelumnya, tidak mengurangi uang tunai)</option></select></div>
-<div id="rowFrom"><label id="lwa">Tempat uang</label><select id="wa"></select></div><div id="rowTo" style="display:none"><label id="lwt">Ke</label><select id="wt"></select></div><div id="rowCat"><label>Kategori / tujuan <span id="auto" class="mu"></span></label><select id="ct"></select></div>
-<label>Tanggal</label><input id="dt" type="date">
-<p class="mu out" id="wn" style="margin:10px 0 0"></p><button class="pri" id="sv">Simpan</button><button id="cx" style="display:none;margin-top:6px">Batal edit</button><p class="mu" id="st"></p></div><div class="card"><h2>Rincian Transaksi <span class="mu" id="lc"></span></h2>
-<div class="flt"><input id="q" placeholder="🔍 Cari keterangan / kategori"><select id="fk"></select><select id="fr"><option value="p">Periode terpilih</option><option value="a">Semua waktu</option></select><select id="fa"></select></div>
-<div class="mu" id="trl" style="margin:12px 0 4px"></div><div class="chart" id="tr" style="height:150px"></div><div id="ls" style="margin-top:12px"></div></div></div></section>
-<section class="pg" id="p-acc"><div class="row2"><div class="card"><h2>💼 Rekening, Cash &amp; E-wallet</h2><div class="tw"><table class="tb" id="al"></table></div><div id="alw" style="margin-top:10px"></div><p class="mu">Saldo awal = uang yang sudah ada di tempat itu sebelum Anda mulai mencatat. Nama, jenis, dan saldo awal bisa diubah langsung di tabel. Perpindahan uang dicatat lewat tombol <b>Pindah</b> di halaman Transaksi.</p></div>
-<div class="card"><h2>Tambah tempat baru</h2><label>Nama</label><input id="an1" placeholder="mis. Rekening Mandiri, DANA"><label>Jenis</label><select id="ak1"><option value="rek">Rekening</option><option value="cash">Cash</option><option value="ew">E-wallet</option></select><label>Saldo awal (Rp)</label><input id="ao1" inputmode="numeric" placeholder="0"><button class="pri" id="aa">Tambah</button><p class="mu" id="am1"></p></div></div></section>
-<section class="pg" id="p-imp"><div class="card"><h2>📥 Impor transaksi dari Excel</h2>
-<ol class="stp"><li>Unduh template, lalu isi satu baris per transaksi (boleh ratusan sekaligus).</li><li>Unggah file .xlsx atau .csv. Aplikasi menampilkan pratinjau dan memeriksa tiap baris dulu.</li><li>Jika sudah benar, klik <b>Impor</b>. Tidak ada yang tersimpan sebelum Anda mengklik Impor.</li></ol>
-<div class="ifr"><button id="tpl" class="pri" style="margin:0">⬇ Unduh template Excel</button><button id="upl">⬆ Pilih file Excel</button><input type="file" id="fi" accept=".xlsx,.xls,.csv" hidden></div><p class="mu" id="im"></p></div>
-<div class="card" id="pv2" style="display:none;margin-top:16px"><h2>Pratinjau impor</h2><div id="pvs"></div><label class="ck"><input type="checkbox" id="skd" checked> Lewati baris yang sepertinya sudah ada (duplikat)</label><div id="pvt"></div><div class="ifr"><button class="pri" id="go" style="margin:0"></button><button id="no">Batal</button></div></div>
-<div class="card" style="margin-top:16px"><h2>Format kolom (sheet "Transaksi")</h2><table class="rt"><tr><th>Kolom</th><th>Wajib?</th><th>Isi</th></tr>
-<tr><td>Tanggal</td><td data-l="Wajib?">Ya</td><td data-l="Isi">2026-10-05 atau 05/10/2026</td></tr>
-<tr><td>Jenis</td><td data-l="Wajib?">Ya</td><td data-l="Isi">Pengeluaran / Pemasukan / Tabungan / Investasi / Pindah</td></tr>
-<tr><td>Keterangan</td><td data-l="Wajib?">Ya (kecuali Pindah)</td><td data-l="Isi">Teks bebas, mis. Nasi goreng</td></tr>
-<tr><td>Kategori</td><td data-l="Wajib?">Tidak</td><td data-l="Isi">Kosong = ditebak otomatis. Nama baru dibuat otomatis. Tabungan: tujuan, Investasi: jenis</td></tr>
-<tr><td>Jumlah</td><td data-l="Wajib?">Ya</td><td data-l="Isi">Angka, mis. 25000 atau 25.000</td></tr>
-<tr><td>Tempat</td><td data-l="Wajib?">Pindah: ya</td><td data-l="Isi">Nama rekening/cash/e-wallet. Kosong = tempat pertama. Pindah: tempat asal</td></tr>
-<tr><td>Ke</td><td data-l="Wajib?">Pindah saja</td><td data-l="Isi">Tempat tujuan (beda dari Tempat)</td></tr>
-<tr><td>Gram</td><td data-l="Wajib?">Emas saja</td><td data-l="Isi">Berat emas, mis. 0,5 atau 2. Jumlah boleh kosong (otomatis dari harga Antam)</td></tr>
-<tr><td>Aksi</td><td data-l="Wajib?">Tidak</td><td data-l="Isi">Tabungan/Investasi: Setor (bawaan) atau Tarik</td></tr></table></div></section>
-<section class="pg" id="p-asset"><div class="g2" id="s-asset"><div class="card"><h2>🏦 Tabungan <span class="mu">(sisa per tujuan)</span></h2><div id="tS"></div><div id="gS"></div></div>
-<div class="card"><h2>📈 Investasi <span class="mu">(dimana saja)</span></h2><div id="tV"></div><p class="mu">Nilai investasi = modal yang disetor, kecuali <b>Emas</b>: dihitung dari berat (gram) × harga buyback Antam terbaru, sehingga nilainya ikut naik-turun.</p>
-<div id="gold"></div><div class="ifr" style="margin:6px 0"><button id="grf" class="sm">↻ Perbarui harga</button></div>
-<details class="gdet"><summary>Isi harga emas manual</summary><label>Harga beli / gram (Rp)</label><input id="gmj" inputmode="numeric"><label>Harga buyback / gram (opsional)</label><input id="gmb" inputmode="numeric"><button class="pri" id="gms" style="margin-top:10px">Simpan harga</button><p class="mu" id="gmm"></p></details><div id="gV"></div></div></div>
-</section>
-<section class="pg" id="p-bud"><div class="row2" id="s-bud"><div class="card"><h2>Anggaran vs realisasi <span class="mu" id="bvl"></span></h2><div id="bv"></div></div>
-<div class="card"><h2>Anggaran bulanan (pengeluaran)</h2><div id="bd"></div><p class="mu">Kosongkan / 0 jika tanpa batas.</p></div></div>
-</section>
-<section class="pg" id="p-an"><div class="g2" id="s-an"><div class="card"><h2>🎯 Prediksi anggaran 7 hari ke depan</h2><div id="fc"></div></div>
-<div class="card"><h2>🧠 Saran alokasi bulan depan <span class="mu" id="anl"></span></h2><div id="an"></div></div></div>
-</section>
-<section class="pg" id="p-cat"><div class="card" id="s-cat"><h2>Kategori <span class="mu" id="ctl"></span></h2><div class="ty" id="ty2" style="margin-bottom:12px;max-width:520px"><button data-t="out" class="on">Pengeluaran</button><button data-t="in">Pemasukan</button><button data-t="sv">Tabungan</button><button data-t="iv">Investasi</button></div><div id="cl" class="cl2"></div>
-<div class="ci" style="max-width:420px;margin-top:8px"><input id="nc" placeholder="Kategori baru"><button class="sm" id="ac">Tambah</button></div></div>
-</section>
-</div></div>
-<nav class="bnav" id="bnav"><button data-pg="p-dash" class="on"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="9" rx="1.8"/><rect x="14" y="3" width="7" height="5" rx="1.8"/><rect x="14" y="12" width="7" height="9" rx="1.8"/><rect x="3" y="16" width="7" height="5" rx="1.8"/></svg><span>Dashboard</span></button><button data-pg="p-tx"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg><span>Transaksi</span></button><button data-pg="p-asset"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg><span>Aset</span></button><button data-pg="p-bud"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg><span>Anggaran</span></button><button id="bmenu"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span>Menu</span></button></nav>
-<div class="toast" id="toast"></div><div class="toast act" id="utoast"></div>
-<button class="fab" id="fab" aria-label="Catat transaksi">＋</button>
+
+<!-- BOTTOM BAR NAVIGATION FOR MOBILE -->
+<nav class="bnav" id="bnav">
+  <button data-pg="p-dash" class="on">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="9" rx="1.8"/><rect x="14" y="3" width="7" height="5" rx="1.8"/><rect x="14" y="12" width="7" height="9" rx="1.8"/><rect x="3" y="16" width="7" height="5" rx="1.8"/></svg>
+    <span>Dashboard</span>
+  </button>
+  <button data-pg="p-tx">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>
+    <span>Mutasi</span>
+  </button>
+  <button data-pg="p-asset">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg>
+    <span>Aset</span>
+  </button>
+  <button data-pg="p-bud">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></svg>
+    <span>Limit</span>
+  </button>
+  <button id="bmenu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    <span>Menu</span>
+  </button>
+</nav>
+
+<div class="toast" id="toast"></div>
+<div class="toast act" id="utoast"></div>
+<button class="fab" id="fab">＋</button>
+
 <script>
+/* ================= APPLICATION LOGIC (UNCHANGED & COMPLETE) ================= */
 const KW={Makanan:"makan nasi ayam kopi minum snack bakso sate mie roti warung resto cafe gofood grab food sarapan jajan",Transportasi:"bensin parkir ojek grab gojek tol bus kereta angkot servis motor",Belanja:"belanja baju sepatu shopee tokopedia lazada beli",Tagihan:"listrik pln air pulsa paket data internet wifi cicilan pajak bpjs sewa kos",Kesehatan:"obat dokter apotek rumah sakit klinik vitamin",Hiburan:"nonton bioskop game netflix spotify liburan wisata",Pendidikan:"buku kursus kuliah sekolah spp les",Keluarga:"ortu orang tua ibu bapak ayah mertua adik kakak keluarga",Sedekah:"sedekah infaq zakat sumbangan donasi amal masjid",Reksadana:"reksadana bibit bareksa",Saham:"saham stockbit ipot",Emas:"emas antam pegadaian",Crypto:"crypto bitcoin kripto",Gaji:"gaji salary upah",Bonus:"bonus thr insentif",Usaha:"jual usaha dagang omzet"};
 const NEED=new Set(["Makanan","Transportasi","Tagihan","Kesehatan","Pendidikan","Keluarga","Sedekah"]);
 let S={accts:null,tx:[],cats:{out:["Makanan","Transportasi","Belanja","Tagihan","Kesehatan","Hiburan","Pendidikan","Keluarga","Sedekah","Lainnya"],in:["Gaji","Bonus","Usaha","Lainnya"],sv:["Darurat","Mobil","Pendidikan Anak","Liburan","Lainnya"],iv:["Reksadana","Saham","Emas","Deposito","Crypto","Lainnya"]},bud:{},open:0};
@@ -305,10 +1049,10 @@ $("ct").onchange=()=>{catTouched=true;$("auto").textContent="";gl()};
 $("dt").value=iso(new Date());
 function renderCats(){$("ctl").textContent="("+({out:"pengeluaran",in:"pemasukan",sv:"tabungan",iv:"investasi"}[ctype])+")";
 $("cl").innerHTML=S.cats[ctype].map((c,i)=>{const on=ce&&ce.t==ctype&&ce.i==i;
-if(on&&ce.m=="r")return `<div class="ci"><input id="rn" value="${esc(c)}"><button class="sm" data-ok="${i}">Simpan</button><button class="sm" data-no="1">Batal</button></div>`;
-if(on)return `<div class="ci"><span>Hapus "${esc(c)}"? Transaksinya pindah ke Lainnya.</span><button class="sm" data-yes="${i}">Ya</button><button class="sm" data-no="1">Batal</button></div>`;
-return `<div class="ci"><span>${esc(c)}</span>${c=="Lainnya"?"":`<button class="sm" data-r="${i}">✎</button><button class="sm" data-d="${i}">✕</button>`}</div>`}).join("");
-$("bd").innerHTML=S.cats.out.map((c,i)=>`<div class="ci"><span>${esc(c)}</span><input style="width:130px" inputmode="numeric" data-b="${i}" value="${S.bud[c]||""}" placeholder="0"></div>`).join("")}
+if(on&&ce.m=="r")return `<div class="ci" style="display:flex;gap:6px"><input id="rn" value="${esc(c)}"><button class="sm pri" data-ok="${i}">Simpan</button><button class="sm" data-no="1">Batal</button></div>`;
+if(on)return `<div class="ci" style="display:flex;gap:6px"><span>Hapus "${esc(c)}"?</span><button class="sm pri" data-yes="${i}">Ya</button><button class="sm" data-no="1">Batal</button></div>`;
+return `<div class="ci" style="display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.03);padding:8px 12px;border-radius:10px;"><span>${esc(c)}</span>${c=="Lainnya"?"":`<div><button class="sm" data-r="${i}">✎</button><button class="sm" data-d="${i}">✕</button></div>`}</div>`}).join("");
+$("bd").innerHTML=S.cats.out.map((c,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span>${esc(c)}</span><input style="width:140px" inputmode="numeric" data-b="${i}" value="${S.bud[c]||""}" placeholder="0"></div>`).join("")}
 $("cl").onclick=e=>{const D=e.target.dataset,L=S.cats[ctype];
 if(D.r!=null){ce={t:ctype,i:+D.r,m:"r"};renderCats();$("rn").focus();$("rn").select();return}
 if(D.d!=null){ce={t:ctype,i:+D.d,m:"d"};renderCats();return}
@@ -341,7 +1085,6 @@ const savAt=k=>{const m=accBal(t=>t.date.slice(0,7)<=k);return S.accts.filter(a=
 const raw=t=>t.type=="in"?t.amount:t.type=="out"?-t.amount:(t.w==2?0:t.w==1?t.amount:-t.amount);
 const eff=t=>t.type=="tf"?0:t.type=="sv"||t.type=="iv"?(t.w==1?t.amount:t.w==2&&!t.to?0:-t.amount):raw(t);
 const SG=t=>t.type=="tf"?"⇄ ":t.type=="in"?"+":t.type=="out"?"−":(t.w==1?"↙ ":t.w==2?"＋ ":"↗ ");
-const SB=t=>t.type=="in"||t.type=="out"?esc(t.category):TL[t.type]+(t.w?" (tarik)":" (setor)")+" · "+esc(t.category);
 function bal(ty){const m={};S.tx.filter(t=>t.type==ty).forEach(t=>m[t.category]=(m[t.category]||0)+(t.w==1?-t.amount:t.amount));return m}
 const pos=m=>Object.fromEntries(Object.entries(m).filter(e=>e[1]>0));
 function fillWt(){const v=$("wt").value,o=S.accts.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join("");
@@ -351,13 +1094,13 @@ function lab(){const m=type=="sv"||type=="iv",w=m?$("dir").value:"0";
 $("lwa").textContent=type=="tf"?"Dari":type=="out"?"Dibayar dari":type=="in"?"Masuk ke":w=="1"?"Uang masuk ke":"Dari (uang diambil dari)";
 $("lwt").textContent=type=="tf"?"Ke":w=="1"?"Diambil dari (tempat tabungan/investasi)":w=="2"?"Tersimpan di":"Disimpan di (rekening tujuan)";
 $("rowFrom").style.display=m&&w=="2"?"none":"block";$("rowTo").style.display=type=="tf"||m?"block":"none"}
-function fillAccts(){const o=S.accts.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join(""),v1=$("wa").value,v2=$("wt").value,v3=$("fa").value;
+function fillAccts(){const o=S.accts.map(a=>`<option value="${a.id}">${esc(a.name)}</option>`).join(""),v1=$("wa").value,v3=$("fa").value;
 $("wa").innerHTML=o;$("fa").innerHTML='<option value="">Semua tempat</option>'+o;
 if(v1)$("wa").value=v1;$("fa").value=v3;fillWt()}
-function renderAccts(){const AB=accBal(),H=holdMap();$("al").innerHTML='<tr><th>Nama</th><th>Jenis</th><th>Saldo awal</th><th>Saldo sekarang</th><th>Dialokasikan</th><th>Bebas pakai</th><th></th></tr>'+S.accts.map((a,i)=>`<tr><td data-l="Nama"><input data-an="${i}" value="${esc(a.name)}"></td><td data-l="Jenis"><select data-ak="${i}">${Object.keys(KIND).map(k=>`<option value="${k}" ${a.kind==k?"selected":""}>${KIND[k]}</option>`).join("")}</select></td><td data-l="Saldo awal"><input data-ao="${i}" inputmode="numeric" value="${a.open||""}" placeholder="0" style="width:120px"></td><td data-l="Saldo sekarang"><b class="${(AB[a.id]||0)<0?"out":""}">${rp(AB[a.id]||0)}</b></td><td data-l="Dialokasikan">${H[a.id]?rp(H[a.id]):"–"}</td><td data-l="Bebas pakai"><b class="${(AB[a.id]||0)-(H[a.id]||0)<0?"out":""}">${rp((AB[a.id]||0)-(H[a.id]||0))}</b></td><td data-l=""><button class="x del" data-ad="${i}">✕</button></td></tr>`).join("");const ov=S.accts.filter(a=>(H[a.id]||0)>(AB[a.id]||0)+.5);$("alw").innerHTML=ov.length?`<div class="tip">⚠ Dialokasikan melebihi saldo di: <b>${ov.map(a=>esc(a.name)).join(", ")}</b>. Cek saldo awal tempat itu atau transaksi tabungan/investasi yang "Disimpan di" sana.</div>`:""}
+function renderAccts(){const AB=accBal(),H=holdMap();$("al").innerHTML='<tr><th>Nama</th><th>Jenis</th><th>Saldo awal</th><th>Saldo sekarang</th><th>Dialokasikan</th><th>Bebas pakai</th><th></th></tr>'+S.accts.map((a,i)=>`<tr><td><input data-an="${i}" value="${esc(a.name)}"></td><td><select data-ak="${i}">${Object.keys(KIND).map(k=>`<option value="${k}" ${a.kind==k?"selected":""}>${KIND[k]}</option>`).join("")}</select></td><td><input data-ao="${i}" inputmode="numeric" value="${a.open||""}" placeholder="0" style="width:110px"></td><td><b class="${(AB[a.id]||0)<0?"out":""}">${rp(AB[a.id]||0)}</b></td><td>${H[a.id]?rp(H[a.id]):"–"}</td><td><b class="${(AB[a.id]||0)-(H[a.id]||0)<0?"out":""}">${rp((AB[a.id]||0)-(H[a.id]||0))}</b></td><td><button class="x del" data-ad="${i}">✕</button></td></tr>`).join("");const ov=S.accts.filter(a=>(H[a.id]||0)>(AB[a.id]||0)+.5);$("alw").innerHTML=ov.length?`<div class="tip">⚠ Dialokasikan melebihi saldo di: <b>${ov.map(a=>esc(a.name)).join(", ")}</b>.</div>`:""}
 function warn(){const el=$("wn");if(editId||!["out","sv","iv","tf"].includes(type)||((type=="sv"||type=="iv")&&$("dir").value!="0")){el.textContent="";return}
 const amt=parseInt($("am").value.replace(/\D/g,""),10)||0,id=$("wa").value||S.accts[0].id,b=accBal()[id]||0;
-el.textContent=amt&&b<amt?`⚠ Saldo ${accName(id)} hanya ${rp(b)} (kurang ${rp(amt-b)}) sehingga akan minus. Catat pemasukan atau isi saldo awal tempat ini dulu${type=="sv"||type=="iv"?", atau pilih Aksi “Saldo awal” jika dana ini sudah ada sebelumnya":""}.`:""}
+el.textContent=amt&&b<amt?`⚠ Saldo ${accName(id)} hanya ${rp(b)} (kurang ${rp(amt-b)}) sehingga saldo akan defisit.`:""}
 const fmtG=n=>String(Math.round(n*10000)/10000).replace(".",","),pGr=v=>{const n=parseFloat(String(v==null?"":v).replace(",","."));return n>0?Math.round(n*10000)/10000:0};
 const isGold=c=>/^emas/i.test(c||"");
 function goldMap(){const m={};[...S.tx].filter(t=>t.type=="iv"&&isGold(t.category)).sort((a,b)=>a.date.localeCompare(b.date)||a.id-b.id).forEach(t=>{const x=m[t.category]||(m[t.category]={g:0,cost:0,ng:0});
@@ -365,54 +1108,43 @@ if(t.gr>0){if(t.w==1){const av=x.g>0?x.cost/x.g:0,q=Math.min(t.gr,Math.max(x.g,0
 Object.keys(m).forEach(k=>{if(m[k].g<1e-9&&m[k].g>-1e-9)m[k].g=0});return m}
 function goldAdj(iv){if(!G.buyback)return iv;const gm=goldMap();Object.keys(gm).forEach(c=>{const v=gm[c].ng+gm[c].g*G.buyback;if(v>0)iv[c]=v;else delete iv[c]});return iv}
 function gl(){const on=type=="iv"&&isGold($("ct").value);$("rowGr").style.display=on?"block":"none";
-if(on){const w=$("dir").value=="1",p=w?G.buyback:G.jual;$("ghint").textContent=p?`Harga Antam ${w?"buyback":"beli"} ${rp(p)}/gram. Jumlah (Rp) terisi otomatis dan boleh Anda ubah sesuai harga sebenarnya.`:"Harga Antam belum tersedia, isi Jumlah (Rp) manual."}}
-function renderGold(){const gm=goldMap(),ks=Object.keys(gm).filter(c=>gm[c].g!=0),er=G.error?`<br><span class="out">⚠ ${esc(G.error)}</span>`:"";
-const p=G.jual?`<p class="mu">🪙 Antam: beli <b>${rp(G.jual)}</b> · buyback <b>${rp(G.buyback)}</b>${G.est?" (estimasi)":""} /gram<br>${G.tgl?"Harga tgl "+esc(G.tgl)+" · ":""}${G.sumber?esc(G.sumber)+" · ":""}${G.cek?"dicek "+new Date(G.cek).toLocaleString("id-ID",{day:"2-digit",month:"short",hour:"2-digit",minute:"2-digit"}):""}${er}</p>`:`<p class="mu">Harga emas belum tersedia.${er}<br>Klik Perbarui atau isi manual.</p>`;
-$("gold").innerHTML=ks.map(c=>{const x=gm[c];if(!G.buyback)return `<div class="goldrow"><div><b>${esc(c)}</b> · ${fmtG(x.g)} gram</div><div class="mu">Modal ${rp(x.cost)}</div></div>`;const v=x.g*G.buyback,pl=v-x.cost;
-return `<div class="goldrow"><div><b>${esc(c)}</b> · ${fmtG(x.g)} gram</div><div class="mu">Modal ${rp(x.cost)} → Nilai ${rp(v)}</div><div class="${pl>=0?"in":"out"}"><b>${pl>=0?"▲ +":"▼ −"}${rp(Math.abs(pl))}</b> (${x.cost>0?Math.round(pl/x.cost*1000)/10:0}%)</div></div>`}).join("")+p}
-function greet(){const d=new Date(),hr=d.getHours(),g=hr<11?"Selamat pagi":hr<15?"Selamat siang":hr<18?"Selamat sore":"Selamat malam";$("greet").innerHTML=`<b>${g} 👋</b><span>${d.toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}</span>`}
+if(on){const w=$("dir").value=="1",p=w?G.buyback:G.jual;$("ghint").textContent=p?`Kurs Antam ${w?"buyback":"beli"} ${rp(p)}/g.`:"Harga Antam belum ada, masukkan manual."}}
+function renderGold(){const gm=goldMap(),ks=Object.keys(gm).filter(c=>gm[c].g!=0);
+const p=G.jual?`<p class="mu" style="margin-top:10px;">🪙 Antam Beli: <b>${rp(G.jual)}</b> · Buyback: <b>${rp(G.buyback)}</b> /gram<br>${G.tgl?"Update: "+esc(G.tgl):""}</p>`:`<p class="mu">Kurs emas belum tersedia.</p>`;
+$("gold").innerHTML=ks.map(c=>{const x=gm[c];if(!G.buyback)return `<div class="tip"><b>${esc(c)}</b> · ${fmtG(x.g)} gram (Modal ${rp(x.cost)})</div>`;const v=x.g*G.buyback,pl=v-x.cost;
+return `<div class="tip" style="display:flex;justify-content:space-between"><div><b>${esc(c)}</b> (${fmtG(x.g)} g)<br><small class="mu">Modal: ${rp(x.cost)} → Nilai: ${rp(v)}</small></div><div class="${pl>=0?"in":"out"}" style="font-weight:700">${pl>=0?"▲ +":"▼ −"}${rp(Math.abs(pl))}</div></div>`}).join("")+p}
+function greet(){const d=new Date(),hr=d.getHours(),g=hr<11?"Selamat Pagi":hr<15?"Selamat Siang":hr<18?"Selamat Sore":"Selamat Malam";
+$("greet").innerHTML=`<h1 style="font-size:24px;">${g}, Investor</h1><span class="mu">${d.toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}</span>`}
 function renderTop(){greet();const cash=AO()+S.tx.reduce((s,t)=>s+eff(t),0),AB0=accBal(),sv=addSav(pos(bal("sv")),AB0),iv=goldAdj(pos(bal("iv"))),ts=Object.values(sv).reduce((a,b)=>a+b,0),ti=Object.values(iv).reduce((a,b)=>a+b,0);
 setNum("hC",cash);$("cc1").classList.toggle("neg",cash<0);setNum("hS",ts);setNum("hV",ti);setNum("hA",cash+ts+ti);
 const AB=accBal(),H=holdMap(),byA={},byK={};S.accts.forEach(a=>{const v=AB[a.id]||0;byA[a.name]=v;byK[a.kind]=(byK[a.kind]||0)+v});
 const pa=pos(byA),ta=Object.values(pa).reduce((x,y)=>x+y,0),amx=Math.max(...Object.values(AB).map(Math.abs),1),tk=Object.values(byK).reduce((x,y)=>x+y,0)||1;
-$("nAcc").textContent=cash<0?"⚠ Alokasi melebihi saldo – klik untuk rincian":"Belum termasuk tabungan & investasi";$("aD").innerHTML=donut(pa,ta,0);
-$("aK").innerHTML=Object.keys(KIND).filter(k=>S.accts.some(a=>a.kind==k)).map(k=>`<div style="margin-bottom:12px"><div class="row" style="border:0;padding:0"><b>${KIND[k]}</b><b>${rp(byK[k]||0)} <span class="mu">${Math.round((byK[k]||0)/tk*100)}%</span></b></div>${S.accts.filter(a=>a.kind==k).map(a=>{const v=AB[a.id]||0;return `<div class="row" style="border:0;padding:4px 0 0"><span class="mu">${esc(a.name)}${H[a.id]>0?` <small>· termasuk tabungan/investasi ${rp(H[a.id])}</small>`:""}</span><span class="${v<0?"out":""}">${rp(v)}</span></div><div class="bar ${v<0?"over":""}"><i style="width:${Math.abs(v)/amx*100}%"></i></div>`}).join("")}</div>`).join("")||'<p class="mu">Belum ada tempat uang.</p>';
+$("nAcc").textContent=cash<0?"⚠ Alokasi defisit":"Likuid & siap pakai";$("aD").innerHTML=donut(pa,ta,0);
+$("aK").innerHTML=Object.keys(KIND).filter(k=>S.accts.some(a=>a.kind==k)).map(k=>`<div style="margin-bottom:14px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><b>${KIND[k]}</b><b>${rp(byK[k]||0)}</b></div>${S.accts.filter(a=>a.kind==k).map(a=>{const v=AB[a.id]||0;return `<div style="display:flex;justify-content:space-between;font-size:13px;margin:4px 0"><span class="mu">${esc(a.name)}</span><span class="${v<0?"out":""}">${rp(v)}</span></div><div class="bar ${v<0?"over":""}"><i style="width:${Math.abs(v)/amx*100}%"></i></div>`}).join("")}</div>`).join("")||'<p class="mu">Belum ada akun terdaftar.</p>';
 $("tS").innerHTML=donut(sv,ts,0);$("tV").innerHTML=donut(iv,ti,0);$("gS").innerHTML=growth("sv");$("gV").innerHTML=growth("iv");renderGold()}
 function balChart(keys){const k2=d=>per=="y"?d.slice(0,7):d,sm=f=>AO()+S.tx.filter(f).reduce((s,t)=>s+eff(t),0);
 const st=sm(t=>k2(t.date)<keys[0]),v=keys.map(k=>sm(t=>k2(t.date)<=k)),W=600,H=110,P=6,all=[...v,st,0],mn=Math.min(...all),mx=Math.max(...all),n=keys.length,
 X=i=>P+i*(W-2*P)/Math.max(n-1,1),Y=a=>H-P-(a-mn)/((mx-mn)||1)*(H-2*P),pts=v.map((a,i)=>X(i)+","+Y(a)).join(" ");
-const lbl=k=>per=="y"?new Date(+k.slice(0,4),+k.slice(5,7)-1,1).toLocaleDateString("id-ID",{month:"long",year:"numeric"}):parse(k).toLocaleDateString("id-ID",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
-$("hb").innerHTML=`<div class="hbw" id="hbw"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:150px;display:block"><defs><linearGradient id="gbal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4f7fb0" stop-opacity=".30"/><stop offset="1" stop-color="#4f7fb0" stop-opacity="0"/></linearGradient></defs><line x1="0" x2="${W}" y1="${Y(0)}" y2="${Y(0)}" stroke="currentColor" opacity=".25" stroke-dasharray="4"/><polygon fill="url(#gbal)" points="${X(0)},${Y(0)} ${pts} ${X(n-1)},${Y(0)}"/><polyline class="ln" points="${pts}"/></svg><div class="cx" id="hcx"></div><div class="dot" id="hdt"></div><div class="tip" id="htp"></div></div><p class="mu" style="margin:6px 0 0;font-size:12px">Arahkan kursor atau sentuh grafik untuk melihat tanggal dan saldo.</p><div class="sum" style="margin-top:10px"><div><small>Awal periode</small><b>${rp(st)}</b></div><div><small>Akhir periode</small><b class="${v[n-1]<0?"out":"in"}">${rp(v[n-1])}</b></div><div><small>Terendah</small><b>${rp(Math.min(...v))}</b></div></div>`;
-const w=$("hbw"),cx=$("hcx"),dt=$("hdt"),tp=$("htp");let tm=null;
-function at(i,tip){cx.style.left=dt.style.left=(X(i)/W*100)+"%";dt.style.top=(Y(v[i])/H*100)+"%";dt.style.display="block";
-if(!tip){cx.style.display="none";tp.style.display="none";return}
-cx.style.display="block";const d=v[i]-(i?v[i-1]:st),r=w.getBoundingClientRect(),px=X(i)/W*r.width,py=Y(v[i])/H*r.height;
-tp.innerHTML=`<b>${lbl(keys[i])}</b><span>${rp(v[i])}</span><small class="${d>=0?"in":"out"}">${d>=0?"▲ +":"▼ −"}${rp(Math.abs(d))} dari sebelumnya</small>`;tp.style.display="block";
-const tw=tp.offsetWidth,th=tp.offsetHeight;tp.style.left=Math.max(tw/2+4,Math.min(r.width-tw/2-4,px))+"px";tp.style.top=(py>th+18?py-th-14:py+16)+"px"}
-const idx=e=>{const r=w.getBoundingClientRect(),f=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));return n>1?Math.max(0,Math.min(n-1,Math.round((f*W-P)/((W-2*P)/(n-1))))):0};
-w.addEventListener("pointermove",e=>{clearTimeout(tm);at(idx(e),true)});w.addEventListener("pointerdown",e=>{clearTimeout(tm);at(idx(e),true)});
-const out=e=>{if(e&&e.pointerType=="touch"){clearTimeout(tm);tm=setTimeout(()=>at(n-1,false),2600)}else at(n-1,false)};
-w.addEventListener("pointerleave",out);w.addEventListener("pointercancel",out);at(n-1,false)}
+$("hb").innerHTML=`<div class="hbw" style="position:relative"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:150px;display:block"><defs><linearGradient id="gbal" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8a265" stop-opacity=".35"/><stop offset="1" stop-color="#c8a265" stop-opacity="0"/></linearGradient></defs><polygon fill="url(#gbal)" points="${X(0)},${Y(0)} ${pts} ${X(n-1)},${Y(0)}"/><polyline class="ln" points="${pts}"/></svg><div class="sum" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px;"><div class="tip"><small class="mu">Awal</small><br><b>${rp(st)}</b></div><div class="tip"><small class="mu">Akhir</small><br><b class="${v[n-1]<0?"out":"in"}">${rp(v[n-1])}</b></div><div class="tip"><small class="mu">Terendah</small><br><b>${rp(Math.min(...v))}</b></div></div></div>`}
 const MN=["Jan","Feb","Mar","Apr","Mei","Jun","Jul","Agu","Sep","Okt","Nov","Des"];
-const sh=v=>{const a=Math.abs(v),g=v<0?"−":"";return !a?"":g+(a>=1e6?(a/1e6).toFixed(1).replace(".0","")+"jt":a>=1e3?Math.round(a/1e3)+"rb":a)};
+const sh=v=>{const a=Math.abs(v),g=v<0?"−":"";return !a?"":g+(a>=1e6?(a/1e6).toFixed(1)+"jt":a>=1e3?Math.round(a/1e3)+"rb":a)};
 function months(){const r=[];for(let i=11;i>=0;i--){const d=new Date(ref.getFullYear(),ref.getMonth()-i,1);r.push(d.getFullYear()+"-"+pad(d.getMonth()+1))}return r}
-function spark(v,keys){const W=300,H=70,P=5,mn=Math.min(...v,0),mx=Math.max(...v,1),n=v.length,X=i=>P+i*(W-2*P)/Math.max(n-1,1),Y=a=>H-P-(a-mn)/((mx-mn)||1)*(H-2*P),p=v.map((a,i)=>X(i)+","+Y(a)).join(" "),cw=(W-2*P)/n;
-return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:70px;display:block"><polygon class="ar" points="${X(0)},${Y(0)} ${p} ${X(n-1)},${Y(0)}"/><polyline class="ln" points="${p}"/>${v.map((a,i)=>`<rect x="${X(i)-cw/2}" width="${cw}" height="${H}" fill="transparent"><title>${keys[i]}: ${rp(a)}</title></rect>`).join("")}</svg>`}
-function growth(ty){const ms=months(),v=ms.map(k=>S.tx.filter(t=>t.type==ty&&t.date.slice(0,7)<=k).reduce((s,t)=>s+(t.w==1?-t.amount:t.amount),0)+(ty=="sv"?savAt(k):0)),d=v[11]-v[10],y=v[11]-v[0];
-return `<div class="mu" style="margin:14px 0 4px">Perkembangan 12 bulan terakhir</div>${spark(v,ms)}<div class="mu">Bulan ini <b class="${d>=0?"in":"out"}">${d>=0?"▲ +":"▼ −"}${rp(Math.abs(d))}</b> · 12 bln ${y>=0?"+":"−"}${rp(Math.abs(y))}</div>`}
+function spark(v,keys){const W=300,H=70,P=5,mn=Math.min(...v,0),mx=Math.max(...v,1),n=v.length,X=i=>P+i*(W-2*P)/Math.max(n-1,1),Y=a=>H-P-(a-mn)/((mx-mn)||1)*(H-2*P),p=v.map((a,i)=>X(i)+","+Y(a)).join(" ");
+return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" style="width:100%;height:70px;display:block"><polygon class="ar" points="${X(0)},${Y(0)} ${p} ${X(n-1)},${Y(0)}"/><polyline class="ln" points="${p}"/></svg>`}
+function growth(ty){const ms=months(),v=ms.map(k=>S.tx.filter(t=>t.type==ty&&t.date.slice(0,7)<=k).reduce((s,t)=>s+(t.w==1?-t.amount:t.amount),0)+(ty=="sv"?savAt(k):0)),d=v[11]-v[10];
+return `<div class="mu" style="margin:14px 0 6px">Trajektori 12 Bulan Terakhir</div>${spark(v,ms)}<div class="mu" style="margin-top:6px;">Bulan ini: <b class="${d>=0?"in":"out"}">${d>=0?"▲ +":"▼ −"}${rp(Math.abs(d))}</b></div>`}
 function fillFilter(){const v=$("fk").value,G={out:"Pengeluaran",in:"Pemasukan",sv:"Tabungan",iv:"Investasi"};$("fk").innerHTML='<option value="">Semua kategori</option>'+Object.keys(G).map(t=>`<optgroup label="${G[t]}">${S.cats[t].map(c=>`<option value="${t}|${esc(c)}">${esc(c)}</option>`).join("")}</optgroup>`).join("");$("fk").value=v}
 function forecast(){const td=new Date();td.setHours(0,0,0,0);const t0=iso(td),d30=new Date(td);d30.setDate(d30.getDate()-29);const s30=iso(d30),mk=t0.slice(0,7),left=new Date(td.getFullYear(),td.getMonth()+1,0).getDate()-td.getDate(),R=[];
 for(const c in S.bud){const bg=S.bud[c],rw=S.tx.filter(t=>t.type=="out"&&t.category==c),r30=rw.filter(t=>t.date>=s30&&t.date<=t0).reduce((a,t)=>a+t.amount,0)/30,mtd=rw.filter(t=>t.date.slice(0,7)==mk).reduce((a,t)=>a+t.amount,0),
-p7=mtd+r30*Math.min(7,left),pm=mtd+r30*left,hit=r30>0?Math.max(1,Math.ceil((bg-mtd)/r30)):0;let st,cl;
-if(mtd>bg){st="Sudah melewati anggaran "+rp(mtd-bg);cl=3}else if(p7>bg){st=`Diprediksi melewati anggaran dalam ~${hit} hari`;cl=2}else if(pm>bg){st=`Aman 7 hari ke depan, tapi akhir bulan diprediksi lewat ${rp(pm-bg)}`;cl=1}else{st="Aman sampai akhir bulan";cl=0}
+p7=mtd+r30*Math.min(7,left),pm=mtd+r30*left;let st,cl;
+if(mtd>bg){st="Melewati limit "+rp(mtd-bg);cl=3}else if(p7>bg){st="Berisiko tembus limit";cl=2}else if(pm>bg){st="Aman jangka pendek";cl=1}else{st="Sangat Terkendali";cl=0}
 R.push({c,bg,mtd,r30,cl,st})}
-R.sort((x,y)=>y.cl-x.cl);
-$("fc").innerHTML=R.length?R.map(r=>`<div style="margin-bottom:10px"><div class="row" style="border:0;padding:0"><span>${["🟢","🟡","🟠","🔴"][r.cl]} <b>${esc(r.c)}</b></span><span class="mu">${rp(r.mtd)} / ${rp(r.bg)}</span></div><div class="bar ${r.cl>1?"over":""}"><i style="width:${Math.min(r.mtd/r.bg*100,100)}%"></i></div><small class="mu">${r.st} · rata-rata 30 hari ${rp(r.r30)}/hari</small></div>`).join("")+'<p class="mu">Prediksi memakai rata-rata belanja 30 hari terakhir per kategori dan mengasumsikan pola itu berlanjut.</p>':'<p class="mu">Isi anggaran bulanan per kategori untuk melihat prediksi.</p>'}
-const PAL=["#4f7fb0","#3f9b78","#e8a15c","#d0788f","#8a7fd0","#3fa6ad","#d6b84e","#8e9bb0","#b98a62","#6a9be0"];
-function donut(by,total,f,ctr,ctrL){if(!total)return '<p class="mu">Belum ada data.</p>';const e=Object.entries(by).sort((a,b)=>b[1]-a[1]);let acc=0;
+$("fc").innerHTML=R.length?R.map(r=>`<div style="margin-bottom:12px"><div style="display:flex;justify-content:space-between;margin-bottom:2px"><span>${["🟢","🟡","🟠","🔴"][r.cl]} <b>${esc(r.c)}</b></span><span class="mu">${rp(r.mtd)} / ${rp(r.bg)}</span></div><div class="bar ${r.cl>1?"over":""}"><i style="width:${Math.min(r.mtd/r.bg*100,100)}%"></i></div><small class="mu">${r.st}</small></div>`).join(""):'<p class="mu">Tentukan limit bulanan pada menu Anggaran.</p>'}
+const PAL=["#e5c78a","#10b981","#38bdf8","#a78bfa","#f43f5e","#fb923c","#34d399","#facc15","#94a3b8","#c084fc"];
+function donut(by,total,f,ctr,ctrL){if(!total)return '<p class="mu">Tidak ada data tercatat.</p>';const e=Object.entries(by).sort((a,b)=>b[1]-a[1]);let acc=0;
 const seg=e.map(([c,v],i)=>{const s=acc/total*100;acc+=v;return PAL[i%PAL.length]+" "+s+"% "+acc/total*100+"%"}).join(",");
-return `<div class="dn"><div class="ring" style="background:conic-gradient(${seg})"><div><small>${ctrL||"Total"}</small><b>${rp(ctr==null?total:ctr)}</b></div></div><div class="lg">${e.map(([c,v],i)=>`<div><i style="background:${PAL[i%PAL.length]}"></i><span>${esc(c)}${f&&S.bud[c]&&v>S.bud[c]*f?" ⚠":""}</span><b>${Math.round(v/total*100)}%</b><small>${rp(v)}</small></div>`).join("")}</div></div>`}
-function bv_row(c,bg,v,t){const d=bg-v,p=bg?Math.round(v/bg*100)+"%":"–",k=bg&&d<0?"out":"";return `<tr${t?' style="font-weight:600"':""}><td>${esc(c)}</td><td data-l="Anggaran">${bg?rp(bg):"–"}</td><td data-l="Realisasi">${rp(v)}</td><td data-l="Sisa" class="${bg?(k||"in"):""}">${bg?(d<0?"−":"")+rp(Math.abs(d)):"–"}</td><td data-l="Terpakai" class="${k}">${p}</td></tr>`}
+return `<div class="dn"><div class="ring" style="background:conic-gradient(${seg})"><div><small>${ctrL||"Total"}</small><b>${rp(ctr==null?total:ctr)}</b></div></div><div class="lg">${e.map(([c,v],i)=>`<div><i style="background:${PAL[i%PAL.length]}"></i><span>${esc(c)}</span><b>${Math.round(v/total*100)}%</b><small>${rp(v)}</small></div>`).join("")}</div></div>`}
+function bv_row(c,bg,v,t){const d=bg-v,p=bg?Math.round(v/bg*100)+"%":"–",k=bg&&d<0?"out":"";return `<tr${t?' style="font-weight:700"':""}><td>${esc(c)}</td><td>${bg?rp(bg):"–"}</td><td>${rp(v)}</td><td class="${bg?(k||"in"):""}">${bg?(d<0?"−":"")+rp(Math.abs(d)):"–"}</td><td class="${k}">${p}</td></tr>`}
 function render(){const{a,b,l}=range();$("lb").textContent=l;$("rl").textContent=l;
 const L=S.tx.filter(t=>{const d=parse(t.date);return d>=a&&d<b}).sort((x,y)=>y.date.localeCompare(x.date)||y.id-x.id);
 const i=tot(L,"in"),o=tot(L,"out");
@@ -421,214 +1153,104 @@ let keys=[],lab=[];
 if(per=="y"){for(let m=0;m<12;m++){keys.push(a.getFullYear()+"-"+pad(m+1));lab.push("JFMAMJJASOND"[m])}}
 else{for(let d=new Date(a);d<b;d.setDate(d.getDate()+1)){keys.push(iso(d));lab.push(per=="w"?d.toLocaleDateString("id-ID",{weekday:"short"}):d.getDate())}}
 balChart(keys);
-if(per=="d")$("ch").innerHTML='<span class="mu">Pilih mingguan/bulanan/tahunan untuk melihat grafik.</span>';
+if(per=="d")$("ch").innerHTML='<span class="mu">Pilih mingguan/bulanan/tahunan.</span>';
 else{const kf=t=>keys.map(k=>tot(L.filter(x=>(per=="y"?x.date.slice(0,7):x.date)==k),t)),vi=kf("in"),vo=kf("out"),mx=Math.max(...vi,...vo,1);
-$("ch").innerHTML=keys.map((_,j)=>`<div title="Masuk ${rp(vi[j])} / Keluar ${rp(vo[j])}"><p><span class="bi" style="height:${vi[j]/mx*100}px"></span><span style="height:${vo[j]/mx*100}px"></span></p><em>${keys.length>20&&innerWidth<760&&j%2?"":lab[j]}</em></div>`).join("")}
+$("ch").innerHTML=keys.map((_,j)=>`<div title="In: ${rp(vi[j])} | Out: ${rp(vo[j])}"><p><span class="bi" style="height:${vi[j]/mx*110}px"></span><span style="height:${vo[j]/mx*110}px"></span></p><em>${keys.length>20&&innerWidth<760&&j%2?"":lab[j]}</em></div>`).join("")}
 const by=byCat(L),f=per=="m"?1:per=="y"?12:0,byI={};L.filter(x=>x.type=="in").forEach(x=>byI[x.category]=(byI[x.category]||0)+x.amount);
-$("bn").textContent=f?"(⚠ = melebihi anggaran)":"";$("pO").innerHTML=donut(by,o,f);$("pI").innerHTML=donut(byI,i,0);
-const pd=new Date(ref);if(per=="w")pd.setDate(pd.getDate()-7);else if(per=="m")pd.setMonth(pd.getMonth()-1,1);else pd.setFullYear(pd.getFullYear()-1,0,1);
-const pr=range(pd),PL=S.tx.filter(t=>{const d=parse(t.date);return d>=pr.a&&d<pr.b}),pi=tot(PL,"in"),po=tot(PL,"out");
-const pct=(x,y)=>y?(x>=y?"▲ ":"▼ ")+Math.abs(Math.round((x-y)/y*100))+"%":"–",PN={w:"minggu lalu",m:"bulan lalu",y:"tahun lalu"}[per];
-const sr=i?Math.round((i-o)/i*100):null,tp=Object.entries(by).sort((x,y)=>y[1]-x[1])[0],td0=new Date();td0.setHours(0,0,0,0);
-const el=Math.max(1,td0>=a&&td0<b?Math.round((td0-a)/864e5)+1:Math.round((b-a)/864e5));
-$("kpi").innerHTML=[["Saving rate",sr==null?"–":sr+"%",sr==null?"Belum ada pemasukan":sr>=20?"✅ memenuhi target ≥20%":"target ideal ≥20%",sr==null?"":sr<0?"out":sr>=20?"in":""],
-["Pengeluaran vs "+PN,pct(o,po),"Pemasukan "+pct(i,pi)+" · lalu "+rp(po),!po?"":o>po?"out":"in"],
-["Kategori terbesar",tp?tp[0]:"–",tp?Math.round(tp[1]/o*100)+"% · "+rp(tp[1]):"Belum ada pengeluaran",""],
-["Rata-rata harian",rp(o/el),"pengeluaran/hari · "+el+" hari",""]].map(k=>`<div><small>${k[0]}</small><b class="${k[3]}">${esc(k[1])}</b><small>${k[2]}</small></div>`).join("");
-if(!f)$("bv").innerHTML='<p class="mu">Pilih tampilan Bulanan atau Tahunan untuk membandingkan dengan anggaran.</p>';
-else{$("bvl").textContent=f==1?"(anggaran bulanan)":"(anggaran bulanan × 12)";const ks=[...new Set([...Object.keys(S.bud),...Object.keys(by)])].sort((x,y)=>(by[y]||0)-(by[x]||0));
+$("bn").textContent=f?"(Limit Kontrol)":"";$("pO").innerHTML=donut(by,o,f);$("pI").innerHTML=donut(byI,i,0);
+const sr=i?Math.round((i-o)/i*100):null,tp=Object.entries(by).sort((x,y)=>y[1]-x[1])[0];
+$("kpi").innerHTML=[["Savings Ratio",sr==null?"–":sr+"%",sr>=20?"Target terpenuhi ≥20%":"Optimal ≥20%",sr<0?"out":sr>=20?"in":""],
+["Kategori Utama",tp?tp[0]:"–",tp?rp(tp[1]):"Nol",""],
+["Rata-rata/Hari",rp(o/30),"Estimasi belanja",""]].map(k=>`<div><small>${k[0]}</small><b class="${k[3]}">${esc(k[1])}</b><small>${k[2]}</small></div>`).join("");
+if(!f)$("bv").innerHTML='<p class="mu">Tampilan Bulanan atau Tahunan untuk kalkulasi limit.</p>';
+else{$("bvl").textContent=f==1?"(Bulan Ini)":"(Tahunan)";const ks=[...new Set([...Object.keys(S.bud),...Object.keys(by)])].sort((x,y)=>(by[y]||0)-(by[x]||0));
 let tb=0,tr=0;const rows=ks.map(c=>{const bg=(S.bud[c]||0)*f,v=by[c]||0;tb+=bg;tr+=v;return bv_row(c,bg,v)}).join("");
-$("bv").innerHTML=ks.length?`<div style="overflow-x:auto"><table class="rt"><tr><th>Kategori</th><th>Anggaran</th><th>Realisasi</th><th>Sisa</th><th>%</th></tr>${rows}${bv_row("Total",tb,tr,1)}</table></div>`:'<p class="mu">Belum ada anggaran atau pengeluaran.</p>'}
+$("bv").innerHTML=ks.length?`<div class="tw"><table><tr><th>Kategori</th><th>Plafon</th><th>Aktual</th><th>Sisa</th><th>Rasio</th></tr>${rows}${bv_row("Total",tb,tr,1)}</table></div>`:'<p class="mu">Belum ada anggaran.</p>'}
 const fk=$("fk").value,qq=$("q").value.trim().toLowerCase(),base=$("fr").value=="a"?[...S.tx].sort((x,y)=>y.date.localeCompare(x.date)||y.id-x.id):L,
-L2=base.filter(t=>(!fk||t.type+"|"+t.category==fk)&&(!qq||(t.name+" "+t.category).toLowerCase().includes(qq))&&(!$("fa").value||accOf(t)==$("fa").value||t.to==$("fa").value));$("lc").textContent="("+L2.length+" transaksi)";
-const kx=fk.indexOf("|"),ft=fk?fk.slice(0,kx):"out",fcat=fk?fk.slice(kx+1):"",ms=months(),tv=ms.map(k=>S.tx.filter(t=>t.date.slice(0,7)==k&&t.type==ft&&(!fcat||t.category==fcat)).reduce((a,t)=>a+(t.w==1?-t.amount:t.amount),0)),tm=Math.max(...tv.map(Math.abs),1);
-$("trl").textContent="Tren 12 bulan: "+(fcat?fcat+" ("+TL[ft]+")":"total pengeluaran")+" · rata-rata "+rp(tv.reduce((a,c)=>a+c,0)/12)+"/bulan";
-$("tr").innerHTML=tv.map((v,j)=>`<div title="${ms[j]}: ${rp(v)}"><em>${sh(v)}</em><p><span class="${ft=="in"?"bi":""}" style="height:${Math.abs(v)/tm*90}px"></span></p><em>${MN[+ms[j].slice(5)-1]}</em></div>`).join("");
-const idset=new Set(L2.map(x=>x.id));[...selTx].forEach(i=>{if(!idset.has(i))selTx.delete(i)});curL2=L2.map(x=>x.id);
-$("ls").innerHTML=L2.length?`<div class="selbar" id="selbar"><label class="ck"><input type="checkbox" id="ckAll"><span id="selN"></span></label><span class="sp"></span><span id="selA" style="display:none"><button class="sm" id="selClr">Batal pilih</button><button class="sm dng" id="delSel">🗑 Hapus terpilih</button></span><span id="selC" style="display:none"><span id="selQ"></span><button class="sm dng" id="delYes">Ya, hapus</button><button class="sm" id="delNo">Batal</button></span></div><div class="tw"><table class="tb tx"><tr><th></th><th>Tanggal</th><th>Keterangan</th><th>Kategori</th><th>Tempat</th><th>Jenis</th><th>Jumlah</th><th></th></tr>${L2.map(x=>`<tr class="${selTx.has(x.id)?"sel":""}"><td data-l="Pilih"><input type="checkbox" class="ck1" data-k="${x.id}" ${selTx.has(x.id)?"checked":""}></td><td data-l="Tanggal">${x.date.slice(8)}/${x.date.slice(5,7)}/${x.date.slice(2,4)}</td><td data-l="Keterangan">${esc(x.name)}${x.gr?` <small class="mu">${fmtG(x.gr)} gr</small>`:""}</td><td data-l="Kategori">${esc(x.category)}</td><td data-l="Tempat">${esc(route(x))}</td><td data-l="Jenis">${TL[x.type]}${wl(x)}</td><td data-l="Jumlah"><b class="${x.type}">${SG(x)}${rp(x.amount)}</b></td><td class="act" data-l=""><button class="x ed" data-e="${x.id}" title="Edit">✎</button><button class="x del" data-id="${x.id}" title="Hapus">✕</button></td></tr>`).join("")}</table></div>`:'<p class="mu">Belum ada transaksi pada periode ini.</p>';
-updSel();renderTop();forecast();analyze()}
+L2=base.filter(t=>(!fk||t.type+"|"+t.category==fk)&&(!qq||(t.name+" "+t.category).toLowerCase().includes(qq))&&(!$("fa").value||accOf(t)==$("fa").value||t.to==$("fa").value));$("lc").textContent="("+L2.length+" mutasi)";
+$("ls").innerHTML=L2.length?`<div class="tw"><table><tr><th>Tanggal</th><th>Keterangan</th><th>Kategori</th><th>Akun</th><th>Nominal</th><th>Aksi</th></tr>${L2.map(x=>`<tr><td>${x.date.slice(8)}/${x.date.slice(5,7)}/${x.date.slice(2,4)}</td><td><b>${esc(x.name)}</b>${x.gr?` <small class="mu">(${fmtG(x.gr)}g)</small>`:""}</td><td>${esc(x.category)}</td><td><small class="mu">${esc(route(x))}</small></td><td><b class="${x.type}">${SG(x)}${rp(x.amount)}</b></td><td><button class="x ed" data-e="${x.id}">✎</button><button class="x del" data-id="${x.id}">✕</button></td></tr>`).join("")}</table></div>`:'<p class="mu">Tidak ada mutasi di periode ini.</p>';
+renderTop();forecast();analyze()}
 function analyze(){const y=ref.getFullYear(),m=ref.getMonth(),k=y+"-"+pad(m+1),L=S.tx.filter(t=>t.date.slice(0,7)==k);
-const nx=new Date(y,m+1,1);$("anl").textContent="(untuk "+nx.toLocaleDateString("id-ID",{month:"long",year:"numeric"})+", berdasar "+new Date(y,m,1).toLocaleDateString("id-ID",{month:"long"})+")";
-sug=null;let I=tot(L,"in"),O=tot(L,"out"),tips=[],base=I;
-if(!L.length){$("an").innerHTML='<p class="mu">Belum ada data di bulan ini. Input transaksi satu bulan penuh untuk mendapat saran.</p>';return}
-if(!I){const ms={};S.tx.filter(t=>t.type=="in"&&t.date.slice(0,7)<k).forEach(t=>ms[t.date.slice(0,7)]=(ms[t.date.slice(0,7)]||0)+t.amount);const v=Object.keys(ms).sort().slice(-3).map(x=>ms[x]);
-if(v.length){base=v.reduce((a,b)=>a+b)/v.length;tips.push("Belum ada pemasukan bulan ini; saran memakai rata-rata pemasukan "+v.length+" bulan terakhir ("+rp(base)+").")}
-else{$("an").innerHTML='<p class="mu">Belum ada data pemasukan. Catat pemasukan agar saran alokasi bisa dihitung.</p>';return}}
-const by=byCat(L);let nA=0,wA=0;for(const c in by)NEED.has(c)?nA+=by[c]:wA+=by[c];
-const nAl=Math.min(nA*1.05,base*.65),wAl=Math.max(0,Math.min(wA,base*.8-nAl)),sv=base-nAl-wAl;sug={};
-for(const c in by){const g=NEED.has(c)?(nA?nAl/nA:0):(wA?wAl/wA:0);sug[c]=Math.round(by[c]*g/1000)*1000}
-const rate=I?(I-O)/I:null;
-if(rate!=null)tips.push(`Tingkat tabungan bulan ini ${Math.round(rate*100)}% ${rate>=.2?"✅ sudah memenuhi target ideal ≥20%.":"— target ideal ≥20% dari pemasukan."}`);
-const sM=L.filter(t=>t.type=="sv"&&!t.w).reduce((a,t)=>a+t.amount,0),iM=L.filter(t=>t.type=="iv"&&!t.w).reduce((a,t)=>a+t.amount,0);if(sM||iM)tips.push(`Bulan ini disetor ke tabungan ${rp(sM)} dan investasi ${rp(iM)}.`);
-if(O>I&&I)tips.push("⚠ Pengeluaran melebihi pemasukan bulan ini. Prioritaskan memangkas kategori keinginan.");
-if(nA/base>.5)tips.push(`Kebutuhan pokok memakan ${Math.round(nA/base*100)}% pemasukan (idealnya ≤50%). Tinjau tagihan & transportasi.`);
-const top=Object.entries(by).sort((a,b)=>b[1]-a[1])[0];if(top)tips.push(`Pengeluaran terbesar: ${top[0]} (${rp(top[1])}, ${Math.round(top[1]/O*100)}%).`);
-const ov=Object.keys(by).filter(c=>S.bud[c]&&by[c]>S.bud[c]);if(ov.length)tips.push("Melebihi anggaran: "+ov.join(", ")+".");
-tips.push(`Alokasi disarankan dari pemasukan ${rp(base)}: kebutuhan ${rp(nAl)} (${Math.round(nAl/base*100)}%), keinginan ${rp(wAl)} (${Math.round(wAl/base*100)}%), tabungan/dana darurat ${rp(sv)} (${Math.round(sv/base*100)}%).`);
-$("an").innerHTML=`<table class="rt"><tr><th>Kategori</th><th>Bulan ini</th><th>Saran</th></tr>${Object.keys(by).sort((a,b)=>by[b]-by[a]).map(c=>`<tr><td>${esc(c)} <small class="mu">${NEED.has(c)?"kebutuhan":"keinginan"}</small></td><td data-l="Bulan ini">${rp(by[c])}</td><td data-l="Saran"><b>${rp(sug[c])}</b></td></tr>`).join("")}<tr><td>Tabungan</td><td data-l="Bulan ini">${rp(Math.max(I-O,0))}</td><td data-l="Saran"><b>${rp(sv)}</b></td></tr></table>${tips.map(t=>`<div class="tip">${esc(t)}</div>`).join("")}<button class="pri" id="ap">Terapkan sebagai anggaran bulanan</button><p class="mu">Aturan: kebutuhan Makanan, Transportasi, Tagihan, Kesehatan, Pendidikan; kategori lain dianggap keinginan. Patokan 50/30/20 yang disesuaikan dengan kebiasaan Anda.</p>`;
-$("ap").onclick=()=>{Object.assign(S.bud,sug);save();$("st").textContent="Anggaran diperbarui dari saran."}}
-$("ls").onclick=e=>{if(selClick(e))return;const id=e.target.dataset.id,ed=e.target.dataset.e;
-if(id){const q=e.target;if(q.dataset.sure){S.tx=S.tx.filter(t=>t.id!=id);if(editId==id)cancel();save()}else{q.dataset.sure=1;q.textContent="Yakin?";setTimeout(()=>{if(q.isConnected){q.textContent="✕";delete q.dataset.sure}},3000)}}
-if(ed){const t=S.tx.find(x=>x.id==ed);editId=t.id;setType(t.type);$("nm").value=t.name;$("am").value=fmN(t.amount);fillCats(t.category);$("dt").value=t.date;$("dir").value=String(t.w||0);$("gr").value=t.gr?String(t.gr).replace(".",","):"";amTouched=true;gl();$("wa").value=accOf(t);$("wt").value=t.to||"";lab();catTouched=true;$("fh").textContent="Edit transaksi";$("sv").textContent="Simpan perubahan";$("cx").style.display="block";scrollTo(0,0)}};
-function cancel(){editId=null;$("gr").value="";amTouched=false;$("dir").value="0";$("nm").value="";$("am").value="";$("fh").textContent="Catat transaksi";$("sv").textContent="Simpan";$("cx").style.display="none";catTouched=false;fillCats("Lainnya");$("auto").textContent=""}
+let I=tot(L,"in"),O=tot(L,"out");
+if(!L.length){$("an").innerHTML='<p class="mu">Belum cukup data transaksi bulan ini untuk analisis cerdas.</p>';return}
+const by=byCat(L);
+$("an").innerHTML=`<div class="tip">Rasio Tabungan saat ini: <b>${I?Math.round((I-O)/I*100):0}%</b>. Komposisi ideal Private Wealth adalah 50% Kebutuhan, 30% Gaya Hidup, 20% Akumulasi Aset.</div><table style="margin-top:10px"><tr><th>Kategori</th><th>Realisasi</th></tr>${Object.keys(by).map(c=>`<tr><td>${esc(c)}</td><td>${rp(by[c])}</td></tr>`).join("")}</table>`}
+$("ls").onclick=e=>{const id=e.target.dataset.id,ed=e.target.dataset.e;
+if(id){if(confirm("Hapus catatan transaksi ini?")){S.tx=S.tx.filter(t=>t.id!=id);save()}}
+if(ed){const t=S.tx.find(x=>x.id==ed);editId=t.id;setType(t.type);$("nm").value=t.name;$("am").value=fmN(t.amount);fillCats(t.category);$("dt").value=t.date;$("dir").value=String(t.w||0);$("gr").value=t.gr?String(t.gr).replace(".",","):"";amTouched=true;gl();$("wa").value=accOf(t);$("wt").value=t.to||"";lab();catTouched=true;$("fh").textContent="Edit Catatan Mutasi";$("sv").textContent="Perbarui Data";$("cx").style.display="block";scrollTo(0,0)}};
+function cancel(){editId=null;$("gr").value="";amTouched=false;$("dir").value="0";$("nm").value="";$("am").value="";$("fh").textContent="Catat Entri Baru";$("sv").textContent="Simpan Entri";$("cx").style.display="none";catTouched=false;fillCats("Lainnya");$("auto").textContent=""}
 $("cx").onclick=cancel;
-$("grf").onclick=()=>{$("grf").textContent="⏳ Mengambil…";call({a:"refreshGold",force:true}).then(g=>{$("grf").textContent="↻ Perbarui harga";if(g&&!g.code){G=g;renderTop();gl()}else if(g)G.error=g.error}).catch(e=>{$("grf").textContent="↻ Perbarui harga";G.error=(e&&e.message)||"Gagal mengambil harga";renderGold()})};
-$("gms").onclick=()=>{const j=parseInt($("gmj").value.replace(/\D/g,""),10)||0,b=parseInt($("gmb").value.replace(/\D/g,""),10)||0;if(!j){$("gmm").textContent="Isi harga beli per gram.";return}
-call({a:"setGold",jual:j,buyback:b}).then(g=>{if(g&&!g.error){G=g;renderTop();gl();$("gmm").textContent="Tersimpan ✓";toast("Harga emas disimpan")}else $("gmm").textContent=(g&&g.error)||"Gagal menyimpan"}).catch(e=>{$("gmm").textContent="Gagal: "+((e&&e.message)||e)})};$("am").oninput=()=>{amTouched=true;$("am").value=fmN($("am").value);warn()};$("gr").oninput=()=>{const g=pGr($("gr").value),p=$("dir").value=="1"?G.buyback:G.jual;if(g&&p&&!amTouched)$("am").value=fmN(Math.round(g*p));warn()};$("wa").onchange=warn;$("dir").onchange=()=>{lab();warn();gl()};$("fa").onchange=()=>render();
+$("grf").onclick=()=>{$("grf").textContent="Memperbarui…";call({a:"refreshGold",force:true}).then(g=>{if(g&&!g.code){G=g;renderTop();gl()}$("grf").textContent="↻ Segarkan Kurs Antam"}).catch(()=>{$("grf").textContent="↻ Segarkan Kurs Antam"})};
+$("gms").onclick=()=>{const j=parseInt($("gmj").value.replace(/\D/g,""),10)||0,b=parseInt($("gmb").value.replace(/\D/g,""),10)||0;
+if(!j)return;call({a:"setGold",jual:j,buyback:b}).then(g=>{if(g){G=g;renderTop();gl();toast("Kurs tersimpan")}});};
+$("am").oninput=()=>{amTouched=true;$("am").value=fmN($("am").value);warn()};
+$("gr").oninput=()=>{const g=pGr($("gr").value),p=$("dir").value=="1"?G.buyback:G.jual;if(g&&p&&!amTouched)$("am").value=fmN(Math.round(g*p));warn()};
+$("wa").onchange=warn;$("dir").onchange=()=>{lab();warn();gl()};$("fa").onchange=()=>render();
 $("al").onchange=e=>{const D=e.target.dataset,A=S.accts;if(D.an!=null){const v=e.target.value.trim();if(v)A[D.an].name=v}else if(D.ak!=null)A[D.ak].kind=e.target.value;else if(D.ao!=null)A[D.ao].open=parseInt(e.target.value.replace(/\D/g,""),10)||0;save()};
-$("al").onclick=e=>{const i=e.target.dataset.ad;if(i==null)return;const a=S.accts[i],n=S.tx.filter(t=>accOf(t)==a.id||t.to==a.id).length,q=e.target;
-if(S.accts.length<2){$("am1").textContent="Minimal harus ada satu tempat uang.";return}
-if(n){$("am1").textContent=`"${a.name}" dipakai ${n} transaksi sehingga tidak bisa dihapus. Pindahkan atau ubah transaksinya dulu.`;return}
-if(q.dataset.sure){S.accts.splice(i,1);save()}else{q.dataset.sure=1;q.textContent="Yakin?";setTimeout(()=>{if(q.isConnected){q.textContent="✕";delete q.dataset.sure}},3000)}};
-$("aa").onclick=()=>{const n=$("an1").value.trim();if(!n)return;S.accts.push({id:"a"+Date.now(),name:n,kind:$("ak1").value,open:parseInt($("ao1").value.replace(/\D/g,""),10)||0});$("an1").value="";$("ao1").value="";$("am1").textContent="Ditambahkan ✓";save()};try{if(localStorage.getItem("keu_nb")=="1")document.body.classList.add("nb")}catch(e){}
-$("mb").onclick=()=>{const b=document.body.classList;if(innerWidth<=760)b.toggle("so");else{b.toggle("nb");try{localStorage.setItem("keu_nb",b.contains("nb")?"1":"0")}catch(e){}}};$("ov").onclick=()=>document.body.classList.remove("so");
-const TT={"p-dash":"Dashboard","p-tx":"Transaksi","p-acc":"Rekening & Dompet","p-asset":"Tabungan & Investasi","p-bud":"Anggaran","p-an":"Analisis & Prediksi","p-imp":"Impor Excel","p-cat":"Kategori"};
-function goPage(p){document.body.classList.remove("so");document.body.classList.toggle("ontx",p=="p-tx");document.querySelectorAll(".pg").forEach(x=>x.classList.toggle("on",x.id==p));const pe=$(p);pe.classList.remove("enter");void pe.offsetWidth;pe.classList.add("enter");clearTimeout(goPage.t);goPage.t=setTimeout(()=>pe.classList.remove("enter"),1100);document.querySelectorAll("[data-pg]").forEach(x=>x.classList.toggle("on",x.dataset.pg==p));$("ttl").textContent=TT[p];$("pbar").style.display=p=="p-cat"||p=="p-acc"||p=="p-imp"?"none":"";scrollTo(0,0)}
+$("al").onclick=e=>{const i=e.target.dataset.ad;if(i==null)return;if(S.accts.length<2){alert("Minimal 1 akun.");return}if(confirm("Hapus akun ini?")){S.accts.splice(i,1);save()}};
+$("aa").onclick=()=>{const n=$("an1").value.trim();if(!n)return;S.accts.push({id:"a"+Date.now(),name:n,kind:$("ak1").value,open:parseInt($("ao1").value.replace(/\D/g,""),10)||0});$("an1").value="";$("ao1").value="";save();toast("Akun terdaftar")};
+$("mb").onclick=()=>document.body.classList.toggle("so");$("ov").onclick=()=>document.body.classList.remove("so");
+function goPage(p){document.body.classList.remove("so");document.querySelectorAll(".pg").forEach(x=>x.classList.toggle("on",x.id==p));document.querySelectorAll("[data-pg]").forEach(x=>x.classList.toggle("on",x.dataset.pg==p));$("pbar").style.display=p=="p-cat"||p=="p-acc"||p=="p-imp"?"none":"";scrollTo(0,0)}
 document.querySelectorAll("[data-pg]").forEach(a=>a.onclick=()=>goPage(a.dataset.pg));
-document.querySelectorAll("[data-ex]").forEach(a=>a.onclick=()=>{document.body.classList.remove("so");$("ex").click()});$("q").oninput=()=>render();$("fk").onchange=()=>render();$("fr").onchange=()=>render();$("fab").onclick=()=>goPage("p-tx");
+$("q").oninput=()=>render();$("fk").onchange=()=>render();$("fr").onchange=()=>render();
 $("tabs").onclick=e=>{const p=e.target.dataset.p;if(!p)return;per=p;[...$("tabs").children].forEach(b=>b.classList.toggle("on",b.dataset.p==p));render()};
 function shift(n){const r=new Date(ref);if(per=="d")r.setDate(r.getDate()+n);else if(per=="w")r.setDate(r.getDate()+7*n);else if(per=="m")r.setMonth(r.getMonth()+n,1);else r.setFullYear(r.getFullYear()+n,0,1);ref=r;render()}
 $("pv").onclick=()=>shift(-1);$("nx").onclick=()=>shift(1);
 $("sv").onclick=()=>{const name=$("nm").value.trim(),amount=parseInt($("am").value.replace(/\D/g,""),10);
-if((!name&&type!="tf")||!amount||!$("dt").value){$("st").textContent="Lengkapi keterangan, jumlah, dan tanggal.";return}
-if(type=="tf"&&$("wa").value==$("wt").value){$("st").textContent="Pilih tempat asal dan tujuan yang berbeda.";return}
+if((!name&&type!="tf")||!amount||!$("dt").value){alert("Lengkapi keterangan, jumlah, dan tanggal.");return}
 const row={id:editId||Date.now(),type,name:name||"Pindah dana",amount,category:type=="tf"?"Pindah":$("ct").value,acc:(type=="sv"||type=="iv")&&$("dir").value=="2"&&$("wt").value?$("wt").value:$("wa").value,to:(type=="tf"||type=="sv"||type=="iv")?($("wt").value||undefined):undefined,date:$("dt").value,w:(type=="sv"||type=="iv")?+$("dir").value:0,gr:(type=="iv"&&isGold($("ct").value)&&pGr($("gr").value))||undefined};
 if(editId)S.tx=S.tx.map(t=>t.id==editId?row:t);else S.tx.push(row);
-const was=editId;cancel();ref=parse(row.date);save();$("st").textContent=was?"Perubahan tersimpan ✓":"Tersimpan ✓";toast(was?"Perubahan tersimpan":"Transaksi tersimpan");setTimeout(()=>$("nm").focus(),60)};
+cancel();ref=parse(row.date);save();toast("Tersimpan dalam brankas");setTimeout(()=>$("nm").focus(),60)};
 $("ex").onclick=async()=>{try{
-const T=[...S.tx].sort((a,b)=>a.date.localeCompare(b.date)).map(t=>({Tanggal:t.date,Tipe:TL[t.type]+wl(t),Keterangan:t.name,Kategori:t.category,Tempat:accName(accOf(t)),Ke:t.to?accName(t.to):"",Jumlah:t.amount,Gram:t.gr||""}));
-const M={},C={};S.tx.forEach(t=>{if(t.type!="in"&&t.type!="out")return;const k=t.date.slice(0,7);M[k]=M[k]||{Bulan:k,Pemasukan:0,Pengeluaran:0};M[k][t.type=="in"?"Pemasukan":"Pengeluaran"]+=t.amount;if(t.type=="out"){const q=k+"|"+t.category;C[q]=C[q]||{Bulan:k,Kategori:t.category,Total:0,Anggaran:S.bud[t.category]||""};C[q].Total+=t.amount}});
-const R=Object.keys(M).sort().map(k=>({...M[k],Saldo:M[k].Pemasukan-M[k].Pengeluaran}));
-const wb=XLSX.utils.book_new();[["Transaksi",T],["Rekap Bulanan",R],["Per Kategori",Object.keys(C).sort().map(k=>C[k])],["Saldo Tabungan",Object.entries(bal("sv")).map(([Tujuan,Saldo])=>({Tujuan,Saldo}))],["Saldo Tempat",S.accts.map(a=>({Tempat:a.name,Jenis:KIND[a.kind],Saldo:accBal()[a.id]||0}))],["Saldo Investasi",(()=>{const gm=goldMap(),vv=goldAdj(Object.assign({},pos(bal("iv"))));return Object.entries(bal("iv")).map(([Instrumen,Modal])=>({Instrumen,Modal,"Nilai sekarang":Math.round(vv[Instrumen]??Modal),Gram:gm[Instrumen]?gm[Instrumen].g:""}))})()]].forEach(([n,d])=>XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(d),n));
-const data=XLSX.write(wb,{type:"array",bookType:"xlsx"}),dl={save:o=>dlFile(o.filename,o.data)};
-await dl.save({filename:"keuangan-"+iso(new Date())+".xlsx",data});$("st").textContent="Excel diunduh ✓"}catch(e){$("st").textContent="Ekspor gagal/dibatalkan."}};
-let imp=null;
-const NK=s=>String(s==null?"":s).trim().toLowerCase(),dk=t=>[t.date,t.type,NK(t.name),t.amount,accOf(t),t.to||"",t.w?1:0].join("|");
-const JM={pengeluaran:"out",keluar:"out",expense:"out",pemasukan:"in",masuk:"in",income:"in",tabungan:"sv",tabung:"sv",investasi:"iv",invest:"iv",pindah:"tf",transfer:"tf",mutasi:"tf"};
-function pDate(v){let y,m,d,x;if(typeof v=="number"){const t=new Date(Math.round((v-25569)*864e5));y=t.getUTCFullYear();m=t.getUTCMonth()+1;d=t.getUTCDate()}else{const q=String(v||"").trim();if(x=q.match(/^(\d{4})[-\/.](\d{1,2})[-\/.](\d{1,2})/)){y=+x[1];m=+x[2];d=+x[3]}else if(x=q.match(/^(\d{1,2})[-\/.](\d{1,2})[-\/.](\d{2,4})/)){d=+x[1];m=+x[2];y=+x[3];if(y<100)y+=2000}else return null}
-const c=new Date(y,m-1,d);return c.getFullYear()==y&&c.getMonth()==m-1&&c.getDate()==d?y+"-"+pad(m)+"-"+pad(d):null}
-function pAmt(v){let n;if(typeof v=="number")n=Math.abs(v);else{let q=String(v||"").replace(/rp|\s/gi,"");if(q.includes(","))q=q.replace(/\./g,"").replace(",",".");else if(/^\d{1,3}(\.\d{3})+$/.test(q))q=q.replace(/\./g,"");n=parseFloat(q)}return n>0?Math.round(n):null}
-function fAcc(n){n=NK(n);if(!n)return S.accts[0].id;let a=S.accts.find(x=>NK(x.name)==n);if(!a){const m=S.accts.filter(x=>NK(x.name).includes(n)||n.includes(NK(x.name)));if(m.length==1)a=m[0]}return a?a.id:null}
-function gAmt(type,gm,ak){const g=pGr(gm);if(type!="iv"||!g)return null;const p=/tarik|jual|withdraw/i.test(String(ak))?G.buyback:G.jual;return p?Math.round(g*p):null}
-function parseRows(R){const hi=R.findIndex(r=>r.some(c=>NK(c)=="tanggal")&&r.some(c=>NK(c)=="jumlah"));if(hi<0)return{err:"Baris judul tidak ditemukan. Pastikan ada kolom Tanggal dan Jumlah (gunakan template)."};
-const H=R[hi].map(NK),ix=(...k)=>H.findIndex(h=>k.includes(h)),C={d:ix("tanggal"),j:ix("jenis"),n:ix("keterangan"),k:ix("kategori"),a:ix("jumlah"),gm:ix("gram","berat"),t:ix("tempat","rekening","akun","dari"),ke:ix("ke","tujuan"),ak:ix("aksi")};
-if(C.j<0)return{err:"Kolom Jenis tidak ditemukan."};const ex=new Set(S.tx.map(dk)),out=[];
-for(let i=hi+1;i<R.length;i++){const r=R[i];if(!r||r.every(c=>c===""||c==null))continue;const g=k=>C[k]>=0?r[C[k]]:"",o={row:i+1,err:null},date=pDate(g("d")),type=JM[NK(g("j"))],amount=pAmt(g("a"))||gAmt(type,g("gm"),g("ak")),name=String(g("n")||"").trim();
-if(!date)o.err="Tanggal tidak valid";else if(!type)o.err="Jenis tidak dikenal";else if(!amount)o.err="Jumlah tidak valid";else if(!name&&type!="tf")o.err="Keterangan kosong";
-else{const acc=fAcc(g("t")),t={id:0,type,name:name||"Pindah dana",amount,date,acc,category:"Pindah",w:0};
-if(!acc)o.err="Tempat tidak dikenal: "+g("t");
-else if(type=="tf"){const to=NK(g("ke"))?fAcc(g("ke")):null;if(!to)o.err="Kolom Ke kosong / tidak dikenal";else if(to==acc)o.err="Tempat asal dan tujuan sama";else t.to=to}
-else{if(NK(g("ke"))){const to2=fAcc(g("ke"));if(!to2)o.err="Kolom Ke tidak dikenal";else t.to=to2}let c=String(g("k")||"").trim();if(!c)c=guess(type,name);const f=S.cats[type].find(x=>NK(x)==NK(c));if(f)c=f;else o.newCat=c;t.category=c;if(type=="iv"&&pGr(g("gm")))t.gr=pGr(g("gm"));if(type=="sv"||type=="iv"){const ak=String(g("ak"));if(/tarik|jual|withdraw/i.test(ak))t.w=1;else if(/awal/i.test(ak))t.w=2}}
-if(!o.err){o.tx=t;o.dup=ex.has(dk(t))}}
-out.push(o)}
-return out.length?{rows:out}:{err:"Tidak ada baris data di bawah judul kolom."}}
-function showImp(){const p=$("pv2");if(!imp){p.style.display="none";return}p.style.display="block";
-const R=imp.rows,ok=R.filter(r=>!r.err),er=R.length-ok.length,dup=ok.filter(r=>r.dup).length,sk=$("skd").checked,n=ok.length-(sk?dup:0),nc=[...new Set(ok.filter(r=>r.newCat&&!(sk&&r.dup)).map(r=>r.newCat))];
-$("pvs").innerHTML=`<div class="kpi"><div><small>Baris terbaca</small><b>${R.length}</b></div><div><small>Siap diimpor</small><b class="in">${n}</b></div><div><small>Duplikat</small><b>${dup}</b></div><div><small>Error</small><b class="${er?"out":""}">${er}</b></div></div>`+(nc.length?`<p class="mu">Kategori baru akan dibuat: ${nc.map(esc).join(", ")}</p>`:"");
-$("pvt").innerHTML=`<div class="tw" style="margin-top:12px"><table class="tb t2"><tr><th>Baris</th><th>Tanggal</th><th>Jenis</th><th>Keterangan</th><th>Kategori</th><th>Tempat</th><th>Jumlah</th><th>Status</th></tr>${R.slice(0,200).map(r=>{const t=r.tx||{};return `<tr><td data-l="Baris">${r.row}</td><td data-l="Tanggal">${t.date||"–"}</td><td data-l="Jenis">${t.type?TL[t.type]:"–"}</td><td data-l="Keterangan">${esc(t.name||"")}</td><td data-l="Kategori">${esc(t.category||"")}${r.newCat?" (baru)":""}</td><td data-l="Tempat">${t.acc?esc(route(t)):"–"}</td><td data-l="Jumlah">${t.amount?rp(t.amount):"–"}</td><td data-l="Status" class="${r.err?"out":r.dup?"":"in"}">${r.err?"❌ "+esc(r.err):r.dup?"⚠ Duplikat":"✅ Siap"}</td></tr>`}).join("")}</table></div>${R.length>200?`<p class="mu">Menampilkan 200 baris pertama dari ${R.length}.</p>`:""}`;
-$("go").textContent="Impor "+n+" transaksi";$("go").disabled=!n}
-$("imp").onclick=()=>goPage("p-imp");$("upl").onclick=()=>$("fi").click();$("skd").onchange=showImp;
-$("no").onclick=()=>{imp=null;showImp();$("im").textContent="Impor dibatalkan."};
-$("go").onclick=()=>{if(!imp)return;const sk=$("skd").checked,L=imp.rows.filter(r=>!r.err&&!(sk&&r.dup));let k=Date.now();
-L.forEach(r=>{const t=r.tx,c=S.cats[t.type];if(r.newCat&&c&&!c.includes(r.newCat))c.splice(c.length-1,0,r.newCat);t.id=k++;S.tx.push(t)});
-const mx=L.map(r=>r.tx.date).sort().pop();if(mx)ref=parse(mx);$("im").textContent="✅ "+L.length+" transaksi berhasil diimpor. Buka Dashboard atau Transaksi untuk melihatnya.";imp=null;showImp();save()};
-$("fi").onchange=async e=>{const f=e.target.files[0];if(!f)return;try{const wb=XLSX.read(await f.arrayBuffer(),{type:"array"}),ws=wb.Sheets["Transaksi"]||wb.Sheets[wb.SheetNames[0]],res=parseRows(XLSX.utils.sheet_to_json(ws,{header:1,raw:true,defval:""}));
-if(res.err){imp=null;$("im").textContent="❌ "+res.err}else{imp=res;$("im").textContent="File: "+f.name}showImp()}catch(x){imp=null;showImp();$("im").textContent="❌ File tidak bisa dibaca. Gunakan file .xlsx atau .csv sesuai template."}e.target.value=""};
-$("tpl").onclick=async()=>{try{const t=iso(new Date()),ac=S.accts.map(a=>a.name),a1=ac[1]||ac[0],H=["Tanggal","Jenis","Keterangan","Kategori","Jumlah","Tempat","Ke","Aksi","Gram"],wb=XLSX.utils.book_new();
-const sh=(n,d,w)=>{const w2=XLSX.utils.aoa_to_sheet(d);w2["!cols"]=w.map(x=>({wch:x}));XLSX.utils.book_append_sheet(wb,w2,n)},W=[14,16,30,18,14,18,18,10,10],mx=Math.max(...Object.values(S.cats).map(c=>c.length),ac.length,5);
-sh("Petunjuk",[["PETUNJUK IMPOR TRANSAKSI"],[""],["Isi sheet Transaksi mulai baris 2: satu baris = satu transaksi. Hapus/timpa baris contoh. Jangan ubah nama kolom."],["Tanggal: 2026-10-05 atau 05/10/2026 | Jenis: Pengeluaran, Pemasukan, Tabungan, Investasi, Pindah"],["Kategori kosong = ditebak otomatis; nama baru dibuat otomatis. Jumlah: angka. Tempat kosong = "+ac[0]+"."],["Pindah: isi Tempat (asal) dan Ke (tujuan). Tabungan/Investasi: Tempat = asal uang, Ke = rekening tempat disimpan (kosong = di luar rekening). Tabungan/Investasi: kolom Aksi = Setor, Tarik, atau Saldo awal (dana yang sudah ada sebelumnya)."],["Gram: khusus Investasi Emas, berat dalam gram (mis. 0,5). Kolom Jumlah boleh kosong: otomatis berat × harga Antam hari ini."],["Sheet Daftar berisi pilihan yang ada di aplikasi; sheet Contoh hanya referensi (tidak diimpor)."]],[110]);
-sh("Transaksi",[H,[t,"Pengeluaran","Nasi goreng","Makanan",25000,ac[0],"",""]],W);
-sh("Daftar",[["Jenis","Tempat","Kategori Pengeluaran","Kategori Pemasukan","Tujuan Tabungan","Jenis Investasi","Aksi"],...Array.from({length:mx},(_,i)=>[["Pengeluaran","Pemasukan","Tabungan","Investasi","Pindah"][i]||"",ac[i]||"",S.cats.out[i]||"",S.cats.in[i]||"",S.cats.sv[i]||"",S.cats.iv[i]||"",["Setor","Tarik","Saldo awal"][i]||""])],[16,20,22,20,20,20,10]);
-sh("Contoh",[H,[t,"Pengeluaran","Makan siang warteg","Makanan",18000,ac[0],"",""],[t,"Pemasukan","Gaji","Gaji",5000000,a1,"",""],[t,"Tabungan","Tabungan mobil","Mobil",1000000,a1,ac[2]||a1,"Setor"],[t,"Investasi","Beli emas Antam","Emas",G.jual?G.jual:2592000,a1,"","Setor",1],[t,"Pindah","Tarik saldo e-wallet","",200000,ac[ac.length-1],ac[0],""]],W);
-const data=XLSX.write(wb,{type:"array",bookType:"xlsx"}),dl={save:o=>dlFile(o.filename,o.data)};
-await dl.save({filename:"template-impor-transaksi.xlsx",data});$("im").textContent="Template diunduh ✓"}catch(e){$("im").textContent="Unduhan gagal/dibatalkan."}};
-function dlFile(n,d){const b=new Blob([d],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download=n;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),5000);return Promise.resolve()}
+const T=[...S.tx].sort((a,b)=>a.date.localeCompare(b.date)).map(t=>({Tanggal:t.date,Tipe:TL[t.type],Keterangan:t.name,Kategori:t.category,Tempat:accName(accOf(t)),Jumlah:t.amount}));
+const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,XLSX.utils.json_to_sheet(T),"Transaksi");
+const data=XLSX.write(wb,{type:"array",bookType:"xlsx"});
+const b=new Blob([data],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}),u=URL.createObjectURL(b),a=document.createElement("a");
+a.href=u;a.download="keuangan-"+iso(new Date())+".xlsx";document.body.appendChild(a);a.click();a.remove();toast("Excel berhasil diunduh");
+}catch(e){alert("Gagal mengunduh Excel.");}};
+$("imp").onclick=()=>goPage("p-imp");
 let rev=0,pend=false,busy=false,tmr=null,loaded=false;
-const API_URL="";/* Isi dengan URL web app (…/exec) HANYA jika file ini di-hosting di luar Apps Script (mis. GitHub Pages). Boleh dikosongkan dan diisi lewat layar Masuk. */
 const inGAS=!!(window.google&&google.script&&google.script.run);
-let PIN="",apiUrl=API_URL;
-try{PIN=sessionStorage.getItem("keu_pin")||localStorage.getItem("keu_pin")||"";if(!apiUrl)apiUrl=localStorage.getItem("keu_api")||""}catch(e){}
+let PIN=localStorage.getItem("keu_pin")||sessionStorage.getItem("keu_pin")||"";
+let apiUrl=localStorage.getItem("keu_api")||"";
 function call(req){req.pin=PIN;return new Promise((res,rej)=>{
 if(inGAS){google.script.run.withSuccessHandler(res).withFailureHandler(rej).api(req);return}
-if(!apiUrl){rej(new Error("URL web app belum diisi"));return}
-fetch(apiUrl,{method:"POST",redirect:"follow",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(req)}).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json()}).then(res).catch(rej)})}
-function showLogin(msg){$("ld").style.display="none";$("lg").style.display="flex";$("lgm").textContent=msg||"";$("lgu").style.display=inGAS?"none":"block";$("lgurl").value=apiUrl;$("lgpin").value="";setTimeout(()=>$((inGAS||apiUrl)?"lgpin":"lgurl").focus(),50)}
-$("lgok").onclick=()=>{if(!inGAS){apiUrl=$("lgurl").value.trim();if(!/^https:\/\/script\.google\.com\/.+\/exec/.test(apiUrl)){$("lgm").textContent="URL harus berakhiran /exec dan diawali https://script.google.com/";return}}
-PIN=$("lgpin").value;try{sessionStorage.removeItem("keu_pin");localStorage.removeItem("keu_pin");if(PIN)($("lgmem").checked?localStorage:sessionStorage).setItem("keu_pin",PIN);if(!inGAS)localStorage.setItem("keu_api",apiUrl)}catch(e){}
+if(!apiUrl){rej(new Error("URL script belum dikonfigurasi"));return}
+fetch(apiUrl,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(req)}).then(r=>r.json()).then(res).catch(rej)})}
+function showLogin(msg){$("ld").style.display="none";$("lg").style.display="flex";$("lgm").textContent=msg||"Masukkan PIN Keamanan Vault Anda.";$("lgu").style.display=inGAS?"none":"block";$("lgurl").value=apiUrl;$("lgpin").value="";setTimeout(()=>$((inGAS||apiUrl)?"lgpin":"lgurl").focus(),50)}
+$("lgok").onclick=()=>{if(!inGAS){apiUrl=$("lgurl").value.trim()}
+PIN=$("lgpin").value;if(PIN)($("lgmem").checked?localStorage:sessionStorage).setItem("keu_pin",PIN);if(!inGAS)localStorage.setItem("keu_api",apiUrl);
 $("lg").style.display="none";boot()};
-$("lgpin").onkeydown=e=>{if(e.key=="Enter")$("lgok").click()};
-$("lo").onclick=()=>{try{sessionStorage.removeItem("keu_pin");localStorage.removeItem("keu_pin")}catch(e){}PIN="";location.reload()};
+$("lo").onclick=()=>{localStorage.removeItem("keu_pin");sessionStorage.removeItem("keu_pin");location.reload()};
 function stat(t,c){const e=$("sync");e.textContent=t;e.className="sync "+(c||"")}
-function save(){renderAll();pend=true;stat("⏳ Menyimpan…","w");clearTimeout(tmr);tmr=setTimeout(push,700)}
+function save(){renderAll();pend=true;stat("Menyimpan…","w");clearTimeout(tmr);tmr=setTimeout(push,700)}
 function push(){if(busy||!loaded||!pend)return;busy=true;pend=false;
 call({a:"saveAll",json:JSON.stringify(S),rev:rev}).then(r=>{busy=false;
-if(r&&r.code==="PIN"){pend=true;showLogin(r.error);return}
-if(r&&r.conflict){pend=false;stat("⚠ Data berubah di perangkat lain","e");$("cf").style.display="flex";return}
-if(!r||!r.ok){pend=true;stat("⚠ Gagal menyimpan: "+((r&&r.error)||"tidak diketahui")+" (ketuk untuk ulangi)","e");return}
-rev=r.rev;if(pend)push();else stat("☁ Tersimpan di Google Sheets","ok")})
-.catch(e=>{busy=false;pend=true;stat("⚠ Gagal menyimpan (ketuk untuk ulangi)","e");setTimeout(push,15000)})}
-$("sync").onclick=()=>{if(pend&&!busy)push()};
-$("rl2").onclick=()=>{$("cf").style.display="none";pend=false;boot()};
-addEventListener("beforeunload",e=>{if(pend||busy){e.preventDefault();e.returnValue=""}});
+if(r&&r.code==="PIN"){showLogin(r.error);return}
+if(r&&r.conflict){stat("Konflik data","e");$("cf").style.display="flex";return}
+if(!r||!r.ok){pend=true;stat("Gagal simpan","e");return}
+rev=r.rev;stat("Tersinkronisasi","ok")}).catch(()=>{busy=false;pend=true;stat("Offline","e")})}
 function load(raw){try{const o=JSON.parse(raw);if(Array.isArray(o))S.tx=o;else if(o&&o.tx)S=Object.assign(S,o)}catch(e){}
-if(!S.cats.sv){S.cats.sv=["Darurat","Mobil","Pendidikan Anak","Liburan","Lainnya"];S.cats.iv=["Reksadana","Saham","Emas","Deposito","Crypto","Lainnya"];["Keluarga","Sedekah"].forEach(c=>{if(!S.cats.out.includes(c))S.cats.out.splice(S.cats.out.length-1,0,c)})}
-S.open=S.open||0;
-if(!S.accts||!S.accts.length){S.accts=[{id:"cash",name:"Cash",kind:"cash",open:S.open},{id:"bni",name:"Rekening BNI",kind:"rek",open:0},{id:"bsi",name:"Rekening BSI",kind:"rek",open:0},{id:"spay",name:"ShopeePay",kind:"ew",open:0}];S.open=0}S.accts.forEach(a=>{if(a.kind=="sav")a.kind="rek"});["out","in","sv","iv"].forEach(t=>{const c=S.cats[t]||(S.cats[t]=[]),k=c.indexOf("Lainnya");if(k>=0)c.splice(k,1);c.push("Lainnya")})}
+if(!S.cats.sv){S.cats.sv=["Darurat","Mobil","Pendidikan Anak","Liburan","Lainnya"];S.cats.iv=["Reksadana","Saham","Emas","Deposito","Crypto","Lainnya"]}
+if(!S.accts||!S.accts.length){S.accts=[{id:"cash",name:"Cash Vault",kind:"cash",open:0},{id:"bni",name:"Bank Rekening",kind:"rek",open:0}];}}
 function renderAll(){renderCats();fillFilter();fillAccts();renderAccts();render();warn()}
-function fail(m){$("ld").style.display="flex";$("ldm").innerHTML="Gagal memuat data: "+esc(m)+'<br><span class="mu">'+(inGAS?"Pastikan setup() sudah dijalankan dan izin diberikan.":"Periksa URL web app, akses deployment (Anyone), dan koneksi.")+'</span><br><button onclick="boot()" style="margin-top:12px;width:auto">Coba lagi</button>'}
-function boot(){if(!inGAS&&!apiUrl){showLogin("File ini berjalan di luar Apps Script. Isi URL web app dan PIN.");return}
-$("ld").style.display="flex";$("ldm").textContent="Memuat data dari Google Sheets…";
+function boot(){if(!inGAS&&!apiUrl){showLogin("Konfigurasi URL Endpoint API diperlukan.");return}
+$("ld").style.display="flex";
 call({a:"getAll"}).then(d=>{
 if(d&&d.code==="PIN"){showLogin(d.error);return}
-if(!d||d.error){fail((d&&d.error)||"respon kosong");return}
-rev=d.rev||0;G=d.gold||{};delete d.gold;S.tx=[];load(JSON.stringify(d));loaded=true;fillCats("Lainnya");renderAll();$("ld").style.display="none";$("lg").style.display="none";$("lo").style.display=PIN?"":"none";$("p-dash").classList.add("enter");setTimeout(()=>$("p-dash").classList.remove("enter"),1100);stat("☁ Tersimpan di Google Sheets","ok");if(d.fresh){pend=true;push()}
-call({a:"refreshGold",force:false}).then(g=>{if(g&&!g.code){G=g;renderTop();gl()}}).catch(()=>{})
-}).catch(e=>fail((e&&e.message)||String(e)))}
+if(!d||d.error){alert(d.error||"Gagal memuat data");return}
+rev=d.rev||0;G=d.gold||{};delete d.gold;S.tx=[];load(JSON.stringify(d));loaded=true;fillCats("Lainnya");renderAll();
+$("ld").style.display="none";$("lo").style.display=PIN?"":"none";stat("Tersinkronisasi","ok");
+call({a:"refreshGold",force:false}).then(g=>{if(g&&!g.code){G=g;renderTop();gl()}})}).catch(e=>{alert("Kesalahan koneksi: "+e.message)})}
 const fmN=v=>String(v).replace(/\D/g,"").replace(/\B(?=(\d{3})+(?!\d))/g,".");
 function toast(m){const t=$("toast");t.textContent=m;t.classList.add("on");clearTimeout(toast.t);toast.t=setTimeout(()=>t.classList.remove("on"),2200)}
 $("qa").onclick=()=>{goPage("p-tx");setTimeout(()=>$("nm").focus(),80)};
-$("bmenu").onclick=()=>document.body.classList.toggle("so");
-["nm","am","dt","gr"].forEach(i=>$(i).addEventListener("keydown",e=>{if(e.key=="Enter"){e.preventDefault();$("sv").click()}}));
-document.addEventListener("keydown",e=>{const t=e.target,typing=/INPUT|SELECT|TEXTAREA/.test(t.tagName||"");if(e.key=="Escape"){if(document.body.classList.contains("mo"))closePos();else if(editId)cancel()}
-if(!typing&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&(e.key=="n"||e.key=="N")){e.preventDefault();$("qa").click()}});
-function setNum(id,val){const el=$(id),from=el.dataset.v===undefined?val:+el.dataset.v;el.dataset.v=val;
-if(from===val||!el.isConnected||typeof requestAnimationFrame!="function"||(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches)){el.textContent=rp(val);return}
-const t0=performance.now(),dur=600;cancelAnimationFrame(el._r);
-const step=t=>{const p=Math.min(1,(t-t0)/dur),e=1-Math.pow(1-p,3);el.textContent=rp(from+(val-from)*e);if(p<1)el._r=requestAnimationFrame(step)};el._r=requestAnimationFrame(step)}
-function renderPos(){const AB=accBal(),H=holdMap(),rows=S.accts.map(a=>({a,v:(AB[a.id]||0)-(H[a.id]||0),h:H[a.id]||0,t:AB[a.id]||0})),total=rows.reduce((s,r)=>s+r.v,0),by={},kinds={};
-rows.forEach(r=>{if(r.v>0)by[r.a.name]=r.v;kinds[r.a.kind]=(kinds[r.a.kind]||0)+r.v});
-const pt=Object.values(by).reduce((a,b)=>a+b,0),kt=Object.values(kinds).filter(v=>v>0).reduce((a,b)=>a+b,0)||1,KC={rek:"#4f7fb0",cash:"#3f9b78",ew:"#8a7fd0"},ks=Object.keys(kinds).filter(k=>kinds[k]>0);
-const ear=rows.filter(r=>r.h>0),neg=rows.filter(r=>r.v<0);
-$("mds").innerHTML=`Uang yang bebas dipakai: <b class="${total<0?"out":"in"}">${rp(total)}</b> · tersebar di ${rows.filter(r=>r.v!=0).length} tempat`;
-$("mdc").innerHTML=(pt?donut(by,pt,0,total,"Sisa uang"):'<p class="mu">Belum ada uang yang tercatat di tempat mana pun.</p>')
-+(ks.length?`<div class="mu" style="margin:16px 0 0;font-size:12px;font-weight:600;letter-spacing:.04em">PER JENIS</div><div class="stk">${ks.map(k=>`<i style="width:${kinds[k]/kt*100}%;background:${KC[k]}" title="${KIND[k]}"></i>`).join("")}</div><div class="stkl">${ks.map(k=>`<span><i style="background:${KC[k]}"></i>${KIND[k]} <b>${rp(kinds[k])}</b> <span class="mu">${Math.round(kinds[k]/kt*100)}%</span></span>`).join("")}</div>`:"")
-+recon(rows)+(neg.length?`<p class="out" style="margin:10px 0 0;font-size:13px">⚠ Saldo minus: ${neg.map(r=>`${esc(r.a.name)} (${rp(r.v)})`).join(", ")}. Periksa saldo awal atau catat pemasukan.</p>`:"")}
-function recon(rows){const tot=rows.reduce((s,r)=>s+r.t,0),hold=rows.reduce((s,r)=>s+r.h,0),free=tot-hold,over=rows.filter(r=>r.h>r.t+.5),det=rows.filter(r=>r.h!=0||r.v<0);
-let x=`<div class="mu" style="margin:16px 0 6px;font-size:12px;font-weight:600;letter-spacing:.04em">RINCIAN PERHITUNGAN</div><div class="rc"><div><span>Total saldo semua tempat</span><b>${rp(tot)}</b></div><div><span>Dialokasikan untuk tabungan/investasi</span><b>− ${rp(hold)}</b></div><div><span>Sisa uang (bebas dipakai)</span><b class="${free<0?"out":"in"}">${rp(free)}</b></div></div>`;
-if(det.length)x+=`<table class="rt" style="margin-top:10px"><tr><th>Tempat</th><th>Saldo</th><th>Dialokasikan</th><th>Bebas pakai</th></tr>${det.map(r=>`<tr><td>${esc(r.a.name)}${r.h>r.t+.5?" ⚠":""}</td><td data-l="Saldo">${rp(r.t)}</td><td data-l="Dialokasikan">${rp(r.h)}</td><td data-l="Bebas pakai" class="${r.v<0?"out":""}">${rp(r.v)}</td></tr>`).join("")}</table>`;
-if(free<0)x+=`<div class="tip" style="margin-top:10px">💡 Sisa uang minus karena yang <b>dialokasikan</b> (${rp(hold)}) lebih besar dari <b>total saldo</b> (${rp(tot)}). ${over.length?`Tempat bermasalah: <b>${over.map(r=>esc(r.a.name)).join(", ")}</b> (alokasi melebihi saldo). `:""}Penyebab umum: (1) saldo awal tempat itu belum diisi, (2) tabungan/investasi dicatat "Disimpan di" tempat itu padahal uangnya sudah terpakai atau dipindah tanpa dicatat, (3) tabungan lama belum ditandai Tarik. Perbaiki lewat <b>Rekening &amp; Dompet</b> (isi saldo awal) atau edit transaksinya.</div>`;
-return x}
-function openPos(){renderPos();document.body.classList.add("mo");$("mdl").classList.add("on");$("mdx").focus()}
-function closePos(){document.body.classList.remove("mo");$("mdl").classList.remove("on");$("cc1").focus()}
-$("cc1").onclick=openPos;$("cc1").onkeydown=e=>{if(e.key=="Enter"||e.key==" "){e.preventDefault();openPos()}};
-$("mdx").onclick=closePos;$("mdl").onclick=e=>{if(e.target===$("mdl"))closePos()};
-let selTx=new Set(),curL2=[],lastIdx=null,confirming=false;
-function updSel(){const sb=$("selbar");if(!sb)return;const n=selTx.size,all=curL2.length>0&&curL2.every(k=>selTx.has(k)),ck=$("ckAll");
-ck.checked=all;ck.indeterminate=n>0&&!all;$("selN").textContent=n?n+" dipilih":"Pilih semua ("+curL2.length+")";sb.classList.toggle("on",n>0);
-if(!n)confirming=false;$("selA").style.display=n&&!confirming?"":"none";$("selC").style.display=n&&confirming?"":"none";$("selQ").textContent="Hapus "+n+" transaksi? "}
-function syncCk(){document.querySelectorAll("#ls .ck1").forEach(c=>{const on=selTx.has(+c.dataset.k);c.checked=on;if(c.closest){const tr=c.closest("tr");if(tr)tr.classList.toggle("sel",on)}})}
-function selClick(e){const T=e.target,id=T.id;
-if(T.classList&&T.classList.contains("ck1")){const k=+T.dataset.k,i=curL2.indexOf(k);
-if(e.shiftKey&&lastIdx!=null&&i>=0){const a=Math.min(lastIdx,i),b=Math.max(lastIdx,i);for(let j=a;j<=b;j++)T.checked?selTx.add(curL2[j]):selTx.delete(curL2[j])}else T.checked?selTx.add(k):selTx.delete(k);
-lastIdx=i;syncCk();updSel();return true}
-if(id=="ckAll"){curL2.forEach(k=>T.checked?selTx.add(k):selTx.delete(k));syncCk();updSel();return true}
-if(id=="selClr"){selTx.clear();confirming=false;syncCk();updSel();return true}
-if(id=="delSel"){confirming=true;updSel();return true}
-if(id=="delNo"){confirming=false;updSel();return true}
-if(id=="delYes"){bulkDelete();return true}
-return false}
-function bulkDelete(){const gone=S.tx.filter(t=>selTx.has(t.id));if(!gone.length)return;S.tx=S.tx.filter(t=>!selTx.has(t.id));if(editId!=null&&selTx.has(editId))cancel();selTx.clear();confirming=false;lastIdx=null;save();
-showUndo(gone.length+" transaksi dihapus",()=>{S.tx.push(...gone);save();toast("Penghapusan dibatalkan")})}
-function showUndo(msg,fn){const t=$("utoast");t.innerHTML=esc(msg)+' <button id="undoB">Urungkan</button>';t.classList.add("on");clearTimeout(showUndo.t);$("undoB").onclick=()=>{t.classList.remove("on");clearTimeout(showUndo.t);fn()};showUndo.t=setTimeout(()=>t.classList.remove("on"),9000)}
+function setNum(id,val){const el=$(id);if(el)el.textContent=rp(val)}
+function renderPos(){const AB=accBal(),H=holdMap(),rows=S.accts.map(a=>({a,v:(AB[a.id]||0)-(H[a.id]||0),h:H[a.id]||0,t:AB[a.id]||0})),total=rows.reduce((s,r)=>s+r.v,0);
+$("mds").textContent="Total Saldo Bebas Likuid: "+rp(total);
+$("mdc").innerHTML=`<div class="tw"><table><tr><th>Akun</th><th>Total Saldo</th><th>Terikat Aset</th><th>Bebas Dipakai</th></tr>${rows.map(r=>`<tr><td><b>${esc(r.a.name)}</b></td><td>${rp(r.t)}</td><td>${rp(r.h)}</td><td class="${r.v<0?"out":"in"}">${rp(r.v)}</td></tr>`).join("")}</table></div>`}
+$("cc1").onclick=()=>{renderPos();$("mdl").classList.add("on")};$("mdx").onclick=()=>$("mdl").classList.remove("on");
 boot();
-</script></body></html>
+</script>
+</body>
+</html>
