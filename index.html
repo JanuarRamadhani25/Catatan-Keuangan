@@ -6,8 +6,11 @@
   <meta name="theme-color" content="#438977">
   <title>Keuanganku — Pencatatan Keuangan Pribadi</title>
 
-  <!-- Favicon SVG (Golden Amber Geometric Emblem) -->
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23438977'/%3E%3Cpath d='M32 14L48 30L39 39L32 32L25 39L16 30L32 14Z' fill='%23f6c945'/%3E%3Cpath d='M32 50L16 34L25 25L32 32L39 25L48 34L32 50Z' fill='%23f6c945' fill-opacity='.85'/%3E%3C/svg%3E">
+  <!-- Ikon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
   <!-- Google Fonts: Plus Jakarta Sans -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -2464,7 +2467,8 @@
       }
       html { scroll-behavior: auto; }
     }
-        /* HP: tombol Catat bulat di tengah */
+
+    /* ==================== HP: TOMBOL CATAT BULAT DI TENGAH ==================== */
     @media (max-width: 760px) {
       #qa { display: none; }
       .bnav { overflow: visible; }
@@ -2483,6 +2487,38 @@
       }
       .bnav .bcatat svg { width: 26px; height: 26px; stroke-width: 2.6; }
       .bnav .bcatat:active { transform: scale(0.94); }
+    }
+
+    /* ==================== LATAR BERILUSTRASI KEUANGAN ==================== */
+    body {
+      background:
+        radial-gradient(760px 440px at 0% -6%, #d6eee4 0%, transparent 65%),
+        radial-gradient(680px 420px at 100% 2%, #fdeeb8 0%, transparent 60%),
+        linear-gradient(180deg, #f6faf8 0%, #fffdf5 100%) fixed;
+    }
+    body::before {
+      content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22 viewBox=%220 0 240 240%22 fill=%22none%22 stroke=%22%23438977%22 stroke-opacity=%22.17%22 stroke-width=%221.6%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Ccircle cx=%2240%22 cy=%2244%22 r=%2220%22/%3E%3Ccircle cx=%2240%22 cy=%2244%22 r=%2213%22/%3E%3Cpath d=%22M35 40h10M35 46h10M40 35v18%22/%3E%3Cpath d=%22M140 74l16-16 12 10 24-26%22/%3E%3Cpath d=%22M184 38h10v10%22/%3E%3Crect x=%22118%22 y=%22168%22 width=%2210%22 height=%2222%22 rx=%222%22/%3E%3Crect x=%22133%22 y=%22156%22 width=%2210%22 height=%2234%22 rx=%222%22/%3E%3Crect x=%22148%22 y=%22144%22 width=%2210%22 height=%2246%22 rx=%222%22/%3E%3Crect x=%22163%22 y=%22132%22 width=%2210%22 height=%2258%22 rx=%222%22/%3E%3Cpath d=%22M30 160v18M21 169h18%22/%3E%3Crect x=%2262%22 y=%22186%22 width=%2236%22 height=%2226%22 rx=%226%22/%3E%3Cpath d=%22M62 195h36%22/%3E%3Ccircle cx=%2288%22 cy=%22203%22 r=%222%22/%3E%3Cpath d=%22M205 214v-28%22/%3E%3Cpath d=%22M205 198c-12 0-16-8-16-16 12 0 16 8 16 16%22/%3E%3Cpath d=%22M205 192c10 0 14-6 14-14-10 0-14 6-14 14%22/%3E%3Ccircle cx=%22214%22 cy=%22120%22 r=%222.5%22/%3E%3Ccircle cx=%2296%22 cy=%22112%22 r=%222.5%22/%3E%3Ccircle cx=%22108%22 cy=%2220%22 r=%222.5%22/%3E%3C/svg%3E") 0 0 / 240px 240px repeat;
+    }
+    body::after {
+      content: ""; position: fixed; right: 14px; bottom: 0; width: 360px; height: 260px;
+      z-index: -1; pointer-events: none; opacity: .9;
+      background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 360 260%22%3E%3Cellipse cx=%22180%22 cy=%22244%22 rx=%22170%22 ry=%2212%22 fill=%22%23438977%22 opacity=%22.12%22/%3E%3Cg fill=%22%23438977%22 opacity=%22.28%22%3E%3Crect x=%2240%22 y=%22170%22 width=%2234%22 height=%2270%22 rx=%227%22/%3E%3Crect x=%2286%22 y=%22140%22 width=%2234%22 height=%22100%22 rx=%227%22/%3E%3Crect x=%22132%22 y=%22108%22 width=%2234%22 height=%22132%22 rx=%227%22/%3E%3Crect x=%22178%22 y=%2274%22 width=%2234%22 height=%22166%22 rx=%227%22/%3E%3C/g%3E%3Cpath d=%22M44 150L110 112L150 128L208 62%22 fill=%22none%22 stroke=%22%23f6c945%22 stroke-width=%227%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3Cpath d=%22M190 60h22v22%22 fill=%22none%22 stroke=%22%23f6c945%22 stroke-width=%227%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3Crect x=%22236%22 y=%22213%22 width=%2268%22 height=%2214%22 fill=%22%23f2c038%22/%3E%3Cellipse cx=%22270%22 cy=%22213%22 rx=%2234%22 ry=%2211%22 fill=%22%23f6c945%22 stroke=%22%23d9a81e%22 stroke-width=%222%22/%3E%3Crect x=%22236%22 y=%22199%22 width=%2268%22 height=%2214%22 fill=%22%23f2c038%22/%3E%3Cellipse cx=%22270%22 cy=%22199%22 rx=%2234%22 ry=%2211%22 fill=%22%23f6c945%22 stroke=%22%23d9a81e%22 stroke-width=%222%22/%3E%3Crect x=%22236%22 y=%22185%22 width=%2268%22 height=%2214%22 fill=%22%23f2c038%22/%3E%3Cellipse cx=%22270%22 cy=%22185%22 rx=%2234%22 ry=%2211%22 fill=%22%23f6c945%22 stroke=%22%23d9a81e%22 stroke-width=%222%22/%3E%3Crect x=%22236%22 y=%22171%22 width=%2268%22 height=%2214%22 fill=%22%23f2c038%22/%3E%3Cellipse cx=%22270%22 cy=%22171%22 rx=%2234%22 ry=%2211%22 fill=%22%23f6c945%22 stroke=%22%23d9a81e%22 stroke-width=%222%22/%3E%3Crect x=%22236%22 y=%22157%22 width=%2268%22 height=%2214%22 fill=%22%23f2c038%22/%3E%3Cellipse cx=%22270%22 cy=%22157%22 rx=%2234%22 ry=%2211%22 fill=%22%23f6c945%22 stroke=%22%23d9a81e%22 stroke-width=%222%22/%3E%3Ccircle cx=%22312%22 cy=%2296%22 r=%2217%22 fill=%22%23f6c945%22 stroke=%22%23d9a81e%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%22312%22 cy=%2296%22 r=%2210%22 fill=%22none%22 stroke=%22%23fff%22 stroke-opacity=%22.7%22 stroke-width=%222%22/%3E%3Cpath d=%22M18 244v-46%22 stroke=%22%23438977%22 stroke-width=%224%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M18 212c-16 0-22-10-22-22 16 0 22 10 22 22%22 fill=%22%23438977%22 opacity=%22.5%22/%3E%3Cpath d=%22M18 202c14 0 20-8 20-20-14 0-20 8-20 20%22 fill=%22%23438977%22 opacity=%22.35%22/%3E%3C/svg%3E") center bottom / contain no-repeat;
+      animation: floaty 6s ease-in-out infinite;
+    }
+    .card { background: rgba(247, 248, 250, 0.86); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+    @keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+    @media (max-width: 1199px) { body::after { display: none; } }
+
+    /* Ilustrasi pada keadaan kosong */
+    p.mu.empty {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      text-align: center; padding: 10px 8px 14px;
+    }
+    p.mu.empty::before {
+      content: ""; width: 120px; height: 84px; flex: none;
+      background: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 120 84%22%3E%3Cellipse cx=%2260%22 cy=%2276%22 rx=%2240%22 ry=%226%22 fill=%22%23438977%22 opacity=%22.12%22/%3E%3Crect x=%2226%22 y=%2228%22 width=%2268%22 height=%2244%22 rx=%2210%22 fill=%22%23e6efec%22 stroke=%22%23438977%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M26 40h68%22 stroke=%22%23438977%22 stroke-width=%222.5%22 opacity=%22.5%22/%3E%3Crect x=%2270%22 y=%2248%22 width=%2226%22 height=%2214%22 rx=%227%22 fill=%22%23fff%22 stroke=%22%23438977%22 stroke-width=%222.5%22/%3E%3Ccircle cx=%2278%22 cy=%2255%22 r=%222.6%22 fill=%22%23438977%22/%3E%3Ccircle cx=%2248%22 cy=%2218%22 r=%2211%22 fill=%22%23f6c945%22 stroke=%22%23d9a81e%22 stroke-width=%222.5%22/%3E%3Cpath d=%22M48 13v10M44 16h8%22 stroke=%22%23a87f10%22 stroke-width=%222%22 stroke-linecap=%22round%22/%3E%3Cpath d=%22M92 14l2 5 5 2-5 2-2 5-2-5-5-2 5-2z%22 fill=%22%23f6c945%22/%3E%3C/svg%3E") center / contain no-repeat;
+      animation: floaty 4.5s ease-in-out infinite;
     }
   </style>
 </head>
@@ -4756,6 +4792,17 @@
       };
       showUndo.t = setTimeout(() => t.classList.remove("on"), 9000);
     }
+
+    /* Tandai teks "belum ada data" agar tampil dengan ilustrasi */
+    (function () {
+      const re = /^(Belum ada|Isi anggaran|Pilih tampilan|Harga emas belum)/;
+      let t;
+      const tag = () => document.querySelectorAll("p.mu:not(.empty)").forEach(p => {
+        if (re.test(p.textContent.trim())) p.classList.add("empty");
+      });
+      new MutationObserver(() => { clearTimeout(t); t = setTimeout(tag, 30); }).observe(document.body, { childList: true, subtree: true });
+      tag();
+    })();
 
     window.boot = boot;
 
